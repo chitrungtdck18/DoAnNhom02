@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "668627707668",
+    "firebase_url": "https://clothes-store-21b7f-default-rtdb.firebaseio.com",
+    "project_id": "clothes-store-21b7f",
+    "storage_bucket": "clothes-store-21b7f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668627707668:android:0467c341afe5c97fe08401",
+        "android_client_info": {
+          "package_name": "com.doannhom2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668627707668-rc9g24m2uuheiq6cepk3g2rq02r565cq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.doannhom2",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "668627707668-39rv26puj26c59odmsifn82dlo0dtmkq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT3hfkGRi7wPNw60gjXjJhIDvaU7HcRyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668627707668-39rv26puj26c59odmsifn82dlo0dtmkq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

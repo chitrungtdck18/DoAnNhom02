@@ -23,14 +23,15 @@ import SearchIcon from '../../Icons/SearchIcon'
 import ShowIcon from '../../Icons/ShowmoreIcon'
 import UpIcon from '../../Icons/UpIcon'
 import DownIcon from '../../Icons/DownIcon'
+import { styles } from './styles';
 const windowWidth = Dimensions.get('window').width;
 
 
-export default function Register({ navigation }) {
+export default function Register(props) {
     const [selectedItem, setSelectedItem] = useState(-1);
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => navigation.navigate('InfoProduct')}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct')}>
                 <View style={styles.viewitem}>
                     <View style={styles.viewimg}>
                         <Image source={require('../../Static/Images/logonew.png')} style={styles.imglist}>
@@ -62,7 +63,7 @@ export default function Register({ navigation }) {
         <SafeAreaView style={styles.safeareaview}>
             <View style={styles.header}>
                 <View style={{ width: '18%' }}>
-                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => navigation.goBack()}>
+                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => props.navigation.goBack()}>
                         <MenuIcon />
                     </TouchableOpacity>
                 </View>
@@ -149,70 +150,4 @@ export default function Register({ navigation }) {
     );
 };
 
-const styles = StyleSheet.create({
-    viewdropdown: {
-        marginVertical: 20,
-        width: (windowWidth - 30) / 2,
-        borderWidth: 1,
-        borderColor: '#BD8522',
-        borderRadius: 10,
-    },
-    input: {
-        fontSize: 16,
-        paddingHorizontal: 20,
-        color: '#BD8522',
-        borderColor: '#BD8522',
-        fontWeight: '500',
-        width: '80%',
-
-    },
-    viewinputSearch: {
-        alignItems: 'center',
-        borderWidth: 1,
-        flexDirection: 'row',
-        borderColor: '#BD8522',
-        borderRadius: 10,
-        width: (windowWidth - 30) / 2,
-        marginVertical: 20
-    },
-    imglist: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover',
-        borderRadius: 10,
-    },
-    viewimg: {
-        width: 100,
-        height: 80,
-        margin: 10,
-        backgroundColor: 'white',
-        borderRadius: 10,
-    },
-    viewitem: {
-        marginHorizontal: 10,
-        borderRadius: 10,
-        margin: 5,
-        backgroundColor: '#BD8522',
-        height: 170,
-    },
-    touchIconMenu: {
-        padding: 20,
-    },
-    header: {
-        backgroundColor: '#BD8522',
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    nameapp: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#FFFFFF',
-        textAlign: 'center',
-        padding: 20,
-    },
-    safeareaview: {
-        flex: 1,
-        backgroundColor: '#FFFFFF',
-    },
-});
 

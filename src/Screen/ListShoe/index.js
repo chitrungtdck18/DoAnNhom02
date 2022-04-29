@@ -19,12 +19,12 @@ import MenuIcon from '../../Icons/MenuIcon'
 import CartIcon from '../../Icons/CartIcon'
 import SearchIcon from '../../Icons/SearchIcon'
 import ShowIcon from '../../Icons/ShowmoreIcon'
+import { styles } from './styles';
 
-
-export default function Register({ navigation }) {
+export default function Register(props) {
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => navigation.navigate('InfoProduct')}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct')}>
                 <View style={styles.viewitem}>
                     <View style={styles.viewimg}>
                         <Image source={require('../../Static/Images/logonew.png')} style={styles.imglist}>
@@ -53,7 +53,7 @@ export default function Register({ navigation }) {
         <SafeAreaView style={styles.safeareaview}>
             <View style={styles.header}>
                 <View style={{ width: '18%' }}>
-                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => navigation.goBack()}>
+                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => props.navigation.goBack()}>
                         <MenuIcon />
                     </TouchableOpacity>
                 </View>
@@ -90,45 +90,5 @@ export default function Register({ navigation }) {
     );
 };
 
-const styles = StyleSheet.create({
-    imglist: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover',
-        borderRadius: 10,
-    },
-    viewimg: {
-        width: 100,
-        height: 80,
-        margin: 10,
-        backgroundColor: 'white',
-        borderRadius: 10,
-    },
-    viewitem: {
-        marginHorizontal: 20,
-        borderRadius: 10,
-        margin: 5,
-        backgroundColor: '#BD8522',
-        height: 170,
-    },
-    touchIconMenu: {
-        padding: 20,
-    },
-    header: {
-        backgroundColor: '#BD8522',
-        flexDirection: 'row',
-        justifyContent: 'center',
-    },
-    nameapp: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#FFFFFF',
-        textAlign: 'center',
-        padding: 20,
-    },
-    safeareaview: {
-        flex: 1,
-        backgroundColor: '#FFFFFF',
-    },
-});
+
 
