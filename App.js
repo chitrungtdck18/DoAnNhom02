@@ -1,11 +1,14 @@
 
 import React from 'react';
 import Navigation from './src/Routing/Navigation'
+import { AuthProvider } from './src/Redux/AuthContext';
 
 export default function App() {
- 
+
   return (
-    <Navigation/>
+    <AuthProvider>
+      <Navigation />
+    </AuthProvider>
   );
 };
 

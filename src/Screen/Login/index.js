@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   SafeAreaView,
   Text,
@@ -11,7 +11,11 @@ import {
 import { auth } from '../../Utils/firebase-Config';
 import { styles } from './styles';
 import { getAuth } from 'firebase/auth';
+
+import { AuthContext } from '../../Redux/AuthContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Login(props) {
+  const { setToken } = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [Password, setPassword] = useState('')
   const check = () => {
@@ -26,15 +30,23 @@ export default function Login(props) {
   const handleSighin = () => {
     auth
       .signInWithEmailAndPassword(getAuth(), email, Password)
-      .then(() => {
-        console.log('signed in!');
-        props.navigation.navigate('MenuApp')
+      .then((user) => {
+        setUserid(user.user.uid)
       })
       .catch(error => {
         console.log("error: " + error)
-
       });
   }
+  const setUserid = async (text) => {
+    try {
+        const jsonValue = JSON.stringify(text)
+        await AsyncStorage.setItem('Userid', jsonValue)
+        setToken({ loading: false, userid: text })
+    } catch (e) {
+        console.log(e)
+    }
+
+}
   return (
     <SafeAreaView style={styles.safeareaview}>
       <View style={styles.viewTop}>

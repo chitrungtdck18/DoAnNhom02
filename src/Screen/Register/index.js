@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -11,7 +11,10 @@ import {
 import { auth } from '../../Utils/firebase-Config';
 import { getAuth } from 'firebase/auth';
 import { styles } from './styles';
+import { AuthContext } from '../../Redux/AuthContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Register(props) {
+    const { setToken } = useContext(AuthContext)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [Password, setPassword] = useState('')
@@ -31,22 +34,31 @@ export default function Register(props) {
             handleSighnUp()
         }
     }
+    const setUserid = async (text) => {
+        try {
+            const jsonValue = JSON.stringify(text)
+            await AsyncStorage.setItem('Userid', jsonValue)
+            setToken({ loading: false, userid: text })
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
     const handleSighnUp = () => {
         auth
             .createUserWithEmailAndPassword(getAuth(), email, Password)
-            .then(() => {
-                console.log('User account created & signed in!');
-                props.navigation.navigate('MenuApp')
+            .then((user) => {
+                setUserid(user.user.uid)
             })
             .catch(error => {
                 if (error.code === 'auth/email-already-in-use') {
-                    console.log('That email address is already in use!');
+                    alert('That email address is already in use!');
                 }
-
                 if (error.code === 'auth/invalid-email') {
-                    console.log('That email address is invalid!');
+                    alert('That email address is invalid!');
                 }
                 console.log("error: " + error)
+
 
             });
 
