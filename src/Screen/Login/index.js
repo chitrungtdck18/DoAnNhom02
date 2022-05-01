@@ -43,7 +43,6 @@ export default function Login(props) {
     } catch (e) {
       console.log(e)
     }
-
   }
   return (
     <SafeAreaView style={styles.safeareaview}>
