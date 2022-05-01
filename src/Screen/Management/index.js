@@ -24,7 +24,7 @@ import ShowIcon from '../../Icons/ShowmoreIcon'
 import UpIcon from '../../Icons/UpIcon'
 import DownIcon from '../../Icons/DownIcon'
 import { styles } from './styles';
-const windowWidth = Dimensions.get('window').width;
+
 
 
 export default function Register(props) {

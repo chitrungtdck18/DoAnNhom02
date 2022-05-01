@@ -8,11 +8,13 @@ import {
     TextInput,
     TouchableOpacity
 } from 'react-native';
-import { auth } from '../../Utils/firebase-Config';
-import { getAuth } from 'firebase/auth';
+import { auth, data } from '../../Utils/firebase-Config';
+import { getDatabase } from 'firebase/database';
 import { styles } from './styles';
 import { AuthContext } from '../../Redux/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createUser } from '../../Utils/firebase';
+import firebase from '../../Utils/firebase-Config';
 export default function Register(props) {
     const { setToken } = useContext(AuthContext)
     const [name, setName] = useState('')
@@ -46,9 +48,15 @@ export default function Register(props) {
     }
     const handleSighnUp = () => {
         auth
-            .createUserWithEmailAndPassword(getAuth(), email, Password)
+            .createUserWithEmailAndPassword(email, Password)
             .then((user) => {
-                setUserid(user.user.uid)
+                const u = firebase.auth().currentUser;
+                u.updateProfile({
+                    displayName: name
+                }).then(() => {
+                    createUser(user.user)
+                    setUserid(user.user.uid)
+                })
             })
             .catch(error => {
                 if (error.code === 'auth/email-already-in-use') {
@@ -58,8 +66,6 @@ export default function Register(props) {
                     alert('That email address is invalid!');
                 }
                 console.log("error: " + error)
-
-
             });
 
     }

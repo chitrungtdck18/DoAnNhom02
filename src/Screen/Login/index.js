@@ -10,8 +10,6 @@ import {
 } from 'react-native';
 import { auth } from '../../Utils/firebase-Config';
 import { styles } from './styles';
-import { getAuth } from 'firebase/auth';
-
 import { AuthContext } from '../../Redux/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Login(props) {
@@ -29,7 +27,7 @@ export default function Login(props) {
   }
   const handleSighin = () => {
     auth
-      .signInWithEmailAndPassword(getAuth(), email, Password)
+      .signInWithEmailAndPassword(email, Password)
       .then((user) => {
         setUserid(user.user.uid)
       })
@@ -39,14 +37,14 @@ export default function Login(props) {
   }
   const setUserid = async (text) => {
     try {
-        const jsonValue = JSON.stringify(text)
-        await AsyncStorage.setItem('Userid', jsonValue)
-        setToken({ loading: false, userid: text })
+      const jsonValue = JSON.stringify(text)
+      await AsyncStorage.setItem('Userid', jsonValue)
+      setToken({ loading: false, userid: text })
     } catch (e) {
-        console.log(e)
+      console.log(e)
     }
 
-}
+  }
   return (
     <SafeAreaView style={styles.safeareaview}>
       <View style={styles.viewTop}>
