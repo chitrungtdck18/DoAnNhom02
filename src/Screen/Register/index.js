@@ -52,7 +52,8 @@ export default function Register(props) {
             .then((user) => {
                 const u = firebase.auth().currentUser;
                 u.updateProfile({
-                    displayName: name
+                    displayName: name,
+                    
                 }).then(() => {
                     createUser(user.user)
                     setUserid(user.user.uid)

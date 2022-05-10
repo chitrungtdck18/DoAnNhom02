@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#BD8522',
         borderRadius: 10,
+        zIndex:500
     },
     input: {
         fontSize: 16,

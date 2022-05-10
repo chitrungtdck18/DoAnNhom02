@@ -2,48 +2,71 @@
 import React from 'react';
 import {
     SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
     Text,
-    useColorScheme,
     View,
-    Image,
-    TextInput,
-    TouchableOpacity,
     FlatList,
-    ImageBackground
-} from 'react-native';
+    ImageBackground,
 
-import MenuIcon from '../../Icons/MenuIcon'
-import CartIcon from '../../Icons/CartIcon'
-import SearchIcon from '../../Icons/SearchIcon'
-import ShowIcon from '../../Icons/ShowmoreIcon'
+} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
+import Header from '../../Components/Header';
+import Dot from '../../Icons/Dot'
+import Undot from '../../Icons/Undot'
 import { styles } from './styles';
 
 export default function Register(props) {
+    const DATA = [
+        require('../../Static/Images/jacket.png'),
+        require('../../Static/Images/jacket.png'),
+        require('../../Static/Images/jacket.png')
 
+    ];
+    var _dot = [];
+
+    const find = (u) => {
+        for (let i = 0; i < DATA.length; i++) {
+            var temp = (
+                <View key={i}>
+                    {DATA[i].position === u ? <Dot style={styles.dot} /> : <Undot style={styles.dot} />}
+                </View>
+            )
+            _dot[i] = temp
+        }
+    }
+    const Item = ({ pic, position }) => (
+        <TouchableOpacity>
+            <ImageBackground source={pic} style={styles.ImageBackground}>
+                <View style={styles.item}>
+                    <View style={styles.view_dot}>
+                        {find(position)}
+                        {_dot}
+                    </View>
+
+                </View>
+            </ImageBackground>
+            
+        </TouchableOpacity>
+
+    );
+    const renderItem = ({ item }) => (
+        <Item pic={item} position={DATA.indexOf(item)} />
+    );
     return (
         <SafeAreaView style={styles.safeareaview}>
-            <View style={styles.header}>
-                <View style={{ width: '18%' }}>
-                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => props.navigation.goBack()}>
-                        <MenuIcon />
-                    </TouchableOpacity>
-                </View>
-
-                <View style={{ justifyContent: 'center', width: '64%' }}>
-                    <Text style={styles.nameapp}>Info Product</Text>
-                </View>
-                <View style={{ width: '18%' }}>
-                    <TouchableOpacity style={styles.touchIconMenu}>
-                        <CartIcon />
-                    </TouchableOpacity>
-                </View>
-            </View>
+            <Header name={"InfoProduct"} />
             <View style={styles.viewimg}>
-                <Image source={require('../../Static/Images/cap.png')} style={styles.imgproduct}>
-                </Image>
+                <FlatList
+                    numColumns={1}
+                    data={DATA}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.position}
+                    horizontal={true}
+                    scrollEnabled={true}
+                    pagingEnabled
+                    bounces={false}
+                    showsHorizontalScrollIndicator={false}
+                />
             </View>
             <View style={styles.viewText}>
                 <Text style={styles.nameProduct}>PKTT Nón Y Nguyên Bản 18- Ver2</Text>

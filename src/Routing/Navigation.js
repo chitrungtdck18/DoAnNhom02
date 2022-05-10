@@ -8,6 +8,7 @@ import MenuApp from '../Screen/MenuApp'
 import InfoProduct from '../Screen/InfoProduct'
 import ListShoe from '../Screen/ListShoe'
 import Management from '../Screen/Management'
+import Cart from'../Screen/shoppingcart'
 import { LogBox } from 'react-native';
 import { AuthContext } from '../Redux/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -44,6 +45,7 @@ export default function App() {
                         <Stack.Screen name="InfoProduct" component={InfoProduct} options={{ headerShown: false }} />
                         <Stack.Screen name="ListShoe" component={ListShoe} options={{ headerShown: false }} />
                         <Stack.Screen name="Management" component={Management} options={{ headerShown: false }} />
+                        <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
                     </>
                 }
             </Stack.Navigator>

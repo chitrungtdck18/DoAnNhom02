@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { Dimensions } from 'react-native';
 export const styles = StyleSheet.create({
   viewDesc: {
     padding: 20,
@@ -34,11 +33,15 @@ export const styles = StyleSheet.create({
     fontWeight: "500",
   },
   imgproduct: {
-    width: '100%',
+    borderWidth: 2,
+    borderColor: "red",
+    marginVertical: 20,
+    borderRadius: 10,
   },
   viewimg: {
     alignItems: "center",
-    flex: 1
+    borderWidth: 1,
+    paddingBottom: 30,
   },
   touchIconMenu: {
     padding: 20,
@@ -47,6 +50,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#BD8522',
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems:"center"
   },
   nameapp: {
     fontSize: 20,
@@ -58,19 +62,5 @@ export const styles = StyleSheet.create({
   safeareaview: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-  },
-  ImageBackground: {
-    width: Dimensions.get('window').width, height: Dimensions.get('window').height, justifyContent: 'center'
-  },
-  dot: {
-    paddingHorizontal: 20
-  },
-  view_dot:
-  {
-    flexDirection: 'row', alignSelf: 'center', alignContent: "flex-end", flex: 1
-  },
-  item: {
-    flex: 1,
-    alignItems: "flex-end",
   },
 })

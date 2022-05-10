@@ -19,6 +19,7 @@ import MenuIcon from '../../Icons/MenuIcon'
 import CartIcon from '../../Icons/CartIcon'
 import SearchIcon from '../../Icons/SearchIcon'
 import ShowIcon from '../../Icons/ShowmoreIcon'
+import Header from '../../Components/Header';
 import { styles } from './styles';
 
 export default function Register(props) {
@@ -51,23 +52,8 @@ export default function Register(props) {
     ];
     return (
         <SafeAreaView style={styles.safeareaview}>
-            <View style={styles.header}>
-                <View style={{ width: '18%' }}>
-                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => props.navigation.goBack()}>
-                        <MenuIcon />
-                    </TouchableOpacity>
-                </View>
-
-                <View style={{ justifyContent: 'center', width: '64%' }}>
-                    <Text style={styles.nameapp}>Shoes</Text>
-                </View>
-                <View style={{ width: '18%' }}>
-                    <TouchableOpacity style={styles.touchIconMenu}>
-                        <CartIcon />
-                    </TouchableOpacity>
-                </View>
-            </View>
-            <View style={{flex: 1, marginVertical: 15}}>
+            <Header name={"shore"} />
+            <View style={{ flex: 1, marginVertical: 15 }}>
                 <FlatList
                     data={[
                         { title: '1. How to setting enviroment', price: '20$' },
@@ -80,7 +66,7 @@ export default function Register(props) {
                         { title: '8. How to setting enviroment', price: '0$' },
                         { title: '9. How to setting enviroment', price: '48$' },
                         { title: '10. How to setting enviroment', price: '90$' },
-                    
+
                     ]}
                     renderItem={renderItem}
                     showsHorizontalScrollIndicator={false}

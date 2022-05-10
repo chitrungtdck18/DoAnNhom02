@@ -17,7 +17,6 @@ import SearchIcon from '../../Icons/SearchIcon'
 import ShowIcon from '../../Icons/ShowmoreIcon'
 import { styles } from './styles';
 
-
 export default function Register(props) {
     const renderItem = ({ item }) => {
         return (
@@ -30,7 +29,7 @@ export default function Register(props) {
                         </View>
                         <View style={styles.viewPrice}>
                             <Text style={styles.priceitem}> Price:</Text>
-                            <Text style={styles.priceText}> {item.price}</Text>
+                            <Text style={styles.priceText}> {item.price}$</Text>
                         </View>
                     </View>
                     <View style={styles.textitem}>
@@ -70,7 +69,7 @@ export default function Register(props) {
                     <Text style={styles.nameapp}>Fashionshop</Text>
                 </View>
                 <View style={{ width: '18%' }}>
-                    <TouchableOpacity style={styles.touchIconMenu}>
+                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => props.navigation.navigate('Cart')}>
                         <CartIcon />
                     </TouchableOpacity>
                 </View>
@@ -125,10 +124,10 @@ export default function Register(props) {
                 <View style={{ paddingBottom: 5 }}>
                     <FlatList
                         data={[
-                            { title: '1. How to setting enviroment', price: '20$' },
-                            { title: '2. How to setting enviroment', price: '10$' },
-                            { title: '3. How to setting enviroment', price: '50$' },
-                            { title: '4. How to setting enviroment', price: '40$' },
+                            { title: '1. How to setting enviroment', price: '20' },
+                            { title: '2. How to setting enviroment', price: '10' },
+                            { title: '3. How to setting enviroment', price: '50' },
+                            { title: '4. How to setting enviroment', price: '40' },
                         ]}
                         renderItem={renderItem}
                         horizontal
