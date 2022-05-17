@@ -6,10 +6,10 @@ import {
     View,
     FlatList,
     ImageBackground,
-
+    StyleSheet
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import { Svg, Defs, LinearGradient, Stop, Rect } from "react-native-svg";
 import Header from '../../Components/Header';
 import Dot from '../../Icons/Dot'
 import Undot from '../../Icons/Undot'
@@ -20,7 +20,6 @@ export default function Register(props) {
         require('../../Static/Images/pant.png'),
         require('../../Static/Images/shoes.png'),
         require('../../Static/Images/jacket.png')
-
     ];
     var _dot = [];
 
@@ -28,30 +27,39 @@ export default function Register(props) {
         for (let i = 0; i < DATA.length; i++) {
             var temp = (
                 <View key={i}>
-                    {DATA[i].position === u ? <Dot style={styles.dot} /> : <Undot style={styles.dot} />}
+                    {DATA.indexOf(DATA[i]) === u ? <Dot style={styles.dot} /> : <Undot style={styles.dot} />}
                 </View>
             )
             _dot[i] = temp
         }
     }
     const Item = ({ pic, position }) => (
-        <TouchableOpacity>
-            <ImageBackground source={pic} style={styles.ImageBackground}>
-                <View style={styles.item}>
-                    <View style={styles.view_dot}>
-                        {find(position)}
-                        {_dot}
-                    </View>
-
+        <ImageBackground source={pic} style={styles.ImageBackground}>
+            <View style={styles.item}>
+                <View style={styles.view_dot}>
+                    {find(position)}
+                    {_dot}
                 </View>
-            </ImageBackground>
-            
-        </TouchableOpacity>
-
+                <GradientMask />
+            </View>
+        </ImageBackground>
     );
     const renderItem = ({ item }) => (
         <Item pic={item} position={DATA.indexOf(item)} />
     );
+    const GradientMask = () => (
+        <View style={StyleSheet.absoluteFillObject}>
+            <Svg height="100%" width="100%">
+                <Defs>
+                    <LinearGradient id="grad" x1="100%" y1="0%" x2="100%" y2="100%">
+                        <Stop offset="0%" stopColor="transparent" stopOpacity="0" />
+                        <Stop offset="50%" stopColor="black" stopOpacity=".2" />
+                    </LinearGradient>
+                </Defs>
+
+                <Rect x="0" y="0" width="100%" height="100%" fill="url(#grad)" />
+            </Svg>
+        </View>)
     return (
         <SafeAreaView style={styles.safeareaview}>
             <Header name={"InfoProduct"} />

@@ -9,6 +9,7 @@ import InfoProduct from '../Screen/InfoProduct'
 import List_ItemByCategory from '../Screen/List_ItemByCategory'
 import Management from '../Screen/Management'
 import Cart from'../Screen/shoppingcart'
+import Drawer from'./DrawerNavigation'
 import { LogBox } from 'react-native';
 import { AuthContext } from '../Redux/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';

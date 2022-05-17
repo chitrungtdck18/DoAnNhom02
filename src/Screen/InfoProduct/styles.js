@@ -60,17 +60,20 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   ImageBackground: {
-    width: Dimensions.get('window').width, height: Dimensions.get('window').height, justifyContent: 'center'
+    width: Dimensions.get('window').width, height: 500, justifyContent: 'flex-end'
   },
   dot: {
     paddingHorizontal: 20
   },
   view_dot:
   {
-    flexDirection: 'row', alignSelf: 'center', alignContent: "flex-end", flex: 1
+    flexDirection: 'row',
+    alignSelf: 'center',
+    alignContent: "flex-end",
   },
   item: {
-    flex: 1,
-    alignItems: "flex-end",
+    width: "100%",
+    height: "10%",
+    alignSelf: "center",
   },
 })

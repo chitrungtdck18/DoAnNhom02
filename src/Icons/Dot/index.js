@@ -18,9 +18,9 @@ function SvgComponent(props) {
         cy={5.14273}
         r={4.64291}
         transform="rotate(-180 5.143 5.143)"
-        fill="#fff"
+        fill="gray"
         fillOpacity={0.5}
-        stroke="#fff"
+        stroke="#000"
       />
     </Svg>
   )
