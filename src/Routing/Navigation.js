@@ -6,7 +6,7 @@ import Login from '../Screen/Login'
 import Register from '../Screen/Register'
 import MenuApp from '../Screen/MenuApp'
 import InfoProduct from '../Screen/InfoProduct'
-import ListShoe from '../Screen/ListShoe'
+import List_ItemByCategory from '../Screen/List_ItemByCategory'
 import Management from '../Screen/Management'
 import Cart from'../Screen/shoppingcart'
 import { LogBox } from 'react-native';
@@ -43,7 +43,7 @@ export default function App() {
                     <>
                         <Stack.Screen name="MenuApp" component={MenuApp} options={{ headerShown: false }} />
                         <Stack.Screen name="InfoProduct" component={InfoProduct} options={{ headerShown: false }} />
-                        <Stack.Screen name="ListShoe" component={ListShoe} options={{ headerShown: false }} />
+                        <Stack.Screen name="List_ItemByCategory" component={List_ItemByCategory} options={{ headerShown: false }} />
                         <Stack.Screen name="Management" component={Management} options={{ headerShown: false }} />
                         <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
                     </>

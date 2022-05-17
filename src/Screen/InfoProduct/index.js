@@ -17,8 +17,8 @@ import { styles } from './styles';
 
 export default function Register(props) {
     const DATA = [
-        require('../../Static/Images/jacket.png'),
-        require('../../Static/Images/jacket.png'),
+        require('../../Static/Images/pant.png'),
+        require('../../Static/Images/shoes.png'),
         require('../../Static/Images/jacket.png')
 
     ];

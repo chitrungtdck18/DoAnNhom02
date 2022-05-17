@@ -13,7 +13,9 @@ import {
 import { styles } from './styles';
 import Header from '../../Components/Header';
 import Remove from '../../Icons/RemoveIcon'
+import { AuthContext } from '../../Redux/AuthContext';
 export default function Register(props) {
+    const { token } = useContext(AuthContext)
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct')}>
@@ -51,17 +53,7 @@ export default function Register(props) {
             <Header name={"Shooping Cart"} />
             <View style={styles.list}>
                 <FlatList
-                    data={[
-                        { title: '1. How to setting enviroment', price: '20$' },
-                        { title: '2. How to setting enviroment', price: '10$' },
-                        { title: '3. How to setting enviroment', price: '50$' },
-                        { title: '4. How to setting enviroment', price: '40$' },
-                        { title: '5. How to setting enviroment', price: '0$' },
-                        { title: '6. How to setting enviroment', price: '4$' },
-                        { title: '7. How to setting enviroment', price: '45$' },
-                        { title: '8. How to setting enviroment', price: '0$' },
-
-                    ]}
+                    data={token.usercard}
                     renderItem={renderItem}
 
                     showsHorizontalScrollIndicator={false}

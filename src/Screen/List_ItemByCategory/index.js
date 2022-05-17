@@ -52,7 +52,7 @@ export default function Register(props) {
     ];
     return (
         <SafeAreaView style={styles.safeareaview}>
-            <Header name={"shore"} />
+            <Header name={props.route.params.name} />
             <View style={{ flex: 1, marginVertical: 15 }}>
                 <FlatList
                     data={[

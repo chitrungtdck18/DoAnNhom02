@@ -1,5 +1,6 @@
 import { Dimensions} from 'react-native';
 const windowWidth = Dimensions.get('window').width;
+const windowheight = Dimensions.get('window').height;
 import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     viewdropdown: {
@@ -8,7 +9,8 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#BD8522',
         borderRadius: 10,
-        zIndex:500
+        zIndex:500,
+        borderRadius:10
     },
     input: {
         fontSize: 16,
@@ -67,4 +69,19 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFFFFF',
     },
+    containerStyle:{
+        flexGrow: 1, flexShrink: 1
+    },
+    textInputProps:{
+        color: 'black',
+        backgroundColor: '#FFFFFF',
+        paddingLeft: 18,
+        borderRadius: 10,
+    },
+  
+    rightButtonsContainerStyle:{
+        borderRadius: 10,
+        backgroundColor: "#FFFFFF"
+    },
+  
 })

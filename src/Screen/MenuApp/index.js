@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React,{useEffect} from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -86,29 +86,29 @@ export default function Register(props) {
 
             </View>
             <View style={styles.viewType}>
-                <TouchableOpacity style={styles.touchImage}>
+                <TouchableOpacity style={styles.touchImage}  onPress={() => props.navigation.navigate('List_ItemByCategory',{name:"Balo"})}>
                     <Image style={styles.Image} source={require('../../Static/Images/bp.png')}></Image>
 
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage}>
+                <TouchableOpacity style={styles.touchImage}  onPress={() => props.navigation.navigate('List_ItemByCategory',{name:"Cap"})}>
                     <Image style={styles.Image} source={require('../../Static/Images/cap.png')}></Image>
 
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage}>
+                <TouchableOpacity style={styles.touchImage}  onPress={() => props.navigation.navigate('List_ItemByCategory',{name:"Jacket"})}>
                     <Image style={styles.Image} source={require('../../Static/Images/jacket.png')}></Image>
 
                 </TouchableOpacity>
             </View>
             <View style={styles.viewType}>
-                <TouchableOpacity style={styles.touchImage}>
+                <TouchableOpacity style={styles.touchImage}  onPress={() => props.navigation.navigate('List_ItemByCategory',{name:"Pant"})}>
                     <Image style={styles.Image} source={require('../../Static/Images/pant.png')}></Image>
 
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('ListShoe')}>
+                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory',{name:"Shoe"})}>
                     <Image style={styles.Image} source={require('../../Static/Images/shoes.png')}></Image>
 
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage}>
+                <TouchableOpacity style={styles.touchImage}  onPress={() => props.navigation.navigate('List_ItemByCategory',{name:"Tshirt"})}>
                     <Image style={styles.Image} source={require('../../Static/Images/tshirt.png')}></Image>
 
                 </TouchableOpacity>

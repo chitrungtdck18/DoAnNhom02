@@ -9,23 +9,29 @@ import {
     TouchableOpacity,
     FlatList,
 } from 'react-native';
+import { Dimensions } from 'react-native';
 import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
-
-import MenuIcon from '../../Icons/MenuIcon'
-import CartIcon from '../../Icons/CartIcon'
 import SearchIcon from '../../Icons/SearchIcon'
-import ShowIcon from '../../Icons/ShowmoreIcon'
-import UpIcon from '../../Icons/UpIcon'
 import DownIcon from '../../Icons/DownIcon'
 import Header from '../../Components/Header';
 import { styles } from './styles';
+import { arrayCategory, getCategory } from '../../Model/Category';
 export default function Register(props) {
-
+    getCategory()
     const [selectedItem, setSelectedItem] = useState(-1);
+    const [textseach, settextseach] = useState("")
+    const [data, setdata] = useState([
+        { title: '1. How to setting enviroment', price: '20$' },
+        { title: '2. How to setting enviroment', price: '10$' },
+        { title: '3. How to setting enviroment', price: '50$' },
+        { title: '4. How to setting enviroment', price: '40$' },
+    ])
+    const [Filter, setFilter] = useState(data)
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct')}>
                 <View style={styles.viewitem}>
+                    <Text>{item.title}</Text>
                     <View style={styles.viewimg}>
                         <Image source={require('../../Static/Images/logonew.png')} style={styles.imglist}>
                         </Image>
@@ -34,33 +40,44 @@ export default function Register(props) {
             </TouchableOpacity>
         )
     }
-
-    const DATA = [
-        {
-            id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-            name: 'First Item',
-
-        },
-        {
-            id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-            name: 'Second Item',
-        },
-        {
-            id: '58694a0f-3da1-471f-bd96-145571e29d72',
-            name: 'Third Item',
-        },
-    ];
-
+    const handleSearch = (text) => {
+        if (text) {
+            const newData = data.filter(function (item) {
+                const itemData = item.title
+                    ? item.title.toUpperCase()
+                    : ''.toUpperCase();
+                const textData = textseach.toUpperCase();
+                return itemData.indexOf(textData) > -1;
+            });
+            setFilter(newData)
+        } else {
+            setFilter(data)
+        }
+    };
+    const handleSearchbyCategory =(text)=>{
+        if (text) {
+            const newData = arrayCategory.filter(function (item) {
+                const itemData = item.title
+                    ? item.title.toUpperCase()
+                    : ''.toUpperCase();
+                const textData = textseach.toUpperCase();
+                return itemData.indexOf(textData) > -1;
+            });
+            setFilter(newData)
+        } else {
+           alert("khong co")
+        }
+    }
     return (
-
         <SafeAreaView style={styles.safeareaview}>
-            <Header name={"quanly "} />
+            <Header name={"Management"} />
             <View style={{ flexDirection: 'row', justifyContent: "space-between", marginHorizontal: 10 }}>
                 <View style={styles.viewinputSearch}>
                     <TextInput
                         style={styles.input}
                         placeholder="Search..."
                         placeholderTextColor={'#BD8522'}
+                        onChangeText={e => handleSearch(e)}
                     />
                     <TouchableOpacity>
                         <SearchIcon />
@@ -68,39 +85,26 @@ export default function Register(props) {
                 </View>
                 <View style={styles.viewdropdown}>
                     <AutocompleteDropdown
+                        suggestionsListMaxHeight={Dimensions.get('window').height * 0.4}
                         clearOnFocus={true}
                         closeOnBlur={true}
                         closeOnSubmit={false}
                         initialValue={{ id: selectedItem }}
                         showClear={false}
-                        containerStyle={{ flexGrow: 1, flexShrink: 1 }}
+                        containerStyle={styles.containerStyle}
                         onSelectItem={(item) => {
                             item && setSelectedItem(item.id)
                         }}
                         textInputProps={{
                             autoCorrect: false,
                             autoCapitalize: "none",
-                            style: {
-                                color: 'black',
-                                backgroundColor: '#FFFFFF',
-                                paddingLeft: 18,
-                                borderRadius: 10,
-                            }
+                            style: styles.textInputProps
                         }}
-                        rightButtonsContainerStyle={{
-                            borderRadius: 10,
-                            backgroundColor: "#FFFFFF"
-                        }}
-                        dataSet={[
-                            { id: -1, title: 'All' },
-                            { id: 1, title: 'Alpha' },
-                            { id: 2, title: 'Beta' },
-                            { id: 3, title: 'Gamma' },
-                        ]}
+                        rightButtonsContainerStyle={styles.rightButtonsContainerStyle}
+                        dataSet={arrayCategory}
                         ChevronIconComponent={
                             <DownIcon />
                         }
-
                     />
 
                 </View>
@@ -108,13 +112,7 @@ export default function Register(props) {
             <View>
                 <FlatList
                     ListHeaderComponentStyle={{ elevation: 10 }}
-                    data={[
-                        { title: '1. How to setting enviroment', price: '20$' },
-                        { title: '2. How to setting enviroment', price: '10$' },
-                        { title: '3. How to setting enviroment', price: '50$' },
-                        { title: '4. How to setting enviroment', price: '40$' },
-
-                    ]}
+                    data={Filter}
                     renderItem={renderItem}
                     showsHorizontalScrollIndicator={false}
                 />
