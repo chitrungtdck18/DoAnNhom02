@@ -1,36 +1,49 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-
+import { View, ActivityIndicator, Image } from 'react-native';
 import Login from '../Screen/Login'
 import Register from '../Screen/Register'
 import MenuApp from '../Screen/MenuApp'
 import InfoProduct from '../Screen/InfoProduct'
 import List_ItemByCategory from '../Screen/List_ItemByCategory'
 import Management from '../Screen/Management'
-import Cart from'../Screen/shoppingcart'
-import Drawer from'./DrawerNavigation'
+import Cart from '../Screen/shoppingcart'
+import Drawer from './DrawerNavigation'
 import { LogBox } from 'react-native';
 import { AuthContext } from '../Redux/AuthContext';
+import { styles } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function App() {
     const Stack = createNativeStackNavigator();
     const { token } = useContext(AuthContext)
     const { setToken } = useContext(AuthContext)
+    const [isLoading, setisLoading] = useState(true)
     const getUserid = async () => {
         try {
             const jsonValue = await AsyncStorage.getItem('Userid');
             if (jsonValue) {
                 const data = JSON.parse(jsonValue);
                 setToken({ loading: false, userid: data })
+                setisLoading(false)
             }
         } catch (e) {
             console.log(e)
         }
     };
     useEffect(() => {
+
         getUserid()
     }, []);
+    if (isLoading) {
+        return (
+            <View style={styles.loading}>
+                {LogBox.ignoreAllLogs()}
+                <Image style={styles.Image} source={require('../Static/Images/logoshop.png')}></Image>
+                <ActivityIndicator size="large" />
+            </View>
+        );
+    }
     return (
         <NavigationContainer>
             {LogBox.ignoreAllLogs()}
