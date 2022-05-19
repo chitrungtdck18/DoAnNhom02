@@ -9,12 +9,13 @@ import InfoProduct from '../Screen/InfoProduct'
 import List_ItemByCategory from '../Screen/List_ItemByCategory'
 import Management from '../Screen/Management'
 import Cart from '../Screen/shoppingcart'
-import Drawer from './DrawerNavigation'
+
 import { LogBox } from 'react-native';
 import { AuthContext } from '../Redux/AuthContext';
 import { styles } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function App() {
+ 
     const Stack = createNativeStackNavigator();
     const { token } = useContext(AuthContext)
     const { setToken } = useContext(AuthContext)
@@ -32,7 +33,6 @@ export default function App() {
         }
     };
     useEffect(() => {
-
         getUserid()
     }, []);
     if (isLoading) {
@@ -46,6 +46,7 @@ export default function App() {
     }
     return (
         <NavigationContainer>
+
             {LogBox.ignoreAllLogs()}
             <Stack.Navigator>
                 {token.userid === '' ?
@@ -55,6 +56,7 @@ export default function App() {
                     </>
                     :
                     <>
+                     
                         <Stack.Screen name="MenuApp" component={MenuApp} options={{ headerShown: false }} />
                         <Stack.Screen name="InfoProduct" component={InfoProduct} options={{ headerShown: false }} />
                         <Stack.Screen name="List_ItemByCategory" component={List_ItemByCategory} options={{ headerShown: false }} />

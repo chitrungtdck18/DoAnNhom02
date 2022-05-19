@@ -148,5 +148,51 @@ export const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFFFFF',
     },
+    modalContainer: {
+        alignSelf: "center",
+        height: "100%",
+        width: "80%",
+        backgroundColor: '#F5FCFF',
+        position: "absolute",
+        left: -20,
+        bottom: -20,
+        top: 50,
 
+    },
+    Modal: {
+        position: "absolute",
+        backgroundColor: '#fff',
+        height: "100%",
+        width: "5%",
+
+    },
+
+    Image_avt: {
+        height: 50,
+        width: 50,
+        borderRadius: 30,
+        marginRight: 10,
+        marginLeft: 20,
+
+    },
+    userInfoSection: {
+        flexDirection: "row",
+        width: '100%',
+        height: '8%',
+        marginTop: 15,
+        justifyContent: "space-between"
+    },
+    item_Drawer: {
+        margin: 20
+    },
+    Cancel: {
+        alignItems: "flex-end",
+        alignContent: "flex-end",
+        flex: 0.5,
+        paddingRight: 20
+    },
+    info: {
+        flex: 2,
+      
+    }
 })

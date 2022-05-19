@@ -1,5 +1,4 @@
-
-import React,{useEffect} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -9,16 +8,27 @@ import {
     TextInput,
     TouchableOpacity,
     FlatList,
+    Button,
 } from 'react-native';
 
 import MenuIcon from '../../Icons/MenuIcon'
 import CartIcon from '../../Icons/CartIcon'
 import SearchIcon from '../../Icons/SearchIcon'
 import ShowIcon from '../../Icons/ShowmoreIcon'
+import Cancel from '../../Icons/Cancel'
+import Modal from 'react-native-modal'
+import FCM from 'react-native-fcm';
 import { styles } from './styles';
-import { getlist,arrayCategory} from '../../Model/Category';
+import { getlistCategory, arrayCategory } from '../../Model/Category';
+import { AuthContext } from '../../Redux/AuthContext';
+import { getUser, arrayUser } from '../../Model/User';
+import { database } from '../../Utils/firebase-Config';
+
 export default function Register(props) {
-    {arrayCategory}
+    { arrayCategory }
+    const { token } = useContext(AuthContext)
+    const [isModalVisible, setisModalVisible] = useState(false)
+    const [User, setUser] = useState([])
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct')}>
@@ -41,29 +51,29 @@ export default function Register(props) {
             </TouchableOpacity>
         )
     }
-    const DATA = [
-        {
-            id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-            name: 'First Item',
-
-        },
-        {
-            id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-            name: 'Second Item',
-        },
-        {
-            id: '58694a0f-3da1-471f-bd96-145571e29d72',
-            name: 'Third Item',
-        },
-    ];
+    const handleModal = () => {
+        setisModalVisible(!isModalVisible)
+    }
+    const _getData = () => {
+        database
+            .ref('user/' + token.userid)
+            .once('value')
+            .then((snapshot) => {
+                var item = snapshot.val();
+                var returnArr = [];
+                returnArr = item;
+                setUser(returnArr)
+            });
+    };
     useEffect(() => {
-        getlist()
-    }, [])
+        getlistCategory()
+        _getData()
+    }, [_getData()])
     return (
-        <SafeAreaView style={styles.safeareaview}>
+        <SafeAreaView syle={styles.safeareaview}>
             <View style={styles.header}>
                 <View style={{ width: '18%' }}>
-                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => props.navigation.navigate('Management')}>
+                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => handleModal()}>
                         <MenuIcon />
                     </TouchableOpacity>
                 </View>
@@ -89,29 +99,29 @@ export default function Register(props) {
 
             </View>
             <View style={styles.viewType}>
-                <TouchableOpacity style={styles.touchImage}  onPress={() => props.navigation.navigate('List_ItemByCategory',{name:"Balo"})}>
+                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Balo" })}>
                     <Image style={styles.Image} source={require('../../Static/Images/bp.png')}></Image>
 
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage}  onPress={() => props.navigation.navigate('List_ItemByCategory',{name:"Cap"})}>
+                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Cap" })}>
                     <Image style={styles.Image} source={require('../../Static/Images/cap.png')}></Image>
 
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage}  onPress={() => props.navigation.navigate('List_ItemByCategory',{name:"Jacket"})}>
+                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Jacket" })}>
                     <Image style={styles.Image} source={require('../../Static/Images/jacket.png')}></Image>
 
                 </TouchableOpacity>
             </View>
             <View style={styles.viewType}>
-                <TouchableOpacity style={styles.touchImage}  onPress={() => props.navigation.navigate('List_ItemByCategory',{name:"Pant"})}>
+                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Pant" })}>
                     <Image style={styles.Image} source={require('../../Static/Images/pant.png')}></Image>
 
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory',{name:"Shoe"})}>
+                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Shoe" })}>
                     <Image style={styles.Image} source={require('../../Static/Images/shoes.png')}></Image>
 
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage}  onPress={() => props.navigation.navigate('List_ItemByCategory',{name:"Tshirt"})}>
+                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Tshirt" })}>
                     <Image style={styles.Image} source={require('../../Static/Images/tshirt.png')}></Image>
 
                 </TouchableOpacity>
@@ -135,7 +145,6 @@ export default function Register(props) {
                         renderItem={renderItem}
                         horizontal
                         showsHorizontalScrollIndicator={false}
-
                     />
                 </View>
             </View>
@@ -163,6 +172,28 @@ export default function Register(props) {
                     />
                 </View>
             </View>
+
+            <Modal isVisible={isModalVisible} animationIn={"slideInLeft"} animationOut={"slideOutRight"} hideModalContentWhileAnimating={false}>
+                <View style={styles.modalContainer}>
+                    <View style={styles.userInfoSection}>
+                        <Image source={{ uri: User.urlAvatar }} style={styles.Image_avt} />
+                        <View style={styles.info}>
+                            <Text>{User.userName}</Text>
+                            <Text>{User.email}</Text>
+                        </View>
+                        <TouchableOpacity onPress={handleModal} style={styles.Cancel}>
+                            <Cancel />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.item_Drawer}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('Management') & handleModal()}>
+                            <Text>Management</Text>
+                        </TouchableOpacity>
+
+                    </View>
+
+                </View>
+            </Modal>
 
         </SafeAreaView>
     );

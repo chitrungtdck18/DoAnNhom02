@@ -9,13 +9,14 @@ import {
     TouchableOpacity,
     FlatList,
 } from 'react-native';
-import { Dimensions } from 'react-native';
-import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
+
 import SearchIcon from '../../Icons/SearchIcon'
 import DownIcon from '../../Icons/DownIcon'
 import Header from '../../Components/Header';
+import { Dimensions } from 'react-native';
+import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
 import { styles } from './styles';
-import {arrayCategory } from '../../Model/Category';
+import { arrayCategory } from '../../Model/Category';
 export default function Register(props) {
     const [selectedItem, setSelectedItem] = useState(-1);
     const [textseach, settextseach] = useState("")
@@ -25,8 +26,8 @@ export default function Register(props) {
         { title: '3. How to setting enviroment', price: '50$' },
         { title: '4. How to setting enviroment', price: '40$' },
     ])
-    const [dataitem, setdataitem] = useState([])
     const [Filter, setFilter] = useState(data)
+   
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct')}>
@@ -56,7 +57,7 @@ export default function Register(props) {
     };
     const handleSearchbyCategory = (text) => {
         if (text) {
-            const newData = dataitem.filter(function (item) {
+            const newData = arrayCategory.filter(function (item) {
                 const itemData = item.title
                     ? item.title.toUpperCase()
                     : ''.toUpperCase();
@@ -68,17 +69,6 @@ export default function Register(props) {
             alert("khong co")
         }
     }
-    // const getlist = async () => {
-    //     try {
-    //         const list = await getCategory()
-    //         list ? setdataitem(list) : setdataitem([])
-    //     } catch (error) {
-    //         setdataitem([])
-    //         console.log(error)
-    //     }
-    // }
-
-  
     return (
         <SafeAreaView style={styles.safeareaview}>
             <Header name={"Management"} />
@@ -128,6 +118,7 @@ export default function Register(props) {
                     showsHorizontalScrollIndicator={false}
                 />
             </View>
+            
         </SafeAreaView>
     );
 };

@@ -11,12 +11,11 @@ export const getCategory = async () => {
 
 
 }
-export const getlist = async () => {
+export const getlistCategory = async () => {
     try {
         const list = await getCategory()
         arrayCategory = list
     } catch (error) {
-        setdataitem([])
         console.log(error)
     }
 }
