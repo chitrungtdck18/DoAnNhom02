@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     SafeAreaView,
     Text,
@@ -15,9 +15,8 @@ import SearchIcon from '../../Icons/SearchIcon'
 import DownIcon from '../../Icons/DownIcon'
 import Header from '../../Components/Header';
 import { styles } from './styles';
-import { arrayCategory, getCategory } from '../../Model/Category';
+import {arrayCategory } from '../../Model/Category';
 export default function Register(props) {
-    getCategory()
     const [selectedItem, setSelectedItem] = useState(-1);
     const [textseach, settextseach] = useState("")
     const [data, setdata] = useState([
@@ -26,6 +25,7 @@ export default function Register(props) {
         { title: '3. How to setting enviroment', price: '50$' },
         { title: '4. How to setting enviroment', price: '40$' },
     ])
+    const [dataitem, setdataitem] = useState([])
     const [Filter, setFilter] = useState(data)
     const renderItem = ({ item }) => {
         return (
@@ -54,9 +54,9 @@ export default function Register(props) {
             setFilter(data)
         }
     };
-    const handleSearchbyCategory =(text)=>{
+    const handleSearchbyCategory = (text) => {
         if (text) {
-            const newData = arrayCategory.filter(function (item) {
+            const newData = dataitem.filter(function (item) {
                 const itemData = item.title
                     ? item.title.toUpperCase()
                     : ''.toUpperCase();
@@ -65,9 +65,20 @@ export default function Register(props) {
             });
             setFilter(newData)
         } else {
-           alert("khong co")
+            alert("khong co")
         }
     }
+    // const getlist = async () => {
+    //     try {
+    //         const list = await getCategory()
+    //         list ? setdataitem(list) : setdataitem([])
+    //     } catch (error) {
+    //         setdataitem([])
+    //         console.log(error)
+    //     }
+    // }
+
+  
     return (
         <SafeAreaView style={styles.safeareaview}>
             <Header name={"Management"} />
@@ -85,7 +96,7 @@ export default function Register(props) {
                 </View>
                 <View style={styles.viewdropdown}>
                     <AutocompleteDropdown
-                        suggestionsListMaxHeight={Dimensions.get('window').height * 0.4}
+                        suggestionsListMaxHeight={Dimensions.get('window').height * 0.5}
                         clearOnFocus={true}
                         closeOnBlur={true}
                         closeOnSubmit={false}
@@ -117,8 +128,6 @@ export default function Register(props) {
                     showsHorizontalScrollIndicator={false}
                 />
             </View>
-
-
         </SafeAreaView>
     );
 };

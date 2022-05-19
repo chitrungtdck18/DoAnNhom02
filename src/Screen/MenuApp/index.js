@@ -16,8 +16,9 @@ import CartIcon from '../../Icons/CartIcon'
 import SearchIcon from '../../Icons/SearchIcon'
 import ShowIcon from '../../Icons/ShowmoreIcon'
 import { styles } from './styles';
-
+import { getlist,arrayCategory} from '../../Model/Category';
 export default function Register(props) {
+    {arrayCategory}
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct')}>
@@ -55,7 +56,9 @@ export default function Register(props) {
             name: 'Third Item',
         },
     ];
-
+    useEffect(() => {
+        getlist()
+    }, [])
     return (
         <SafeAreaView style={styles.safeareaview}>
             <View style={styles.header}>

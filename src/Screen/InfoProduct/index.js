@@ -27,7 +27,7 @@ export default function Register(props) {
         for (let i = 0; i < DATA.length; i++) {
             var temp = (
                 <View key={i}>
-                    {DATA.indexOf(DATA[i]) === u ? <Dot style={styles.dot} /> : <Undot style={styles.dot} />}
+                    {DATA.indexOf(DATA[i]) === u ? <Dot style={styles.dot}  /> : <Undot style={styles.dot} />}
                 </View>
             )
             _dot[i] = temp
