@@ -11,11 +11,14 @@ import {
 import { auth } from '../../Utils/firebase-Config';
 import { styles } from './styles';
 import { AuthContext } from '../../Redux/AuthContext';
+import Forget_Password from '../../Components/Forget_Password';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import firebase from '../../Utils/firebase-Config';
 export default function Login(props) {
   const { setToken } = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [Password, setPassword] = useState('')
+  const [choose, setchoose] = useState(false)
   const check = () => {
     var pattern = /^\w+@gmail+?\.[a-zA-Z]{2,3}$/;
     if (email === "" || Password === "") {
@@ -44,6 +47,14 @@ export default function Login(props) {
       console.log(e)
     }
   }
+  const handleRestPass = (Email) => {
+    firebase.auth().sendPasswordResetEmail(Email)
+      .then(function (user) {
+        alert('Please check your email...')
+      }).catch(function (e) {
+        console.log(e)
+      })
+  }
   return (
     <SafeAreaView style={styles.safeareaview}>
       <View style={styles.viewTop}>
@@ -52,7 +63,7 @@ export default function Login(props) {
       <View style={styles.viewMid}>
         <TextInput
           style={styles.input}
-          placeholder="Account..."
+          placeholder="Email..."
           placeholderTextColor={'#BD8522'}
           value={email}
           onChangeText={e => setEmail(e)}
@@ -65,7 +76,7 @@ export default function Login(props) {
           value={Password}
           onChangeText={e => setPassword(e)}
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setchoose(!choose)}>
           <Text style={styles.textReset}>Forgot Password? Reset here !</Text>
         </TouchableOpacity>
       </View>
@@ -77,6 +88,13 @@ export default function Login(props) {
           <Text style={styles.textDA}>Do not have account? Register now!</Text>
         </TouchableOpacity>
       </View>
+      <Forget_Password
+        isModalVisible={choose}
+        cancel={e => setchoose(e)}
+        ok={e => handleRestPass(e)}
+        name={"Forget Password"}
+
+      />
     </SafeAreaView>
   );
 };

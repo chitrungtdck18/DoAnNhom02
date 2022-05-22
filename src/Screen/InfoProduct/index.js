@@ -10,12 +10,13 @@ import {
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Svg, Defs, LinearGradient, Stop, Rect } from "react-native-svg";
-import Header from '../../Components/Header';
+import Header from '../../Components/header_info';
 import Dot from '../../Icons/Dot'
 import Undot from '../../Icons/Undot'
 import { styles } from './styles';
 
 export default function Register(props) {
+    const data = props.route.params.item;
     const DATA = [
         require('../../Static/Images/pant.png'),
         require('../../Static/Images/shoes.png'),
@@ -27,7 +28,7 @@ export default function Register(props) {
         for (let i = 0; i < DATA.length; i++) {
             var temp = (
                 <View key={i}>
-                    {DATA.indexOf(DATA[i]) === u ? <Dot style={styles.dot}  /> : <Undot style={styles.dot} />}
+                    {DATA.indexOf(DATA[i]) === u ? <Dot style={styles.dot} /> : <Undot style={styles.dot} />}
                 </View>
             )
             _dot[i] = temp
@@ -77,17 +78,15 @@ export default function Register(props) {
                 />
             </View>
             <View style={styles.viewText}>
-                <Text style={styles.nameProduct}>PKTT Nón Y Nguyên Bản 18- Ver2</Text>
-                <Text style={styles.priceProduct}>35 $</Text>
+                <Text style={styles.nameProduct}>{data.title}</Text>
+                <Text style={styles.priceProduct}>{data.price} $</Text>
             </View>
             <View style={styles.viewDesc}>
                 <Text style={styles.Desc}>
                     Description
                 </Text>
                 <Text style={styles.DeContent}>
-                    PKTT Nón Y Nguyên Bản 18- Ver2
-                    Chất liệu: Simily
-                    Thành phần: 100% Simily
+                  {data.description}
                 </Text>
             </View>
         </SafeAreaView>

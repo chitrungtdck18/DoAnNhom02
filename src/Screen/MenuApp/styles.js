@@ -209,10 +209,12 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         marginTop: 3,
         fontWeight: 'bold',
+        textTransform:"capitalize"
     },
     userEmail: {
         fontSize: 14,
         lineHeight: 14,
+        textTransform:"capitalize"
     },
     Exit: {
         flexDirection: "row",
@@ -225,11 +227,20 @@ export const styles = StyleSheet.create({
         borderTopWidth: 2,
         paddingTop: 5
     },
-    preference:{
+    preference: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        paddingVertical: 20,
+
+    },
+    view_preference: {
         paddingVertical: 12,
-        paddingHorizontal: 16
+        paddingHorizontal: 16,
+        borderBottomColor: '#f4f4f4',
+        borderTopColor: '#f4f4f4',
+        borderTopWidth: 2,
+        borderBottomWidth: 2
+
     }
 
 })

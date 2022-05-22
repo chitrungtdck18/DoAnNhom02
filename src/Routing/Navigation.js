@@ -9,6 +9,7 @@ import InfoProduct from '../Screen/InfoProduct'
 import List_ItemByCategory from '../Screen/List_ItemByCategory'
 import Management from '../Screen/Management'
 import Cart from '../Screen/shoppingcart'
+import Profile from '../Screen/Profile'
 
 import { LogBox } from 'react-native';
 import { AuthContext } from '../Redux/AuthContext';
@@ -62,6 +63,7 @@ export default function App() {
                         <Stack.Screen name="List_ItemByCategory" component={List_ItemByCategory} options={{ headerShown: false }} />
                         <Stack.Screen name="Management" component={Management} options={{ headerShown: false }} />
                         <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
+                        <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
                     </>
                 }
             </Stack.Navigator>

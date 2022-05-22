@@ -11,15 +11,17 @@ export const createUser = (data) => {
         urlAvatar: data.photoURL
     };
     db_User.set(user)
+    // console.log(user)
+
 };
-export const updateUser = (data) => {
+export const updateUser = (data, phone) => {
     const db_User = database.ref("user" + "/" + data.uid)
     var user = {
-        userID: data.userID,
-        userName: data.userName,
+        userID: data.uid,
+        userName: data.displayName,
         email: data.email,
-        phone: data.phone,
-        photoURL: data.urlAvatar
+        phone: phone,
+        urlAvatar: data.photoURL
     };
     db_User.update(user)
 }
@@ -31,6 +33,6 @@ export const getUser = async (id) => {
             var item = snapshot.val();
             var returnArr = [];
             returnArr = item;
-            arrayUser =item
+            arrayUser = returnArr
         });
 }

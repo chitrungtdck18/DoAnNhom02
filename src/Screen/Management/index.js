@@ -12,7 +12,7 @@ import {
 
 import SearchIcon from '../../Icons/SearchIcon'
 import DownIcon from '../../Icons/DownIcon'
-import Header from '../../Components/Header';
+import Header from '../../Components/header_info';
 import { Dimensions } from 'react-native';
 import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
 import { styles } from './styles';
@@ -30,7 +30,7 @@ export default function Register(props) {
    
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct')}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct', { item: item })}>
                 <View style={styles.viewitem}>
                     <Text>{item.title}</Text>
                     <View style={styles.viewimg}>

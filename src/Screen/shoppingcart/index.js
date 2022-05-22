@@ -11,7 +11,7 @@ import {
     Image
 } from 'react-native';
 import { styles } from './styles';
-import Header from '../../Components/Header';
+import Header from '../../Components/header_info';
 import Remove from '../../Icons/RemoveIcon'
 import { AuthContext } from '../../Redux/AuthContext';
 export default function Register(props) {
@@ -55,7 +55,6 @@ export default function Register(props) {
                 <FlatList
                     data={token.usercard}
                     renderItem={renderItem}
-
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
                 />

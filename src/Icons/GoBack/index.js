@@ -13,7 +13,7 @@ function SvgComponent(props) {
     >
       <Path
         d="M8 14.2L1 8l7-6.2"
-        stroke="#fff"
+        stroke={props.color||"#fff"}
         strokeWidth={1.5}
         strokeLinecap="square"
         strokeLinejoin="round"

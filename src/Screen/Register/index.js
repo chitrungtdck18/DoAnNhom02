@@ -56,8 +56,8 @@ export default function Register(props) {
                     displayName: name,
                     photoURL: default_avatar
                 }).then(() => {
-                    createUser(user.user)
-                    setUserid(user.user.uid)
+                    createUser(u)
+                    setUserid(u.uid)
                 })
             })
             .catch(error => {

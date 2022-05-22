@@ -27,6 +27,7 @@ import Support from '../../Icons/SupportIcon'
 import Modal from 'react-native-modal'
 import FCM from 'react-native-fcm';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Info_product from '../../Components/Info_product'
 import { styles } from './styles';
 import { getlistCategory, arrayCategory } from '../../Model/Category';
 import { AuthContext } from '../../Redux/AuthContext';
@@ -39,12 +40,13 @@ export default function Register(props) {
     const { token } = useContext(AuthContext)
     const [isModalVisible, setisModalVisible] = useState(false)
     const [User, setUser] = useState([])
+    const [choose, setchoose] = useState(false)
     const [photo, setPhoto] = useState("");
     const [imageFile, setImageFile] = useState({});
     const { setToken } = useContext(AuthContext)
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct')}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct', { item: item })} onLongPress={handlerLongClick}>
                 <View style={styles.viewitem}>
                     <View style={styles.viewtopitems}>
                         <View style={styles.viewimg}>
@@ -90,6 +92,7 @@ export default function Register(props) {
                 var returnArr = [];
                 returnArr = item;
                 setUser(returnArr)
+              
             });
     };
 
@@ -128,7 +131,11 @@ export default function Register(props) {
         //     }
         // });
     }
+    const handlerLongClick = () => {
+        setchoose(!choose)
+    }
     useEffect(() => {
+
         getlistCategory()
         _getData()
         const unsubscribe = props.navigation.addListener('focus', () => {
@@ -259,7 +266,7 @@ export default function Register(props) {
                             <Text style={styles.text_item}>Management</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => handleModal()} style={styles.view_item_Drawer}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('Profile', { user: User })} style={styles.view_item_Drawer}>
                             <Update />
                             <Text style={styles.text_item}>Update User</Text>
                         </TouchableOpacity>
@@ -273,12 +280,11 @@ export default function Register(props) {
                             <Support />
                             <Text style={styles.text_item}>Support</Text>
                         </TouchableOpacity>
-                        <View>
+                        <View style={styles.view_preference}>
+                            <Text>Preferences</Text>
                             <View style={styles.preference}>
                                 <Text>Dark Theme</Text>
-                                <View pointerEvents="none">
-                                    <Switch value={paperTheme.dark} />
-                                </View>
+                                <Switch value={paperTheme.dark} />
                             </View>
                         </View>
 
@@ -291,7 +297,7 @@ export default function Register(props) {
 
                 </View>
             </Modal>
-
+            <Info_product isModalVisible={choose} cancel={e => setchoose(e)} />
         </SafeAreaView>
     );
 };
