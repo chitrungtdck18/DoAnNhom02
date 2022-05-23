@@ -17,7 +17,7 @@ import { Dimensions } from 'react-native';
 import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
 import { styles } from './styles';
 import { arrayCategory } from '../../Model/Category';
-export default function Register(props) {
+export default function App(props) {
     const [selectedItem, setSelectedItem] = useState(-1);
     const [textseach, settextseach] = useState("")
     const [data, setdata] = useState([

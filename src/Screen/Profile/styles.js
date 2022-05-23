@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     width: 150,
     borderRadius: 80,
     alignSelf: "center",
-
+    marginTop: 20
   },
   input: {
     fontSize: 16,
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
   },
   safeareaview: {
     flex: 1,
-    backgroundColor: '#fff',
+
     alignItems: "center"
   },
   save: {

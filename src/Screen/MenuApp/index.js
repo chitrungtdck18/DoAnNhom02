@@ -32,7 +32,7 @@ import { styles } from './styles';
 import { getlistCategory, arrayCategory } from '../../Model/Category';
 import { AuthContext } from '../../Redux/AuthContext';
 import { auth, database } from '../../Utils/firebase-Config';
-export default function Register(props) {
+export default function App(props) {
     { arrayCategory }
     const paperTheme = useTheme();
     const { token } = useContext(AuthContext)
@@ -90,11 +90,11 @@ export default function Register(props) {
                 var returnArr = [];
                 returnArr = item;
                 setUser(returnArr)
-              
+
             });
     };
 
-   
+
     const handlerLongClick = () => {
         setchoose(!choose)
     }
@@ -248,7 +248,7 @@ export default function Register(props) {
                             <Text>Preferences</Text>
                             <View style={styles.preference}>
                                 <Text>Dark Theme</Text>
-                                <Switch value={paperTheme.dark} />
+                                <Switch value={props.thene}  onChange={props.changethem}/>
                             </View>
                         </View>
 

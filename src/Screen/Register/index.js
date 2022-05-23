@@ -16,7 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createUser, default_avatar } from '../../Model/User';
 import firebase from '../../Utils/firebase-Config';
 
-export default function Register(props) {
+export default function App(props) {
     const { setToken } = useContext(AuthContext)
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')

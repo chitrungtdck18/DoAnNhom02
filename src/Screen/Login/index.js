@@ -14,7 +14,7 @@ import { AuthContext } from '../../Redux/AuthContext';
 import Forget_Password from '../../Components/Forget_Password';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firebase from '../../Utils/firebase-Config';
-export default function Login(props) {
+export default function App(props) {
   const { setToken } = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [Password, setPassword] = useState('')

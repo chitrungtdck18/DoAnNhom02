@@ -57,10 +57,9 @@ export const styles = StyleSheet.create({
   },
   safeareaview: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
   },
   ImageBackground: {
-    width: Dimensions.get('window').width, height: 500, justifyContent: 'flex-end'
+    width: Dimensions.get('window').width, height: 400, justifyContent: 'flex-end'
   },
   dot: {
     paddingHorizontal: 20

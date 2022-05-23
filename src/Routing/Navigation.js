@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { View, ActivityIndicator, Image } from 'react-native';
 import Login from '../Screen/Login'
 import Register from '../Screen/Register'
@@ -16,11 +16,12 @@ import { AuthContext } from '../Redux/AuthContext';
 import { styles } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function App() {
- 
+
     const Stack = createNativeStackNavigator();
     const { token } = useContext(AuthContext)
     const { setToken } = useContext(AuthContext)
     const [isLoading, setisLoading] = useState(true)
+    const [theme, setheme] = useState(false)
     const getUserid = async () => {
         try {
             const jsonValue = await AsyncStorage.getItem('Userid');
@@ -34,6 +35,17 @@ export default function App() {
             setisLoading(false)
         }
     };
+    const changethem = () => {
+        console.log("dc goi")
+        if (theme) {
+            setheme(false)
+          
+        }
+        else {
+            setheme(true)
+          
+        }
+    }
     useEffect(() => {
         getUserid()
     }, []);
@@ -46,8 +58,9 @@ export default function App() {
             </View>
         );
     }
+
     return (
-        <NavigationContainer>
+        <NavigationContainer theme={theme ? DarkTheme : DefaultTheme}>
 
             {LogBox.ignoreAllLogs()}
             <Stack.Navigator>
@@ -58,8 +71,8 @@ export default function App() {
                     </>
                     :
                     <>
-                     
-                        <Stack.Screen name="MenuApp" component={MenuApp} options={{ headerShown: false }} />
+
+                        <Stack.Screen name="MenuApp" component={MenuApp} options={{ headerShown: false }} changethem={() => changethem()} theme={theme} />
                         <Stack.Screen name="InfoProduct" component={InfoProduct} options={{ headerShown: false }} />
                         <Stack.Screen name="List_ItemByCategory" component={List_ItemByCategory} options={{ headerShown: false }} />
                         <Stack.Screen name="Management" component={Management} options={{ headerShown: false }} />

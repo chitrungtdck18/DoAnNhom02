@@ -22,7 +22,7 @@ import ShowIcon from '../../Icons/ShowmoreIcon'
 import Header from '../../Components/header_info';
 import { styles } from './styles';
 
-export default function Register(props) {
+export default function App(props) {
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct')}>
