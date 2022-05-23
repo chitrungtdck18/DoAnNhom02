@@ -27,10 +27,11 @@ export default function App() {
             if (jsonValue) {
                 const data = JSON.parse(jsonValue);
                 setToken({ loading: false, userid: data })
-                setisLoading(false)
             }
+            setisLoading(false)
         } catch (e) {
             console.log(e)
+            setisLoading(false)
         }
     };
     useEffect(() => {

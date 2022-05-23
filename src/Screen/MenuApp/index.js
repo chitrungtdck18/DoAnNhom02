@@ -25,15 +25,13 @@ import Exit from '../../Icons/ExitIcon'
 import Update from '../../Icons/UpdateIcon'
 import Support from '../../Icons/SupportIcon'
 import Modal from 'react-native-modal'
-import FCM from 'react-native-fcm';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Info_product from '../../Components/Info_product'
 import { styles } from './styles';
 import { getlistCategory, arrayCategory } from '../../Model/Category';
 import { AuthContext } from '../../Redux/AuthContext';
 import { auth, database } from '../../Utils/firebase-Config';
-// import * as ImagePicker from "react-native-image-picker"
-// import ImagePicker from 'react-native-image-picker';
 export default function Register(props) {
     { arrayCategory }
     const paperTheme = useTheme();
@@ -96,41 +94,7 @@ export default function Register(props) {
             });
     };
 
-    const choosePhotoFromLibrary = async () => {
-        // let options = {
-        //     title: 'Select Image',
-        //     customButtons: [
-        //         { name: 'customOptionKey', title: 'Choose Photo from Custom Option' },
-        //     ],
-        //     storageOptions: {
-        //         skipBackup: true,
-        //         path: 'images',
-        //     },
-        // };
-        // ImagePicker.showImagePicker(options, (response) => {
-        //     console.log('Response = ', response);
-
-        //     if (response.didCancel) {
-        //         console.log('User cancelled image picker');
-        //     } else if (response.error) {
-        //         console.log('ImagePicker Error: ', response.error);
-        //     } else if (response.customButton) {
-        //         console.log('User tapped custom button: ', response.customButton);
-        //         alert(response.customButton);
-        //     } else {
-        //         const source = { uri: response.uri };
-        //         // You can also display the image using data:
-        //         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-        //         alert(JSON.stringify(response));s
-        //         console.log('response', JSON.stringify(response));
-        //         this.setState({
-        //             filePath: response,
-        //             fileData: response.data,
-        //             fileUri: response.uri
-        //         });
-        //     }
-        // });
-    }
+   
     const handlerLongClick = () => {
         setchoose(!choose)
     }

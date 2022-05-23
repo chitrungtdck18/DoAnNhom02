@@ -3,7 +3,7 @@ export const styles = StyleSheet.create({
   modalContainer: {
     alignSelf: "center",
     height: 200,
-    width: "80%",
+    width: "85%",
     backgroundColor: '#F5FCFF',
     borderRadius: 15
   },

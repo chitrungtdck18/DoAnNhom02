@@ -35,7 +35,7 @@ export default function Login(props) {
         setUserid(user.user.uid)
       })
       .catch(error => {
-        console.log("error: " + error)
+        alert("error: " + error)
       });
   }
   const setUserid = async (text) => {

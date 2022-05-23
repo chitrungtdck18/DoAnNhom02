@@ -13,6 +13,7 @@ import Phone from '../../Icons/PhoneIcon';
 import Notification from '../../Components/Notification';
 import Header from '../../Components/header_info';
 import firebase from '../../Utils/firebase-Config';
+// import ImagePicker from 'react-native-image-crop-picker';
 import { styles } from './styles';
 import { updateUser } from '../../Model/User';
 export default function App(props) {
@@ -22,7 +23,6 @@ export default function App(props) {
     const [phone, setphone] = useState(User.phone || "")
     const [urlAvatar, seturlAvatar] = useState(User.urlAvatar || "")
     const [choose, setchoose] = useState(false)
-    const [isok, settisok] = useState(false)
     const handleSave = () => {
         u.updateProfile({
             displayName: name,
@@ -37,18 +37,34 @@ export default function App(props) {
         }
     }
     const check = () => {
-        if (name == "" || urlAvatar == "" || phone == "") {
+        if (name == "" || urlAvatar == "" || phone.length < 9 || phone.length > 11) {
             return false
         }
         else {
             return true
         }
     }
+    const choosePhotoFromLibrary = () => {
+        // ImagePicker.openPicker({
+        //     width: 300,
+        //     height: 300,
+        //     cropping: true,
+        //     compressImageQuality: 0.7
+        // }).then(image => {
+        //     setPhoto(image.path)
+        //     setImageFile({
+        //         uri: image.path,
+        //         type: image.mime,
+        //         name: image.modificationDate
+        //     })
+        //     setModalVisible(!modalVisible)
+        // });
+    }
     return (
         <View style={styles.safeareaview}>
             <Header name={"Profile"} />
-            
-            <TouchableOpacity>
+
+            <TouchableOpacity onPress={() => choosePhotoFromLibrary()}>
                 <Image style={styles.Image_avt} source={{ uri: urlAvatar }} />
             </TouchableOpacity>
             <View style={styles.Textput}>
@@ -77,7 +93,7 @@ export default function App(props) {
             <Notification
                 isModalVisible={choose}
                 cancel={e => setchoose(e)}
-                ok={()=>handleSave()}
+                ok={() => handleSave()}
                 name={"Update User"}
                 describe={"Are you sure to Update the profile!??"}
             />
