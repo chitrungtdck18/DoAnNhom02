@@ -57,5 +57,10 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
+    imgLogo: {
+        width: 280,
+        height: 180,
+        marginTop: 20,
+    },
 
 })

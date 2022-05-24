@@ -12,12 +12,12 @@ let config = {
     appId: "1:668627707668:web:6203cd43b7c2bc65e08401",
     measurementId: "G-RBL0Y816GG"
 };
-if (!firebase.apps.length) {
-    firebase.initializeApp(config);
-}
-const auth = firebase.auth();
-const database = firebase.database()
-const storage = firebase.storage()
+const app = !firebase.apps.length
+  ? firebase.initializeApp(config)
+  : firebase.app();
+const auth = app.auth()
+const database = app.database()
+const storage = app.storage()
 
 export { auth, database, storage }
 export default firebase;

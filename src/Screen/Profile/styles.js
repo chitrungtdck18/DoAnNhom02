@@ -49,5 +49,47 @@ export const styles = StyleSheet.create({
 
     color: "#fff",
     textTransform: "capitalize"
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  textStyle: {
+    color:"#000",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+  },
+  textTouch: {
+    color:"#000", fontSize: 14
+  },
+  touchModal: {
+    borderRadius: 5,
+    borderColor: "red",
+    borderWidth: 1,
+    padding: 15,
+    marginVertical: 5,
+    alignItems: 'center',
+    width: 220
   }
 })

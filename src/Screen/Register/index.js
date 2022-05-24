@@ -6,7 +6,8 @@ import {
     Text,
     View,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native';
 import { auth, data } from '../../Utils/firebase-Config';
 import { getDatabase } from 'firebase/database';
@@ -61,13 +62,14 @@ export default function App(props) {
                 })
             })
             .catch(error => {
-               alert(error)
+                alert(error)
             });
 
     }
     return (
         <SafeAreaView style={styles.safeareaview}>
             <View style={styles.viewTop}>
+                <Image style={styles.imgLogo} source={require('../../Static/Images/logo-shop.png')}></Image>
                 <Text style={styles.textCreate}>Create an Account</Text>
             </View>
             <View style={styles.viewMid}>

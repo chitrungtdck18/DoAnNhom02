@@ -21,7 +21,7 @@ export default function app(props) {
     }
     return (
 
-        <Modal isVisible={props.isModalVisible} animationIn={"slideInDown"} animationOut={"slideOutUp"} hideModalContentWhileAnimating={false}>
+        <Modal isVisible={props.ModalVisible} animationIn={"slideInDown"} animationOut={"slideOutUp"} hideModalContentWhileAnimating={false}>
             <View style={styles.modalContainer}>
                 <View style={styles.view_header}>
                     <Text style={styles.title}>{props.name}</Text>

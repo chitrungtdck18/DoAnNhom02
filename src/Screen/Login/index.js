@@ -58,7 +58,7 @@ export default function App(props) {
   return (
     <SafeAreaView style={styles.safeareaview}>
       <View style={styles.viewTop}>
-        <Image style={styles.imgLogo} source={require('../../Static/Images/logoshop.png')}></Image>
+        <Image style={styles.imgLogo} source={require('../../Static/Images/logo-shop.png')}></Image>
       </View>
       <View style={styles.viewMid}>
         <TextInput

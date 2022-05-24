@@ -53,7 +53,7 @@ export default function App() {
         return (
             <View style={styles.loading}>
                 {LogBox.ignoreAllLogs()}
-                <Image style={styles.Image} source={require('../Static/Images/logoshop.png')}></Image>
+                <Image style={styles.Image} source={require('../Static/Images/logo-shop.png')}></Image>
                 <ActivityIndicator size="large" />
             </View>
         );

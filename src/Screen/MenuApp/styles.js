@@ -146,7 +146,7 @@ export const styles = StyleSheet.create({
     },
     safeareaview: {
         flex: 1,
-     
+        backgroundColor: '#FFFFFF',
     },
     modalContainer: {
         alignSelf: "center",
@@ -214,7 +214,7 @@ export const styles = StyleSheet.create({
     userEmail: {
         fontSize: 14,
         lineHeight: 14,
-      
+        textTransform:"capitalize"
     },
     Exit: {
         flexDirection: "row",

@@ -39,8 +39,6 @@ export default function App(props) {
     const [isModalVisible, setisModalVisible] = useState(false)
     const [User, setUser] = useState([])
     const [choose, setchoose] = useState(false)
-    const [photo, setPhoto] = useState("");
-    const [imageFile, setImageFile] = useState({});
     const { setToken } = useContext(AuthContext)
     const renderItem = ({ item }) => {
         return (
@@ -64,9 +62,7 @@ export default function App(props) {
             </TouchableOpacity>
         )
     }
-    const handleModal = () => {
-        setisModalVisible(!isModalVisible)
-    }
+ 
     const handleLogout = async () => {
         auth.signOut()
             .then(() => setUserid(""));
@@ -99,7 +95,6 @@ export default function App(props) {
         setchoose(!choose)
     }
     useEffect(() => {
-
         getlistCategory()
         _getData()
         const unsubscribe = props.navigation.addListener('focus', () => {
@@ -111,7 +106,7 @@ export default function App(props) {
         <SafeAreaView syle={styles.safeareaview}>
             <View style={styles.header}>
                 <View style={{ width: '18%' }}>
-                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => handleModal()}>
+                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => setisModalVisible(true)}>
                         <MenuIcon />
                     </TouchableOpacity>
                 </View>
@@ -219,7 +214,7 @@ export default function App(props) {
                             <Text style={styles.userName}>{User.userName}</Text>
                             <Text style={styles.userEmail}>{User.email}</Text>
                         </View>
-                        <TouchableOpacity onPress={handleModal} style={styles.Cancel}>
+                        <TouchableOpacity onPress={()=>setisModalVisible(false)} style={styles.Cancel}>
                             <Cancel />
                         </TouchableOpacity>
                     </View>
@@ -240,7 +235,7 @@ export default function App(props) {
                             <Text style={styles.text_item}>Shoping Cart</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => handleModal()} style={styles.view_item_Drawer}>
+                        <TouchableOpacity onPress={() => console.log("Support")} style={styles.view_item_Drawer}>
                             <Support />
                             <Text style={styles.text_item}>Support</Text>
                         </TouchableOpacity>
@@ -248,7 +243,7 @@ export default function App(props) {
                             <Text>Preferences</Text>
                             <View style={styles.preference}>
                                 <Text>Dark Theme</Text>
-                                <Switch value={props.thene}  onChange={props.changethem}/>
+                                <Switch value={props.thene} onChange={props.changethem} />
                             </View>
                         </View>
 

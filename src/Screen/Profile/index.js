@@ -6,14 +6,17 @@ import {
     TextInput,
     View,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+
+
 } from 'react-native';
 import Username from '../../Icons/Username';
 import Phone from '../../Icons/PhoneIcon';
 import Notification from '../../Components/Notification';
 import Header from '../../Components/header_info';
-import firebase from '../../Utils/firebase-Config';
-// import ImagePicker from 'react-native-image-crop-picker';
+import firebase, { storage } from '../../Utils/firebase-Config';
+import ImagePicker from 'react-native-image-crop-picker';
+import Modal from 'react-native-modal'
 import { styles } from './styles';
 import { updateUser } from '../../Model/User';
 export default function App(props) {
@@ -23,13 +26,19 @@ export default function App(props) {
     const [phone, setphone] = useState(User.phone || "")
     const [urlAvatar, seturlAvatar] = useState(User.urlAvatar || "")
     const [choose, setchoose] = useState(false)
-    const handleSave = () => {
-        u.updateProfile({
-            displayName: name,
-            photoURL: urlAvatar
-        }).then(() => {
-            updateUser(u, phone)
-        })
+    const [modalVisible, setModalVisible] = useState(false);
+    const [photo, setPhoto] = useState(urlAvatar);
+    const [imageFile, setImageFile] = useState({});
+
+    const handleSave = async () => {
+        const uploadUrl = "User/" + User.userID + "/" + imageFile.name+".png"
+        await storage.ref(uploadUrl).put(imageFile.path)
+            .then(() => {
+                storage.ref(uploadUrl).getDownloadURL().then((url) => {
+                    console.log(url)
+                })
+
+            })
     }
     const handlePress = () => {
         if (check()) {
@@ -45,27 +54,51 @@ export default function App(props) {
         }
     }
     const choosePhotoFromLibrary = () => {
-        // ImagePicker.openPicker({
-        //     width: 300,
-        //     height: 300,
-        //     cropping: true,
-        //     compressImageQuality: 0.7
-        // }).then(image => {
-        //     setPhoto(image.path)
-        //     setImageFile({
-        //         uri: image.path,
-        //         type: image.mime,
-        //         name: image.modificationDate
-        //     })
-        //     setModalVisible(!modalVisible)
-        // });
+        ImagePicker.openPicker({
+            width: 300,
+            height: 300,
+            cropping: true,
+            compressImageQuality: 0.7,
+            mediaType:"photo"
+        }).then(image => {
+            setPhoto(image.path)
+            setImageFile({
+                uri: image.path,
+                type: image.mime,
+                name: image.modificationDate
+            })
+            setModalVisible(false)
+
+        });
+    }
+
+
+    const takePhotoFromCamra = () => {
+        ImagePicker.openCamera({
+            compressImageMaxWidth: 300,
+            compressImageMaxHeight: 300,
+            cropping: true,
+            compressImageQuality: 0.7,
+            multiple: true,
+            includeBase64: true,
+            mediaType:"photo"
+        }).then(image => {
+            setPhoto(image.path)
+            setImageFile({
+                uri: image.path,
+                type: image.mime,
+                name: image.modificationDate
+            })
+            setModalVisible(false)
+        });
+
     }
     return (
         <View style={styles.safeareaview}>
             <Header name={"Profile"} />
 
-            <TouchableOpacity onPress={() => choosePhotoFromLibrary()}>
-                <Image style={styles.Image_avt} source={{ uri: urlAvatar }} />
+            <TouchableOpacity onPress={() => setModalVisible(true)}>
+                <Image style={styles.Image_avt} source={{ uri: photo }} />
             </TouchableOpacity>
             <View style={styles.Textput}>
                 <Username />
@@ -91,12 +124,31 @@ export default function App(props) {
                 <Text style={styles.Save_text}>save</Text>
             </TouchableOpacity>
             <Notification
-                isModalVisible={choose}
+                ModalVisible={choose}
                 cancel={e => setchoose(e)}
                 ok={() => handleSave()}
                 name={"Update User"}
                 describe={"Are you sure to Update the profile!??"}
             />
+            <Modal isVisible={modalVisible} animationIn={"slideInDown"} animationOut={"slideOutUp"} >
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={{ color: '#FF8600', fontSize: 16 }}>Chosse acction</Text>
+                        <View style={{ padding: 10, marginVertical: 10 }}>
+                            <TouchableOpacity style={styles.touchModal} onPress={() => takePhotoFromCamra()}>
+                                <Text style={styles.textTouch}>Camera</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.touchModal} onPress={() => choosePhotoFromLibrary()}>
+                                <Text style={styles.textTouch}>Graly</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.touchModal} onPress={() => setModalVisible(false)}>
+                                <Text style={styles.textTouch}>Cancel</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
+                </View>
+            </Modal>
         </View>
     );
 };

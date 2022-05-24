@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     },
     safeareaview: {
         flex: 1,
-      
+      backgroundColor:"#fff"
     },
     imgLogo: {
         width: 280,
