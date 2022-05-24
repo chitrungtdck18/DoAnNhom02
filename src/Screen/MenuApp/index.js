@@ -34,7 +34,6 @@ import { AuthContext } from '../../Redux/AuthContext';
 import { auth, database } from '../../Utils/firebase-Config';
 export default function App(props) {
     { arrayCategory }
-    const paperTheme = useTheme();
     const { token } = useContext(AuthContext)
     const [isModalVisible, setisModalVisible] = useState(false)
     const [User, setUser] = useState([])
@@ -62,7 +61,7 @@ export default function App(props) {
             </TouchableOpacity>
         )
     }
- 
+
     const handleLogout = async () => {
         auth.signOut()
             .then(() => setUserid(""));
@@ -214,7 +213,7 @@ export default function App(props) {
                             <Text style={styles.userName}>{User.userName}</Text>
                             <Text style={styles.userEmail}>{User.email}</Text>
                         </View>
-                        <TouchableOpacity onPress={()=>setisModalVisible(false)} style={styles.Cancel}>
+                        <TouchableOpacity onPress={() => setisModalVisible(false)} style={styles.Cancel}>
                             <Cancel />
                         </TouchableOpacity>
                     </View>
@@ -261,5 +260,10 @@ export default function App(props) {
     );
 };
 
+export const close = () => {
+//    setisModalVisible(false)
+// App.setisModalVisible(false)
+console.log(App.isModalVisible)
+}
 
 

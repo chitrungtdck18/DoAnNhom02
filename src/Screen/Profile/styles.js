@@ -6,7 +6,9 @@ export const styles = StyleSheet.create({
     width: 150,
     borderRadius: 80,
     alignSelf: "center",
-    marginTop: 20
+    marginTop: 20,
+    borderColor: "#000",
+    borderWidth: 1
   },
   input: {
     fontSize: 16,
@@ -72,7 +74,7 @@ export const styles = StyleSheet.create({
     elevation: 5
   },
   textStyle: {
-    color:"#000",
+    color: "#000",
     fontWeight: "bold",
     textAlign: "center"
   },
@@ -81,7 +83,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   textTouch: {
-    color:"#000", fontSize: 14
+    color: "#000", fontSize: 14
   },
   touchModal: {
     borderRadius: 5,

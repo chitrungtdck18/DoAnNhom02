@@ -19,6 +19,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import Modal from 'react-native-modal'
 import { styles } from './styles';
 import { updateUser } from '../../Model/User';
+import { close } from '../MenuApp';
 export default function App(props) {
     const User = props.route.params.user
     const u = firebase.auth().currentUser;
@@ -31,11 +32,35 @@ export default function App(props) {
     const [imageFile, setImageFile] = useState({});
 
     const handleSave = async () => {
-        const uploadUrl = "User/" + User.userID + "/" + imageFile.name+".png"
+        if (photo != urlAvatar) {
+            handleUpimge()
+        }
+        else {
+            u.updateProfile({
+                displayName: name,
+            }).then(() => {
+                updateUser(u, phone)
+            })
+        }
+
+    }
+
+    const handleUpimge = async () => {
+        var str = imageFile.uri;
+        var n = str.lastIndexOf('/');
+        var filename = str.substring(n + 1);
+        const uploadUrl = "User/" + User.userID + "/" + filename
         await storage.ref(uploadUrl).put(imageFile.path)
             .then(() => {
                 storage.ref(uploadUrl).getDownloadURL().then((url) => {
                     console.log(url)
+                    seturlAvatar(url)
+                    u.updateProfile({
+                        displayName: name,
+                        photoURL: url
+                    }).then(() => {
+                        updateUser(u, phone)
+                    })
                 })
 
             })
@@ -59,7 +84,7 @@ export default function App(props) {
             height: 300,
             cropping: true,
             compressImageQuality: 0.7,
-            mediaType:"photo"
+
         }).then(image => {
             setPhoto(image.path)
             setImageFile({
@@ -68,6 +93,7 @@ export default function App(props) {
                 name: image.modificationDate
             })
             setModalVisible(false)
+            close()
 
         });
     }
@@ -81,7 +107,6 @@ export default function App(props) {
             compressImageQuality: 0.7,
             multiple: true,
             includeBase64: true,
-            mediaType:"photo"
         }).then(image => {
             setPhoto(image.path)
             setImageFile({
@@ -90,6 +115,8 @@ export default function App(props) {
                 name: image.modificationDate
             })
             setModalVisible(false)
+            close()
+
         });
 
     }
