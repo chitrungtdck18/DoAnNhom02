@@ -8,13 +8,8 @@ import {
     TextInput,
     TouchableOpacity,
     FlatList,
-    Button,
 } from 'react-native';
 
-import {
-    useTheme,
-    Switch
-} from 'react-native-paper';
 import MenuIcon from '../../Icons/MenuIcon'
 import CartIcon from '../../Icons/CartIcon'
 import SearchIcon from '../../Icons/SearchIcon'
@@ -24,6 +19,7 @@ import Management from '../../Icons/Management'
 import Exit from '../../Icons/ExitIcon'
 import Update from '../../Icons/UpdateIcon'
 import Support from '../../Icons/SupportIcon'
+import Password_reset from '../../Icons/Password_resetIcon'
 import Modal from 'react-native-modal'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -229,6 +225,12 @@ export default function App(props) {
                             <Text style={styles.text_item}>Update User</Text>
                         </TouchableOpacity>
 
+
+                        <TouchableOpacity onPress={() => props.navigation.navigate('Password_Reset') & setisModalVisible(false)} style={styles.view_item_Drawer}>
+                            <Password_reset />
+                            <Text style={styles.text_item}>Password reset</Text>
+                        </TouchableOpacity>
+
                         <TouchableOpacity onPress={() => props.navigation.navigate('Cart') & setisModalVisible(false)} style={styles.view_item_Drawer}>
                             <CartIcon color={"#000"} />
                             <Text style={styles.text_item}>Shoping Cart</Text>
@@ -238,13 +240,7 @@ export default function App(props) {
                             <Support />
                             <Text style={styles.text_item}>Support</Text>
                         </TouchableOpacity>
-                        <View style={styles.view_preference}>
-                            <Text>Preferences</Text>
-                            <View style={styles.preference}>
-                                <Text>Dark Theme</Text>
-                                <Switch value={props.thene} onChange={props.changethem} />
-                            </View>
-                        </View>
+
 
                         <TouchableOpacity onPress={() => handleLogout() & setisModalVisible(false)} style={styles.Exit}>
                             <Exit />

@@ -10,6 +10,7 @@ import List_ItemByCategory from '../Screen/List_ItemByCategory'
 import Management from '../Screen/Management'
 import Cart from '../Screen/shoppingcart'
 import Profile from '../Screen/Profile'
+import Password_Reset from '../Screen/Password_Reset'
 
 import { LogBox } from 'react-native';
 import { AuthContext } from '../Redux/AuthContext';
@@ -78,6 +79,7 @@ export default function App() {
                         <Stack.Screen name="Management" component={Management} options={{ headerShown: false }} />
                         <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
                         <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
+                        <Stack.Screen name="Password_Reset" component={Password_Reset} options={{ headerShown: false }} />
                     </>
                 }
             </Stack.Navigator>

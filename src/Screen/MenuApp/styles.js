@@ -214,14 +214,14 @@ export const styles = StyleSheet.create({
     userEmail: {
         fontSize: 14,
         lineHeight: 14,
-        textTransform:"capitalize"
+       
     },
     Exit: {
         flexDirection: "row",
         alignItems: 'center',
         position: "absolute",
         bottom: 150,
-        left: 10,
+        left: 5,
         width: '100%',
         borderTopColor: '#f4f4f4',
         borderTopWidth: 2,
