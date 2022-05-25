@@ -19,7 +19,8 @@ import ImagePicker from 'react-native-image-crop-picker';
 import Modal from 'react-native-modal'
 import { styles } from './styles';
 import { updateUser } from '../../Model/User';
-import { close } from '../MenuApp';
+
+
 export default function App(props) {
     const User = props.route.params.user
     const u = firebase.auth().currentUser;
@@ -30,6 +31,9 @@ export default function App(props) {
     const [modalVisible, setModalVisible] = useState(false);
     const [photo, setPhoto] = useState(urlAvatar);
     const [imageFile, setImageFile] = useState({});
+    const [uploading, setUploading] = useState(false);
+    const [transferred, setTransferred] = useState(0);
+    const [bob, setbob] = useState("")
 
     const handleSave = async () => {
         if (photo != urlAvatar) {
@@ -44,27 +48,30 @@ export default function App(props) {
         }
 
     }
-
     const handleUpimge = async () => {
-        var str = imageFile.uri;
+        var str = imageFile;
         var n = str.lastIndexOf('/');
         var filename = str.substring(n + 1);
         const uploadUrl = "User/" + User.userID + "/" + filename
-        await storage.ref(uploadUrl).put(imageFile.path)
+        const task = storage.ref(uploadUrl)
+        await task.put(imageFile)
             .then(() => {
-                storage.ref(uploadUrl).getDownloadURL().then((url) => {
-                    console.log(url)
-                    seturlAvatar(url)
-                    u.updateProfile({
-                        displayName: name,
-                        photoURL: url
-                    }).then(() => {
-                        updateUser(u, phone)
+                task
+                    .getDownloadURL()
+                    .then((url) => {
+                        console.log(url)
+                        // seturlAvatar(url)
+                        // u.updateProfile({
+                        //     displayName: name,
+                        //     photoURL: url
+                        // }).then(() => {
+                        //     updateUser(u, phone)
+                        // })
                     })
-                })
 
             })
     }
+
     const handlePress = () => {
         if (check()) {
             setchoose(!choose)
@@ -78,28 +85,21 @@ export default function App(props) {
             return true
         }
     }
-    const choosePhotoFromLibrary = () => {
+    const choosePhotoFromLibrary = async () => {
         ImagePicker.openPicker({
             width: 300,
             height: 300,
             cropping: true,
             compressImageQuality: 0.7,
-
         }).then(image => {
             setPhoto(image.path)
-            setImageFile({
-                uri: image.path,
-                type: image.mime,
-                name: image.modificationDate
-            })
+            setImageFile(image.path)
             setModalVisible(false)
-            close()
-
         });
     }
 
 
-    const takePhotoFromCamra = () => {
+    const takePhotoFromCamra = async () => {
         ImagePicker.openCamera({
             compressImageMaxWidth: 300,
             compressImageMaxHeight: 300,
@@ -108,15 +108,8 @@ export default function App(props) {
             multiple: true,
             includeBase64: true,
         }).then(image => {
-            setPhoto(image.path)
-            setImageFile({
-                uri: image.path,
-                type: image.mime,
-                name: image.modificationDate
-            })
+            setImageFile(image.uri)
             setModalVisible(false)
-            close()
-
         });
 
     }
@@ -160,8 +153,8 @@ export default function App(props) {
             <Modal isVisible={modalVisible} animationIn={"slideInDown"} animationOut={"slideOutUp"} >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={{ color: '#FF8600', fontSize: 16 }}>Chosse acction</Text>
-                        <View style={{ padding: 10, marginVertical: 10 }}>
+                        <Text style={styles.Chosse_acction}>Chosse acction</Text>
+                        <View style={styles.view_button}>
                             <TouchableOpacity style={styles.touchModal} onPress={() => takePhotoFromCamra()}>
                                 <Text style={styles.textTouch}>Camera</Text>
                             </TouchableOpacity>

@@ -219,22 +219,22 @@ export default function App(props) {
                     </View>
                     <View style={styles.item_Drawer}>
 
-                        <TouchableOpacity onPress={() => props.navigation.navigate('Management')} style={styles.view_item_Drawer}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('Management') & setisModalVisible(false)} style={styles.view_item_Drawer}>
                             <Management />
                             <Text style={styles.text_item}>Management</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => props.navigation.navigate('Profile', { user: User })} style={styles.view_item_Drawer}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('Profile', { user: User }) & setisModalVisible(false)} style={styles.view_item_Drawer}>
                             <Update />
                             <Text style={styles.text_item}>Update User</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => props.navigation.navigate('Cart')} style={styles.view_item_Drawer}>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('Cart') & setisModalVisible(false)} style={styles.view_item_Drawer}>
                             <CartIcon color={"#000"} />
                             <Text style={styles.text_item}>Shoping Cart</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => console.log("Support")} style={styles.view_item_Drawer}>
+                        <TouchableOpacity onPress={() => console.log("Support") & setisModalVisible(false)} style={styles.view_item_Drawer}>
                             <Support />
                             <Text style={styles.text_item}>Support</Text>
                         </TouchableOpacity>
@@ -246,7 +246,7 @@ export default function App(props) {
                             </View>
                         </View>
 
-                        <TouchableOpacity onPress={() => handleLogout()} style={styles.Exit}>
+                        <TouchableOpacity onPress={() => handleLogout() & setisModalVisible(false)} style={styles.Exit}>
                             <Exit />
                             <Text style={styles.text_item}>Sign Out</Text>
                         </TouchableOpacity>
@@ -260,10 +260,6 @@ export default function App(props) {
     );
 };
 
-export const close = () => {
-//    setisModalVisible(false)
-// App.setisModalVisible(false)
-console.log(App.isModalVisible)
-}
+
 
 

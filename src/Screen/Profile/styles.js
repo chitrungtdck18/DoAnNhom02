@@ -21,7 +21,6 @@ export const styles = StyleSheet.create({
     width: "90%"
   },
   Textput: {
-
     height: 55,
     width: "80%",
     flexDirection: 'row',
@@ -29,7 +28,7 @@ export const styles = StyleSheet.create({
     borderColor: '#BD8522',
     borderWidth: 1,
     borderRadius: 10,
-    marginVertical: 20,
+    marginVertical: 15,
     paddingTop: 10,
     paddingHorizontal: 15
   },
@@ -83,15 +82,20 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   textTouch: {
-    color: "#000", fontSize: 14
+    color: "#fff", fontSize: 16
   },
   touchModal: {
     borderRadius: 5,
-    borderColor: "red",
-    borderWidth: 1,
     padding: 15,
     marginVertical: 5,
     alignItems: 'center',
-    width: 220
+    width: 220,
+    backgroundColor:"#FF8600"
+  },
+  Chosse_acction:{
+    color: '#FF8600', fontSize: 16 
+  },
+  view_button:{
+    padding: 10, marginVertical: 10
   }
 })
