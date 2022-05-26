@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "../../Utils/Color";
 export const styles = StyleSheet.create({
   imglist: {
     width: '100%',
@@ -17,26 +18,26 @@ export const styles = StyleSheet.create({
     marginHorizontal: 20,
     borderRadius: 10,
     margin: 5,
-    backgroundColor: '#BD8522',
+    backgroundColor: Colors.primary,
     height: 170,
   },
   touchIconMenu: {
     padding: 20,
   },
   header: {
-    backgroundColor: '#BD8522',
+    backgroundColor: Colors.primary,
     flexDirection: 'row',
     justifyContent: 'center',
   },
   nameapp: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: Colors.second,
     textAlign: 'center',
     padding: 20,
   },
   safeareaview: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.second,
   },
 })

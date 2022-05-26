@@ -14,6 +14,7 @@ import { styles } from './styles';
 import Header from '../../Components/header_info';
 import Remove from '../../Icons/RemoveIcon'
 import { AuthContext } from '../../Redux/AuthContext';
+import { Colors } from '../../Utils/Color';
 export default function App(props) {
     const { token } = useContext(AuthContext)
     const renderItem = ({ item }) => {
@@ -50,7 +51,7 @@ export default function App(props) {
     }
     return (
         <SafeAreaView style={styles.safeareaview}>
-            <Header name={"Shooping Cart"} />
+            <Header name={"Shoping Cart"} />
             <View style={styles.list}>
                 <FlatList
                     data={token.usercard}

@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 import { Dimensions } from 'react-native';
+import { Colors } from "../../Utils/Color";
 export const styles = StyleSheet.create({
   viewDesc: {
     padding: 20,
-    borderBottomWidth: 2,
     borderTopWidth: 2,
   },
   Desc: {
@@ -21,13 +21,13 @@ export const styles = StyleSheet.create({
   priceProduct: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: Colors.second,
     textAlign: 'center',
     width: '40%',
     paddingVertical: 3,
     marginVertical: 5,
     borderRadius: 15,
-    backgroundColor: '#BD8522',
+    backgroundColor: Colors.primary,
   },
   nameProduct: {
     fontSize: 24,
@@ -38,20 +38,19 @@ export const styles = StyleSheet.create({
   },
   viewimg: {
     alignItems: "center",
-    flex: 1
   },
   touchIconMenu: {
     padding: 20,
   },
   header: {
-    backgroundColor: '#BD8522',
+    backgroundColor: Colors.primary,
     flexDirection: 'row',
     justifyContent: 'center',
   },
   nameapp: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: Colors.second,
     textAlign: 'center',
     padding: 20,
   },
@@ -59,7 +58,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   ImageBackground: {
-    width: Dimensions.get('window').width, height: 400, justifyContent: 'flex-end'
+    width: Dimensions.get('window').width, height: 350, justifyContent: 'flex-end'
   },
   dot: {
     paddingHorizontal: 20
@@ -75,4 +74,19 @@ export const styles = StyleSheet.create({
     height: "10%",
     alignSelf: "center",
   },
+  payment: {
+    justifyContent: "center",
+    backgroundColor: "#38761d",
+    borderRadius: 5,
+    alignItems: "center",
+    marginHorizontal: 20,
+    height: 40,
+    width: "90%",
+    marginBottom: 10
+  },
+  textpayment: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "500"
+  }
 })

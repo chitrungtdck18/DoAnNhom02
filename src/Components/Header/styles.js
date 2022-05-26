@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "../../Utils/Color";
 export const styles = StyleSheet.create({
   viewDesc: {
     padding: 20,
@@ -20,13 +21,13 @@ export const styles = StyleSheet.create({
   priceProduct: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: Colors.second,
     textAlign: 'center',
     width: '40%',
     paddingVertical: 3,
     marginVertical: 5,
     borderRadius: 15,
-    backgroundColor: '#BD8522',
+    backgroundColor: Colors.primary,
   },
   nameProduct: {
     fontSize: 24,
@@ -47,7 +48,7 @@ export const styles = StyleSheet.create({
     padding: 20,
   },
   header: {
-    backgroundColor: '#BD8522',
+    backgroundColor: Colors.primary,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems:"center"
@@ -55,12 +56,17 @@ export const styles = StyleSheet.create({
   nameapp: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#FFFFFF',
+    color: Colors.second,
     textAlign: 'center',
     padding: 20,
   },
   safeareaview: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: Colors.second,
   },
+  header:{
+    backgroundColor: Colors.primary,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  }
 })

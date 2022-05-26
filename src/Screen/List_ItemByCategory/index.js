@@ -21,7 +21,7 @@ import SearchIcon from '../../Icons/SearchIcon'
 import ShowIcon from '../../Icons/ShowmoreIcon'
 import Header from '../../Components/header_info';
 import { styles } from './styles';
-
+import { Colors } from '../../Utils/Color';
 export default function App(props) {
     const renderItem = ({ item }) => {
         return (

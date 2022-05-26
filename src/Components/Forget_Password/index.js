@@ -11,6 +11,7 @@ import Cancel from '../../Icons/Cancel'
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import Modal from 'react-native-modal'
+import { Colors } from "../../Utils/Color";
 export default function app(props) {
     const navigation = useNavigation();
     const [email, setEmail] = useState('')
@@ -45,7 +46,7 @@ export default function app(props) {
                 <TextInput
                     style={styles.input}
                     placeholder="Email..."
-                    placeholderTextColor={'#BD8522'}
+                    placeholderTextColor={Colors.primary}
                     value={email}
                     onChangeText={e => setEmail(e)}
                 />

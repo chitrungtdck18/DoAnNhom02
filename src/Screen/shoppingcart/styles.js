@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "../../Utils/Color";
 export const styles = StyleSheet.create({
     safeareaview: {
         flex: 1,
@@ -42,7 +43,7 @@ export const styles = StyleSheet.create({
         height: 170,
         borderBottomColor: "#000",
         borderBottomWidth: 1,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.second,
         flexDirection: "row",
         paddingVertical: 5
     },

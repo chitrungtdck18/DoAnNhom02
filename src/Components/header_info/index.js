@@ -6,31 +6,33 @@
  * @flow strict-local
  */
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
     View,
     Text,
     TouchableOpacity
 } from 'react-native';
 import Goback from '../../Icons/GoBack'
-import Cancel from '../../Icons/Cancel'
+import Add from '../../Icons/AddIcon'
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
-export default function App( props) {
+import { Colors } from "../../Utils/Color";
+export default function App(props) {
     const navigation = useNavigation();
     return (
         <View style={[styles.view_header]}>
             <View style={styles.Goback}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Goback color={"#000"}/>
+                    <Goback />
                 </TouchableOpacity>
             </View>
             <Text style={styles.title}>{props.name}</Text>
             <View style={styles.Cancel}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Cancel color={"#000"} />
-                </TouchableOpacity>
-
+                {props.isAdd ?
+                    <TouchableOpacity onPress={() => navigation.navigate("AddProduct")}>
+                        <Add  />
+                    </TouchableOpacity>
+                    : null}
             </View>
         </View>
 

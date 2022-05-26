@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "../../Utils/Color";
 export const styles = StyleSheet.create({
     textCreate: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#BD8522',
+        color: Colors.primary,
         marginTop: 30,
     },
     textDA: {
@@ -21,10 +22,10 @@ export const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 18,
         padding: 15,
-        color: '#FFFFFF',
+        color: Colors.second,
     },
     touchLogin: {
-        backgroundColor: '#BD8522',
+        backgroundColor: Colors.primary,
         width: '90%',
         borderRadius: 10,
         alignItems: 'center',
@@ -36,8 +37,8 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         paddingHorizontal: 20,
         marginHorizontal: 20,
-        color: '#BD8522',
-        borderColor: '#BD8522',
+        color: Colors.primary,
+        borderColor: Colors.primary,
         fontWeight: 'bold',
     },
     safeareaview: {

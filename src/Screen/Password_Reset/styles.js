@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Dimensions } from 'react-native';
+import { Colors } from "../../Utils/Color";
 export const styles = StyleSheet.create({
   Image_avt: {
     height: 150,
@@ -12,7 +13,7 @@ export const styles = StyleSheet.create({
   },
   input: {
     fontSize: 16,
-    color: '#BD8522',
+    color: Colors.primary,
     fontWeight: 'bold',
     textTransform: "capitalize",
     textAlign: "left",
@@ -22,8 +23,8 @@ export const styles = StyleSheet.create({
     height: 55,
     width: "80%",
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    borderColor: '#BD8522',
+    backgroundColor: Colors.second,
+    borderColor: Colors.primary,
     borderWidth: 1,
     borderRadius: 10,
     marginVertical: 15,

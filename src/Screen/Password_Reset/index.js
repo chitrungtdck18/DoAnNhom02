@@ -17,6 +17,7 @@ import { AuthContext } from '../../Redux/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Notification from '../../Components/Notification';
 import { styles } from './styles';
+import { Colors } from '../../Utils/Color';
 export default function App(props) {
     const user = firebase.auth().currentUser;
     const { setToken } = useContext(AuthContext)
@@ -75,7 +76,7 @@ export default function App(props) {
                 <TextInput
                     style={styles.input}
                     placeholder="Current Password"
-                    placeholderTextColor={'#BD8522'}
+                    placeholderTextColor={Colors.primary}
                     secureTextEntry
                     value={Current_Password}
                     onChangeText={e => setCurrent_Password(e)}
@@ -89,7 +90,7 @@ export default function App(props) {
                 <TextInput
                     style={styles.input}
                     placeholder="New Password"
-                    placeholderTextColor={'#BD8522'}
+                    placeholderTextColor={Colors.primary}
                     secureTextEntry
                     value={New_Password}
                     onChangeText={e => setNew_Password(e)}
@@ -103,7 +104,7 @@ export default function App(props) {
                 <TextInput
                     style={styles.input}
                     placeholder="Confirm Password"
-                    placeholderTextColor={'#BD8522'}
+                    placeholderTextColor={Colors.primary}
                     secureTextEntry
                     value={Confirm_Password}
                     onChangeText={e => setConfirm_Password(e)}

@@ -10,6 +10,7 @@ import Cancel from '../../Icons/Cancel'
 import { styles } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import Modal from 'react-native-modal'
+import { Colors } from "../../Utils/Color";
 export default function app(props) {
     const navigation = useNavigation();
     const handleCancel = () => {

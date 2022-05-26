@@ -6,16 +6,17 @@ import {
     View,
     FlatList,
     ImageBackground,
-    StyleSheet
+    StyleSheet,
+    ScrollView
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Svg, Defs, LinearGradient, Stop, Rect } from "react-native-svg";
-import Header from '../../Components/header_info';
+import Header from '../../Components/Header';
 import Dot from '../../Icons/Dot'
 import Undot from '../../Icons/Undot'
 import { styles } from './styles';
-
-export default function Register(props) {
+import { Colors } from '../../Utils/Color';
+export default function App(props) {
     const data = props.route.params.item;
     const DATA = [
         require('../../Static/Images/pant.png'),
@@ -62,7 +63,7 @@ export default function Register(props) {
             </Svg>
         </View>)
     return (
-        <SafeAreaView style={styles.safeareaview}>
+        <ScrollView style={styles.safeareaview}>
             <Header name={"InfoProduct"} />
             <View style={styles.viewimg}>
                 <FlatList
@@ -86,10 +87,13 @@ export default function Register(props) {
                     Description
                 </Text>
                 <Text style={styles.DeContent}>
-                  {data.description}
+                    {data.description}
                 </Text>
             </View>
-        </SafeAreaView>
+            <TouchableOpacity style={styles.payment}>
+                <Text style={styles.textpayment}>Add to Cart</Text>
+            </TouchableOpacity>
+        </ScrollView>
     );
 };
 

@@ -19,7 +19,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import Modal from 'react-native-modal'
 import { styles } from './styles';
 import { updateUser } from '../../Model/User';
-
+import { Colors } from '../../Utils/Color';
 
 export default function App(props) {
     const User = props.route.params.user
@@ -125,7 +125,7 @@ export default function App(props) {
                 <TextInput
                     style={styles.input}
                     placeholder="Full name..."
-                    placeholderTextColor={'#BD8522'}
+                    placeholderTextColor={Colors.primary}
                     value={name}
                     onChangeText={e => setName(e)}
                 />
@@ -135,7 +135,7 @@ export default function App(props) {
                 <TextInput
                     style={styles.input}
                     placeholder="Phone Number..."
-                    placeholderTextColor={'#BD8522'}
+                    placeholderTextColor={Colors.primary}
                     value={phone}
                     onChangeText={e => setphone(e)}
                 />

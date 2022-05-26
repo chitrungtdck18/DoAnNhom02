@@ -19,15 +19,17 @@ import Management from '../../Icons/Management'
 import Exit from '../../Icons/ExitIcon'
 import Update from '../../Icons/UpdateIcon'
 import Support from '../../Icons/SupportIcon'
-import Password_reset from '../../Icons/Password_resetIcon'
+import UserIcon from '../../Icons/Username'
 import Modal from 'react-native-modal'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Info_product from '../../Components/Info_product'
+
 import { styles } from './styles';
 import { getlistCategory, arrayCategory } from '../../Model/Category';
 import { AuthContext } from '../../Redux/AuthContext';
 import { auth, database } from '../../Utils/firebase-Config';
+import { Colors } from '../../Utils/Color';
 export default function App(props) {
     { arrayCategory }
     const { token } = useContext(AuthContext)
@@ -35,6 +37,7 @@ export default function App(props) {
     const [User, setUser] = useState([])
     const [choose, setchoose] = useState(false)
     const { setToken } = useContext(AuthContext)
+    const Adminid = "7zVqGIXkJcUwXhUnCjJPIqg5Hrn1"
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct', { item: item })} onLongPress={handlerLongClick}>
@@ -119,7 +122,7 @@ export default function App(props) {
                 <TextInput
                     style={styles.input}
                     placeholder="Search..."
-                    placeholderTextColor={'#BD8522'}
+                    placeholderTextColor={Colors.primary}
                 />
                 <TouchableOpacity>
                     <SearchIcon />
@@ -214,20 +217,20 @@ export default function App(props) {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.item_Drawer}>
-
-                        <TouchableOpacity onPress={() => props.navigation.navigate('Management') & setisModalVisible(false)} style={styles.view_item_Drawer}>
+                        {token.userid === Adminid ? <TouchableOpacity onPress={() => props.navigation.navigate('Management') & setisModalVisible(false)} style={styles.view_item_Drawer}>
                             <Management />
                             <Text style={styles.text_item}>Management</Text>
                         </TouchableOpacity>
+                            : null}
 
                         <TouchableOpacity onPress={() => props.navigation.navigate('Profile', { user: User }) & setisModalVisible(false)} style={styles.view_item_Drawer}>
-                            <Update />
+                            <UserIcon />
                             <Text style={styles.text_item}>Update User</Text>
                         </TouchableOpacity>
 
 
                         <TouchableOpacity onPress={() => props.navigation.navigate('Password_Reset') & setisModalVisible(false)} style={styles.view_item_Drawer}>
-                            <Password_reset />
+                            <Update />
                             <Text style={styles.text_item}>Password reset</Text>
                         </TouchableOpacity>
 

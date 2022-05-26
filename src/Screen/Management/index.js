@@ -17,6 +17,7 @@ import { Dimensions } from 'react-native';
 import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
 import { styles } from './styles';
 import { arrayCategory } from '../../Model/Category';
+import { Colors } from '../../Utils/Color';
 export default function App(props) {
     const [selectedItem, setSelectedItem] = useState(-1);
     const [textseach, settextseach] = useState("")
@@ -71,13 +72,13 @@ export default function App(props) {
     }
     return (
         <SafeAreaView style={styles.safeareaview}>
-            <Header name={"Management"} />
+            <Header name={"Management"} isAdd />
             <View style={{ flexDirection: 'row', justifyContent: "space-between", marginHorizontal: 10 }}>
                 <View style={styles.viewinputSearch}>
                     <TextInput
                         style={styles.input}
                         placeholder="Search..."
-                        placeholderTextColor={'#BD8522'}
+                        placeholderTextColor={Colors.primary}
                         onChangeText={e => handleSearch(e)}
                     />
                     <TouchableOpacity>

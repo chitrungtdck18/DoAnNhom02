@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native";
+
+import { Colors } from "../../Utils/Color";
 export const styles = StyleSheet.create({
   modalContainer: {
     alignSelf: "center",
@@ -58,8 +60,8 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 20,
     marginHorizontal: 20,
-    color: '#BD8522',
-    borderColor: '#BD8522',
+    color: Colors.primary,
+    borderColor: Colors.primary,
     fontWeight: 'bold',
   }
 

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { Colors } from "../../Utils/Color";
 export const styles = StyleSheet.create({
     priceText: {
         textAlign: 'center',
@@ -12,7 +13,7 @@ export const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 16,
         borderBottomWidth: 2,
-        borderColor: '#FFFFFF',
+        borderColor: Colors.second,
         fontStyle: 'italic',
         color: '#000000',
     },
@@ -31,13 +32,13 @@ export const styles = StyleSheet.create({
     },
     descriptionitem: {
         fontSize: 14,
-        color: '#FFFFFF',
+        color: Colors.second,
         fontWeight: '500',
 
     },
     titleitem: {
         fontSize: 14,
-        color: '#FFFFFF',
+        color: Colors.second,
         fontWeight: '500',
     },
     textitem: {
@@ -47,7 +48,7 @@ export const styles = StyleSheet.create({
         marginLeft: 20,
         borderRadius: 10,
         margin: 5,
-        backgroundColor: '#BD8522',
+        backgroundColor: Colors.primary,
         width: 210,
         height: 170,
         marginRight: -10,
@@ -83,7 +84,7 @@ export const styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderWidth: 1,
-        borderColor: '#BD8522',
+        borderColor: Colors.primary,
         borderRadius: 10,
         margin: 7,
     },
@@ -92,7 +93,7 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         flexDirection: 'row',
 
-        borderColor: '#BD8522',
+        borderColor: Colors.primary,
         borderRadius: 10,
         width: '90%',
         alignSelf: 'center',
@@ -101,8 +102,8 @@ export const styles = StyleSheet.create({
     input: {
         fontSize: 16,
         paddingHorizontal: 20,
-        color: '#BD8522',
-        borderColor: '#BD8522',
+        color: Colors.primary,
+        borderColor: Colors.primary,
         fontWeight: '500',
         width: '88%',
     },
@@ -110,14 +111,14 @@ export const styles = StyleSheet.create({
         padding: 20,
     },
     header: {
-        backgroundColor: '#BD8522',
+        backgroundColor: Colors.primary,
         flexDirection: 'row',
         justifyContent: 'center',
     },
     nameapp: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: Colors.second,
         textAlign: 'center',
         padding: 20,
     },
@@ -136,17 +137,17 @@ export const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 18,
         padding: 15,
-        color: '#FFFFFF',
+        color: Colors.second,
     },
     touchLogin: {
-        backgroundColor: '#BD8522',
+        backgroundColor: Colors.primary,
         width: '90%',
         borderRadius: 10,
         alignItems: 'center',
     },
     safeareaview: {
         flex: 1,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Colors.second,
     },
     modalContainer: {
         alignSelf: "center",
@@ -159,7 +160,7 @@ export const styles = StyleSheet.create({
     },
     Modal: {
         position: "absolute",
-        backgroundColor: '#fff',
+        backgroundColor: Colors.second,
         height: "100%",
         width: "5%",
 

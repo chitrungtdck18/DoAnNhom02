@@ -2,12 +2,13 @@ import { Dimensions } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowheight = Dimensions.get('window').height;
 import { StyleSheet } from "react-native";
+import { Colors } from "../../Utils/Color";
 export const styles = StyleSheet.create({
     viewdropdown: {
         marginVertical: 20,
         width: (windowWidth - 30) / 2,
         borderWidth: 1,
-        borderColor: '#BD8522',
+        borderColor: Colors.primary,
         borderRadius: 10,
         zIndex: 500,
         borderRadius: 10
@@ -15,8 +16,8 @@ export const styles = StyleSheet.create({
     input: {
         fontSize: 16,
         paddingHorizontal: 20,
-        color: '#BD8522',
-        borderColor: '#BD8522',
+        color: Colors.primary,
+        borderColor: Colors.primary,
         fontWeight: '500',
         width: '80%',
 
@@ -25,7 +26,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         borderWidth: 1,
         flexDirection: 'row',
-        borderColor: '#BD8522',
+        borderColor: Colors.primary,
         borderRadius: 10,
         width: (windowWidth - 30) / 2,
         marginVertical: 20
@@ -47,21 +48,21 @@ export const styles = StyleSheet.create({
         marginHorizontal: 10,
         borderRadius: 10,
         margin: 5,
-        backgroundColor: '#BD8522',
+        backgroundColor: Colors.primary,
         height: 170,
     },
     touchIconMenu: {
         padding: 20,
     },
     header: {
-        backgroundColor: '#BD8522',
+        backgroundColor: Colors.primary,
         flexDirection: 'row',
         justifyContent: 'center',
     },
     nameapp: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#FFFFFF',
+        color: Colors.second,
         textAlign: 'center',
         padding: 20,
     },
@@ -75,7 +76,7 @@ export const styles = StyleSheet.create({
     },
     textInputProps: {
         color: 'black',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Colors.second,
         paddingLeft: 18,
         borderRadius: 10,
     },
