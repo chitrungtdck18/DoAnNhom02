@@ -1,12 +1,13 @@
 import { database } from '../Utils/firebase-Config';
+import { ref, onValue } from 'firebase/database';
 export var arrayCategory = []
 export const getCategory = async () => {
     return new Promise((resolve, reject) => {
-        database.ref("Category")
-            .on('value', snapshot => {
-                resolve(snapshot.val())
-                arrayCategory = snapshot.val()
-            }).catch(err => console.log(err));
+        const db_Category = ref(database, "Category");
+        onValue(db_Category, (snapshot) => {
+            resolve(snapshot.val())
+            arrayCategory = snapshot.val()
+        }).catch(err => console.log(err));
     });
 
 

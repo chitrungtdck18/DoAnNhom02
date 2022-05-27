@@ -14,16 +14,18 @@ import Username from '../../Icons/Username';
 import Phone from '../../Icons/PhoneIcon';
 import Notification from '../../Components/Notification';
 import Header from '../../Components/header_info';
-import firebase, { storage } from '../../Utils/firebase-Config';
+
+import { getAuth, updateProfile } from "firebase/auth"
 import ImagePicker from 'react-native-image-crop-picker';
 import Modal from 'react-native-modal'
 import { styles } from './styles';
 import { updateUser } from '../../Model/User';
 import { Colors } from '../../Utils/Color';
-
+import { uploadBytes, ref, getDownloadURL, uploadBytesResumable, getStorage } from 'firebase/storage';
+import storage from '@react-native-firebase/storage';
 export default function App(props) {
     const User = props.route.params.user
-    const u = firebase.auth().currentUser;
+    const u = getAuth().currentUser;
     const [name, setName] = useState(User.userName || "")
     const [phone, setphone] = useState(User.phone || "")
     const [urlAvatar, seturlAvatar] = useState(User.urlAvatar || "")
@@ -40,7 +42,7 @@ export default function App(props) {
             handleUpimge()
         }
         else {
-            u.updateProfile({
+            updateProfile(u, {
                 displayName: name,
             }).then(() => {
                 updateUser(u, phone)
@@ -49,27 +51,23 @@ export default function App(props) {
 
     }
     const handleUpimge = async () => {
-        var str = imageFile;
-        var n = str.lastIndexOf('/');
-        var filename = str.substring(n + 1);
-        const uploadUrl = "User/" + User.userID + "/" + filename
-        const task = storage.ref(uploadUrl)
-        await task.put(imageFile)
+        const uploadUrl = "User/" + User.userID + "/" + Date.now() + ".png"
+        const reference = storage().ref(uploadUrl);
+        await reference.putFile(imageFile)
             .then(() => {
-                task
+                reference
                     .getDownloadURL()
                     .then((url) => {
-                        console.log(url)
-                        // seturlAvatar(url)
-                        // u.updateProfile({
-                        //     displayName: name,
-                        //     photoURL: url
-                        // }).then(() => {
-                        //     updateUser(u, phone)
-                        // })
+                        updateProfile(u, {
+                            displayName: name,
+                            photoURL: url
+                        }).then(() => {
+                            updateUser(u, phone)
+                        })
                     })
 
             })
+
     }
 
     const handlePress = () => {
@@ -91,6 +89,8 @@ export default function App(props) {
             height: 300,
             cropping: true,
             compressImageQuality: 0.7,
+            mediaType: "application/octet-stream;BASE64",
+            includeBase64: true,
         }).then(image => {
             setPhoto(image.path)
             setImageFile(image.path)
@@ -105,8 +105,8 @@ export default function App(props) {
             compressImageMaxHeight: 300,
             cropping: true,
             compressImageQuality: 0.7,
-            multiple: true,
             includeBase64: true,
+            mediaType: "application/octet-stream;BASE64"
         }).then(image => {
             setImageFile(image.uri)
             setModalVisible(false)

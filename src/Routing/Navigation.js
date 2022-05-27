@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { View, ActivityIndicator, Image } from 'react-native';
 import Login from '../Screen/Login'
 import Register from '../Screen/Register'
@@ -23,7 +23,6 @@ export default function App() {
     const { token } = useContext(AuthContext)
     const { setToken } = useContext(AuthContext)
     const [isLoading, setisLoading] = useState(true)
-    const [theme, setheme] = useState(false)
     const getUserid = async () => {
         try {
             const jsonValue = await AsyncStorage.getItem('Userid');
@@ -37,17 +36,6 @@ export default function App() {
             setisLoading(false)
         }
     };
-    const changethem = () => {
-        console.log("dc goi")
-        if (theme) {
-            setheme(false)
-          
-        }
-        else {
-            setheme(true)
-          
-        }
-    }
     useEffect(() => {
         getUserid()
     }, []);
@@ -62,7 +50,7 @@ export default function App() {
     }
 
     return (
-        <NavigationContainer theme={theme ? DarkTheme : DefaultTheme}>
+        <NavigationContainer>
 
             {LogBox.ignoreAllLogs()}
             <Stack.Navigator>
@@ -73,7 +61,7 @@ export default function App() {
                     </>
                     :
                     <>
-                        <Stack.Screen name="MenuApp" component={MenuApp} options={{ headerShown: false }} changethem={() => changethem()} theme={theme} />
+                        <Stack.Screen name="MenuApp" component={MenuApp} options={{ headerShown: false }}  />
                         <Stack.Screen name="InfoProduct" component={InfoProduct} options={{ headerShown: false }} />
                         <Stack.Screen name="List_ItemByCategory" component={List_ItemByCategory} options={{ headerShown: false }} />
                         <Stack.Screen name="Management" component={Management} options={{ headerShown: false }} />

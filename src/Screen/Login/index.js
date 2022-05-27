@@ -8,12 +8,12 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native';
-import { auth } from '../../Utils/firebase-Config';
+import { auth, login } from '../../Utils/firebase-Config';
+import { getAuth, signInWithEmailAndPassword ,sendPasswordResetEmail} from "firebase/auth";
 import { styles } from './styles';
 import { AuthContext } from '../../Redux/AuthContext';
 import Forget_Password from '../../Components/Forget_Password';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firebase from '../../Utils/firebase-Config';
 import { Colors } from '../../Utils/Color';
 export default function App(props) {
   const { setToken } = useContext(AuthContext)
@@ -30,8 +30,7 @@ export default function App(props) {
     }
   }
   const handleSighin = () => {
-    auth
-      .signInWithEmailAndPassword(email, Password)
+    signInWithEmailAndPassword(getAuth(), email, Password)
       .then((user) => {
         setUserid(user.user.uid)
       })
@@ -49,7 +48,7 @@ export default function App(props) {
     }
   }
   const handleRestPass = (Email) => {
-    firebase.auth().sendPasswordResetEmail(Email)
+   sendPasswordResetEmail(getAuth(),Email)
       .then(function (user) {
         alert('Please check your email...')
       }).catch(function (e) {

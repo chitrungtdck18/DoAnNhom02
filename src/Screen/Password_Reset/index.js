@@ -12,14 +12,15 @@ import {
 } from 'react-native';
 import Lock from '../../Icons/LockIcon';
 import Header from '../../Components/header_info';
-import firebase, { auth } from '../../Utils/firebase-Config';
+import { auth } from '../../Utils/firebase-Config';
+import { getAuth, updatePassword, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth"
 import { AuthContext } from '../../Redux/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Notification from '../../Components/Notification';
 import { styles } from './styles';
 import { Colors } from '../../Utils/Color';
 export default function App(props) {
-    const user = firebase.auth().currentUser;
+    const user = getAuth().currentUser;
     const { setToken } = useContext(AuthContext)
     const [Current_Password, setCurrent_Password] = useState("")
     const [New_Password, setNew_Password] = useState("")
@@ -40,11 +41,10 @@ export default function App(props) {
         }
     }
     const checkauth = async () => {
-        const emailCred = firebase.auth
-            .EmailAuthProvider.credential(user.email, Current_Password);
-        user.reauthenticateWithCredential(emailCred)
+        const emailCred = EmailAuthProvider.credential(user.email, Current_Password);
+        reauthenticateWithCredential(user, emailCred)
             .then(() => {
-                user.updatePassword(New_Password);
+                updatePassword(user, New_Password);
                 handleLogout()
             })
             .catch(error => {

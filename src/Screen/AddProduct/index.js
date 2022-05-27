@@ -20,7 +20,7 @@ export default function App(props) {
     const [Name, setName] = useState('')
     const [Price, setPrice] = useState('')
     const [Desc, setDesc] = useState('')
-    const [selectedItem, setSelectedItem] = useState(-1);
+    const [selectedItem, setSelectedItem] = useState(1);
 
     return (
         <SafeAreaView style={styles.safeareaview}>

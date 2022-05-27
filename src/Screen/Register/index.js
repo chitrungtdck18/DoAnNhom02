@@ -9,14 +9,14 @@ import {
     TouchableOpacity,
     Image
 } from 'react-native';
-import { auth, data } from '../../Utils/firebase-Config';
-import { getDatabase } from 'firebase/database';
+import { auth, database } from '../../Utils/firebase-Config';
 import { styles } from './styles';
 import { AuthContext } from '../../Redux/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createUser, default_avatar } from '../../Model/User';
-import firebase from '../../Utils/firebase-Config';
+import { createUserWithEmailAndPassword,updateProfile } from 'firebase/auth';
 import { Colors } from '../../Utils/Color';
+import { getAuth } from 'firebase/auth';
 export default function App(props) {
     const { setToken } = useContext(AuthContext)
     const [name, setName] = useState('')
@@ -49,11 +49,10 @@ export default function App(props) {
 
     }
     const handleSighnUp = () => {
-        auth
-            .createUserWithEmailAndPassword(email, Password)
+      createUserWithEmailAndPassword(auth,email, Password)
             .then((user) => {
-                const u = firebase.auth().currentUser;
-                u.updateProfile({
+                const u = getAuth().currentUser;
+                updateProfile(u,{
                     displayName: name,
                     photoURL: default_avatar
                 }).then(() => {

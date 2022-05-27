@@ -28,7 +28,8 @@ export default function App(props) {
         { title: '4. How to setting enviroment', price: '40$' },
     ])
     const [Filter, setFilter] = useState(data)
-   
+   const dataitem =[{id: -1, title: "All"}].concat(arrayCategory)
+   console.log(dataitem)
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct', { item: item })}>
@@ -103,7 +104,7 @@ export default function App(props) {
                             style: styles.textInputProps
                         }}
                         rightButtonsContainerStyle={styles.rightButtonsContainerStyle}
-                        dataSet={arrayCategory}
+                        dataSet={dataitem}
                         ChevronIconComponent={
                             <DownIcon />
                         }

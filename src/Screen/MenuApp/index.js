@@ -24,11 +24,11 @@ import Modal from 'react-native-modal'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Info_product from '../../Components/Info_product'
-
+import { signOut, getAuth } from "firebase/auth";
 import { styles } from './styles';
 import { getlistCategory, arrayCategory } from '../../Model/Category';
 import { AuthContext } from '../../Redux/AuthContext';
-import { auth, database } from '../../Utils/firebase-Config';
+import { getDatabase, ref, onValue } from "firebase/database"
 import { Colors } from '../../Utils/Color';
 export default function App(props) {
     { arrayCategory }
@@ -62,7 +62,7 @@ export default function App(props) {
     }
 
     const handleLogout = async () => {
-        auth.signOut()
+        signOut(getAuth())
             .then(() => setUserid(""));
 
     }
@@ -76,19 +76,16 @@ export default function App(props) {
         }
     }
     const _getData = () => {
-        database
-            .ref('user/' + token.userid)
-            .once('value')
-            .then((snapshot) => {
-                var item = snapshot.val();
-                var returnArr = [];
-                returnArr = item;
-                setUser(returnArr)
+        const db = getDatabase();
+        const Ref = ref(db, 'user/' + token.userid);
+        onValue(Ref, (snapshot) => {
+            var item = snapshot.val();
+            var returnArr = [];
+            returnArr = item;
+            setUser(returnArr)
+        });
 
-            });
     };
-
-
     const handlerLongClick = () => {
         setchoose(!choose)
     }
@@ -99,7 +96,7 @@ export default function App(props) {
             setisModalVisible(false)
         });
         return unsubscribe;
-    }, [_getData()])
+    }, [])
     return (
         <SafeAreaView syle={styles.safeareaview}>
             <View style={styles.header}>
