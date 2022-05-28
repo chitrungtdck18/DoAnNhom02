@@ -37,7 +37,7 @@ export default function App(props) {
     const [User, setUser] = useState([])
     const [choose, setchoose] = useState(false)
     const { setToken } = useContext(AuthContext)
-    const Adminid = "7zVqGIXkJcUwXhUnCjJPIqg5Hrn1"
+    const Adminid = "KIX43luQnZRTd8Mc5GtvJPcBkzd2"
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct', { item: item })} onLongPress={handlerLongClick}>

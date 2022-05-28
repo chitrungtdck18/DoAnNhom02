@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
   },
   safeareaview: {
     flex: 1,
-    backgroundColor:"#fff"
+    backgroundColor: "#fff"
   },
   ImageBackground: {
     width: Dimensions.get('window').width,
@@ -146,7 +146,7 @@ export const styles = StyleSheet.create({
     marginHorizontal: 15,
     borderColor: "#BD8522",
     borderWidth: 2,
-    borderRadius:5
+    borderRadius: 5
   },
   view_save: {
     justifyContent: "center",
@@ -157,12 +157,59 @@ export const styles = StyleSheet.create({
     height: 40,
     width: "90%",
     marginBottom: 10,
-    position:"absolute",
-    bottom:5
+    position: "absolute",
+    bottom: 5
   },
   textsave: {
     color: "#fff",
     fontSize: 18,
     fontWeight: "500"
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  textStyle: {
+    color: "#000",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+  },
+  textTouch: {
+    color: "#fff", fontSize: 16
+  },
+  touchModal: {
+    borderRadius: 5,
+    padding: 15,
+    marginVertical: 5,
+    alignItems: 'center',
+    width: 220,
+    backgroundColor: "#FF8600"
+  },
+  Chosse_acction: {
+    color: '#FF8600', fontSize: 16
+  },
+  view_button: {
+    padding: 10, marginVertical: 10
+  }
 })

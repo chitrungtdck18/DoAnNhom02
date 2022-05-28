@@ -1,8 +1,8 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { getDatabase } from "firebase/database"
+import { getDownloadURL, getStorage, uploadBytes } from "firebase/storage";
+import { getDatabase, ref,push } from "firebase/database"
 let config = {
   apiKey: "AIzaSyDqVwaBYHQQQ2uo6jQK17QOG6Zj4cmqbIM",
   authDomain: "clothes-store-21b7f.firebaseapp.com",
@@ -20,11 +20,4 @@ const auth = getAuth()
 export { auth, database, storage }
 
 
-export async function uploadImage(file, uploadUrl) {
-  const fileRef = ref(uploadUrl);
-  const snapshot = await uploadBytes(fileRef, file);
-  const photoURL = await getDownloadURL(fileRef);
-  console.log(photoURL)
 
-  alert("Uploaded file!");
-}

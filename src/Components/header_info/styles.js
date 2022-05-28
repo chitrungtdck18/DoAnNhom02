@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     Cancel:
     {
         flex: 1,
-        marginBottom: 5
+        marginBottom: 7
 
     }
 

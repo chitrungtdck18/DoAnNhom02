@@ -21,7 +21,6 @@ import Modal from 'react-native-modal'
 import { styles } from './styles';
 import { updateUser } from '../../Model/User';
 import { Colors } from '../../Utils/Color';
-import { uploadBytes, ref, getDownloadURL, uploadBytesResumable, getStorage } from 'firebase/storage';
 import storage from '@react-native-firebase/storage';
 export default function App(props) {
     const User = props.route.params.user
@@ -33,9 +32,6 @@ export default function App(props) {
     const [modalVisible, setModalVisible] = useState(false);
     const [photo, setPhoto] = useState(urlAvatar);
     const [imageFile, setImageFile] = useState({});
-    const [uploading, setUploading] = useState(false);
-    const [transferred, setTransferred] = useState(0);
-    const [bob, setbob] = useState("")
 
     const handleSave = async () => {
         if (photo != urlAvatar) {
@@ -48,7 +44,6 @@ export default function App(props) {
                 updateUser(u, phone)
             })
         }
-
     }
     const handleUpimge = async () => {
         const uploadUrl = "User/" + User.userID + "/" + Date.now() + ".png"
@@ -65,7 +60,6 @@ export default function App(props) {
                             updateUser(u, phone)
                         })
                     })
-
             })
 
     }
@@ -108,6 +102,7 @@ export default function App(props) {
             includeBase64: true,
             mediaType: "application/octet-stream;BASE64"
         }).then(image => {
+            setPhoto(image.path)
             setImageFile(image.uri)
             setModalVisible(false)
         });
