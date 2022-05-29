@@ -24,12 +24,7 @@ export const styles = StyleSheet.create({
     viewtopitems: {
         flexDirection: 'row',
     },
-    imglist: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover',
-        borderRadius: 10,
-    },
+    
     descriptionitem: {
         fontSize: 14,
         color: Colors.second,
@@ -45,23 +40,31 @@ export const styles = StyleSheet.create({
         margin: 10,
     },
     viewitem: {
-        marginLeft: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 10,
+        elevation: 15,
+
+        marginLeft: 25,
         borderRadius: 10,
-        margin: 5,
-        backgroundColor: Colors.primary,
-        width: 210,
-        height: 170,
-        marginRight: -10,
+        margin: 10,
+
+        width: 150,
+        height: 230,
+        marginRight: -5,
+
     },
     touchIconShow: {
         alignSelf: 'flex-end'
     },
     viewimg: {
 
-        width: 100,
-        height: 80,
-        margin: 10,
-        backgroundColor: 'white',
+        width: 150,
+        height: 170,
         borderRadius: 10,
     },
 
@@ -146,7 +149,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     safeareaview: {
-        flex: 1,
+     
         backgroundColor: Colors.second,
     },
     modalContainer: {
@@ -210,12 +213,12 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         marginTop: 3,
         fontWeight: 'bold',
-        textTransform:"capitalize"
+        textTransform: "capitalize"
     },
     userEmail: {
         fontSize: 14,
         lineHeight: 14,
-       
+
     },
     Exit: {
         flexDirection: "row",
@@ -242,6 +245,10 @@ export const styles = StyleSheet.create({
         borderTopWidth: 2,
         borderBottomWidth: 2
 
-    }
-
+    },
+    linearGradient: {
+        alignItems: 'center',
+        justifyContent:'center'
+    },
+    imglist: { width: '100%', height: '100%', resizeMode: 'cover', borderRadius: 10, }
 })

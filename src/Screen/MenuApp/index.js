@@ -8,6 +8,8 @@ import {
     TextInput,
     TouchableOpacity,
     FlatList,
+    ScrollView,
+
 } from 'react-native';
 
 import MenuIcon from '../../Icons/MenuIcon'
@@ -24,6 +26,7 @@ import Modal from 'react-native-modal'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Info_product from '../../Components/Info_product'
+import LinearGradient from 'react-native-linear-gradient';
 import { signOut, getAuth } from "firebase/auth";
 import { styles } from './styles';
 import { getlistCategory, arrayCategory } from '../../Model/Category';
@@ -42,20 +45,16 @@ export default function App(props) {
         return (
             <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct', { item: item })} onLongPress={handlerLongClick}>
                 <View style={styles.viewitem}>
-                    <View style={styles.viewtopitems}>
+                    <LinearGradient colors={['transparent', '#171921',]} style={styles.linearGradient}>
                         <View style={styles.viewimg}>
-                            <Image source={require('../../Static/Images/logonew.png')} style={styles.imglist}>
+                            <Image source={require('../../Static/Images/logo.png')} style={styles.imglist}>
                             </Image>
                         </View>
-                        <View style={styles.viewPrice}>
-                            <Text style={styles.priceitem}> Price:</Text>
-                            <Text style={styles.priceText}> {item.price}$</Text>
+                        <View style={styles.textitem}>
+                            <Text style={styles.titleitem}>{item.title}</Text>
+                            <Text style={styles.descriptionitem}>{item.description}</Text>
                         </View>
-                    </View>
-                    <View style={styles.textitem}>
-                        <Text style={styles.titleitem}>{item.title}</Text>
-                        <Text style={styles.descriptionitem}>{item.description}</Text>
-                    </View>
+                    </LinearGradient>
                 </View>
             </TouchableOpacity>
         )
@@ -98,7 +97,7 @@ export default function App(props) {
         return unsubscribe;
     }, [])
     return (
-        <SafeAreaView syle={styles.safeareaview}>
+        <ScrollView syle={styles.safeareaview}>
             <View style={styles.header}>
                 <View style={{ width: '18%' }}>
                     <TouchableOpacity style={styles.touchIconMenu} onPress={() => setisModalVisible(true)}>
@@ -124,7 +123,6 @@ export default function App(props) {
                 <TouchableOpacity>
                     <SearchIcon />
                 </TouchableOpacity>
-
             </View>
             <View style={styles.viewType}>
                 <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Balo" })}>
@@ -252,7 +250,8 @@ export default function App(props) {
                 </View>
             </Modal>
             <Info_product isModalVisible={choose} cancel={e => setchoose(e)} />
-        </SafeAreaView>
+        </ScrollView>
+
     );
 };
 

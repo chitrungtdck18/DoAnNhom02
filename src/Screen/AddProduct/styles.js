@@ -126,15 +126,9 @@ export const styles = StyleSheet.create({
   },
   input_Desc: {
     fontSize: 16,
-    borderWidth: 2,
-    margin: 7,
-    borderRadius: 10,
-    paddingHorizontal: 20,
     color: Colors.primary,
-    borderColor: Colors.primary,
     fontWeight: 'bold',
-
-    textAlign: "left"
+    marginLeft: 5
   },
   view_image: {
     flexDirection: "row",
@@ -211,5 +205,11 @@ export const styles = StyleSheet.create({
   },
   view_button: {
     padding: 10, marginVertical: 10
+  },
+  view_Desc: {
+    borderColor: Colors.primary,
+    borderWidth: 2,
+    borderRadius: 5,
+    height: 180
   }
 })

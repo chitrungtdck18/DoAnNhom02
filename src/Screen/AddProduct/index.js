@@ -168,6 +168,7 @@ export default function App(props) {
             </View>
             <View style={styles.viewDesc}>
                 <Text style={styles.Desc}> description </Text>
+                <View style={styles.view_Desc}>
                 <TextInput
                     style={[styles.input_Desc]}
                     placeholder="Description..."
@@ -176,6 +177,8 @@ export default function App(props) {
                     onChangeText={e => setDesc(e)}
                     multiline={true}
                 />
+                </View>
+               
             </View>
             <TouchableOpacity style={styles.view_save} onPress={()=>setchoose(true)}>
                 <Text style={styles.textsave}>Save</Text>
