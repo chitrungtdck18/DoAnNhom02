@@ -19,9 +19,9 @@ import { Colors } from '../../Utils/Color';
 export default function App(props) {
     const data = props.route.params.item;
     const DATA = [
-        require('../../Static/Images/pant.png'),
-        require('../../Static/Images/shoes.png'),
-        require('../../Static/Images/jacket.png')
+        data.PhotoUrl1,
+        data.PhotoUrl2,
+        data.PhotoUrl3
     ];
     var _dot = [];
 
@@ -36,7 +36,7 @@ export default function App(props) {
         }
     }
     const Item = ({ pic, position }) => (
-        <ImageBackground source={pic} style={styles.ImageBackground}>
+        <ImageBackground source={{ uri: pic }} style={styles.ImageBackground}>
             <View style={styles.item}>
                 <View style={styles.view_dot}>
                     {find(position)}
@@ -79,15 +79,15 @@ export default function App(props) {
                 />
             </View>
             <View style={styles.viewText}>
-                <Text style={styles.nameProduct}>{data.title}</Text>
-                <Text style={styles.priceProduct}>{data.price} $</Text>
+                <Text style={styles.nameProduct}>{data.Name}</Text>
+                <Text style={styles.priceProduct}>{data.Price} $</Text>
             </View>
             <View style={styles.viewDesc}>
                 <Text style={styles.Desc}>
                     Description
                 </Text>
                 <Text style={styles.DeContent}>
-                    {data.description}
+                    {data.Desc}
                 </Text>
             </View>
             <TouchableOpacity style={styles.payment}>

@@ -14,7 +14,7 @@ import { getDatabase, ref, onValue } from "firebase/database"
 export default function App(props) {
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct')}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct', { item: item })}>
                 <View style={styles.viewitem}>
                     <View style={styles.viewimg}>
                         <Image source={{ uri: item.PhotoUrl1 }} style={styles.imglist}>
