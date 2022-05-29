@@ -34,7 +34,7 @@ export default function App(props) {
     const check = () => {
         if (checkPhoto() ) {
         if (Name === "" || Price === "" || Desc === "") {
-            alert("Vui Lòng nhập đầy đủ thông tin ")
+            alert("Please enter full information !!")
         }
         else {
             createProduct({
@@ -50,7 +50,7 @@ export default function App(props) {
         }
         }
         else {
-            alert("Vui lòng chọn ảnh!!!")
+            alert("Please choose photo!!")
         }
 
     }

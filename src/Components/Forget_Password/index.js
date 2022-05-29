@@ -27,7 +27,7 @@ export default function app(props) {
     const check = () => {
         var pattern = /^\w+@gmail+?\.[a-zA-Z]{2,3}$/;
         if (email === "") {
-            alert('vui long nhap du')
+            alert('Please enter Email !!')
             return false
         }
         if (email.match(pattern)) {

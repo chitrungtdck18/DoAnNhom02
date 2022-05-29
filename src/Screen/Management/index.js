@@ -19,12 +19,13 @@ import { styles } from './styles';
 import { arrayCategory } from '../../Model/Category';
 import { Colors } from '../../Utils/Color';
 import { getDatabase, ref, onValue } from "firebase/database"
+import { async } from '@firebase/util';
 export default function App(props) {
     const [selectedItem, setSelectedItem] = useState(-2);
+    const [selectedItem_name, setselectedItem_name] = useState("");
     const [textseach, settextseach] = useState("")
-    const [data, setdata] = useState([
-
-    ])
+    const [data, setdata] = useState([])
+    const [Filter, setFilter] = useState([])
 
     const _getData = () => {
         const Ref = ref(getDatabase(), 'products/');
@@ -36,6 +37,7 @@ export default function App(props) {
                 returnArr.push(item);
             });
             setdata(returnArr)
+            setFilter(returnArr)
         });
 
     };
@@ -45,7 +47,7 @@ export default function App(props) {
                 <View style={styles.viewitem}>
                     <Text>{item.Name}</Text>
                     <View style={styles.viewimg}>
-                        <Image source={require('../../Static/Images/logonew.png')} style={styles.imglist}>
+                        <Image source={{ uri: item.PhotoUrl1 }} style={styles.imglist}>
                         </Image>
                     </View>
                 </View>
@@ -53,35 +55,66 @@ export default function App(props) {
         )
     }
     const handleSearch = (text) => {
+        settextseach(text)
         if (text) {
             const newData = data.filter(function (item) {
-                const itemData = item.title
-                    ? item.title.toUpperCase()
-                    : ''.toUpperCase();
-                const textData = textseach.toUpperCase();
-                return itemData.indexOf(textData) > -1;
+                if (selectedItem === -2) {
+                    const itemData = item.Name
+                        ? item.Name.toUpperCase()
+                        : ''.toUpperCase();
+                    const textData = text.toUpperCase();
+                    return itemData.indexOf(textData) > -1;
+                }
+                else {
+                    if (selectedItem_name == item.Type) {
+                        const itemData = item.Name
+                            ? item.Name.toUpperCase()
+                            : ''.toUpperCase();
+                        const textData = text.toUpperCase();
+                        return itemData.indexOf(textData) > -1;
+                    }
+                }
+
             });
             setFilter(newData)
         } else {
-            setFilter(data)
+            if (selectedItem == -2) {
+                setFilter(data)
+            }
+            else {
+                const result = data.filter((i) => i.Type == selectedItem_name)
+                setFilter(result)
+            }
         }
     };
-    const handleSearchbyCategory = (text) => {
-        if (text) {
-            const newData = arrayCategory.filter(function (item) {
-                const itemData = item.title
-                    ? item.title.toUpperCase()
-                    : ''.toUpperCase();
+    const handleSearchbyCategory = async (text) => {
+        if (textseach == "") {
+            if (text == "All") {
+                setFilter(data)
+            } else {
+                const result = data.filter((i) => i.Type == text)
+                setFilter(result)
+            }
+        }
+        else {
+
+            if (text != "All") {
                 const textData = textseach.toUpperCase();
-                return itemData.indexOf(textData) > -1;
-            });
-            setFilter(newData)
-        } else {
-            alert("khong co")
+                const result = data.filter((i) => i.Type == text
+                    && i.Name.toUpperCase().indexOf(textData) > -1)
+                setFilter(result)
+            }
+            else if (text == "All") {
+                const textData = textseach.toUpperCase();
+                const result = data.filter((i) => i.Name.toUpperCase().indexOf(textData) > -1)
+                setFilter(result)
+            }
+
         }
     }
     useEffect(() => {
         _getData()
+
     }, [])
     return (
         <SafeAreaView style={styles.safeareaview}>
@@ -109,6 +142,8 @@ export default function App(props) {
                         containerStyle={styles.containerStyle}
                         onSelectItem={(item) => {
                             item && setSelectedItem(item.id)
+                            item && setselectedItem_name(item.title)
+                            item && handleSearchbyCategory(item.title)
                         }}
                         textInputProps={{
                             autoCorrect: false,
@@ -124,10 +159,9 @@ export default function App(props) {
 
                 </View>
             </View>
-            <View>
+            <View style={styles.view_list}>
                 <FlatList
-                    ListHeaderComponentStyle={{ elevation: 10 }}
-                    data={data}
+                    data={Filter}
                     renderItem={renderItem}
                     showsHorizontalScrollIndicator={false}
                 />

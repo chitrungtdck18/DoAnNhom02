@@ -21,7 +21,7 @@ import Management from '../../Icons/Management'
 import Exit from '../../Icons/ExitIcon'
 import Update from '../../Icons/UpdateIcon'
 import Support from '../../Icons/SupportIcon'
-import UserIcon from '../../Icons/Username'
+import UserIcon from '../../Icons/UserIcon'
 import Modal from 'react-native-modal'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -33,6 +33,7 @@ import { getlistCategory, arrayCategory } from '../../Model/Category';
 import { AuthContext } from '../../Redux/AuthContext';
 import { getDatabase, ref, onValue } from "firebase/database"
 import { Colors } from '../../Utils/Color';
+import { Adminid } from '../../Utils/firebase-Config';
 export default function App(props) {
     { arrayCategory }
     const { token } = useContext(AuthContext)
@@ -40,21 +41,18 @@ export default function App(props) {
     const [User, setUser] = useState([])
     const [choose, setchoose] = useState(false)
     const { setToken } = useContext(AuthContext)
-    const Adminid = "KIX43luQnZRTd8Mc5GtvJPcBkzd2"
+
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct', { item: item })} onLongPress={handlerLongClick}>
                 <View style={styles.viewitem}>
-                    <LinearGradient colors={['transparent', '#171921',]} style={styles.linearGradient}>
-                        <View style={styles.viewimg}>
-                            <Image source={require('../../Static/Images/logo.png')} style={styles.imglist}>
-                            </Image>
-                        </View>
-                        <View style={styles.textitem}>
-                            <Text style={styles.titleitem}>{item.title}</Text>
-                            <Text style={styles.descriptionitem}>{item.description}</Text>
-                        </View>
-                    </LinearGradient>
+                    <View style={styles.viewimg}>
+                        <Image source={require('../../Static/Images/logo.png')} style={styles.imglist} />
+                    </View>
+                    <View style={styles.textitem}>
+                        <Text style={styles.titleitem}>{item.title}</Text>
+                    </View>
+
                 </View>
             </TouchableOpacity>
         )
@@ -124,6 +122,7 @@ export default function App(props) {
                     <SearchIcon />
                 </TouchableOpacity>
             </View>
+
             <View style={styles.viewType}>
                 <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Balo" })}>
                     <Image style={styles.Image} source={require('../../Static/Images/bp.png')}></Image>
@@ -133,13 +132,13 @@ export default function App(props) {
                     <Image style={styles.Image} source={require('../../Static/Images/cap.png')}></Image>
 
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Jacket" })}>
+                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Jackets" })}>
                     <Image style={styles.Image} source={require('../../Static/Images/jacket.png')}></Image>
 
                 </TouchableOpacity>
             </View>
             <View style={styles.viewType}>
-                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Pant" })}>
+                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Pants" })}>
                     <Image style={styles.Image} source={require('../../Static/Images/pant.png')}></Image>
 
                 </TouchableOpacity>
@@ -183,7 +182,7 @@ export default function App(props) {
 
                 </View>
 
-                <View style={{ paddingBottom: 5 }}>
+                <View style={styles.view_list}>
                     <FlatList
                         data={[
                             { title: '1. How to setting enviroment', description: '- If you are new to mobile development ', price: '10$' },

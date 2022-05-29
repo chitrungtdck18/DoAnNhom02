@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDownloadURL, getStorage, uploadBytes } from "firebase/storage";
-import { getDatabase, ref,push } from "firebase/database"
+import { getDatabase, ref, push } from "firebase/database"
 let config = {
   apiKey: "AIzaSyDqVwaBYHQQQ2uo6jQK17QOG6Zj4cmqbIM",
   authDomain: "clothes-store-21b7f.firebaseapp.com",
@@ -17,7 +17,8 @@ const app = initializeApp(config);
 const database = getDatabase()
 const storage = getStorage();
 const auth = getAuth()
-export { auth, database, storage }
+const Adminid = "KIX43luQnZRTd8Mc5GtvJPcBkzd2"
+export { auth, database, storage, Adminid }
 
 
 

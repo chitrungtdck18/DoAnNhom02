@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
     viewtopitems: {
         flexDirection: 'row',
     },
-    
+
     descriptionitem: {
         fontSize: 14,
         color: Colors.second,
@@ -37,7 +37,11 @@ export const styles = StyleSheet.create({
         fontWeight: '500',
     },
     textitem: {
-        margin: 10,
+        padding: 10,
+        backgroundColor: "#383a40",
+        flex: 1,
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5
     },
     viewitem: {
         shadowColor: "#000",
@@ -149,8 +153,9 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     safeareaview: {
-     
+
         backgroundColor: Colors.second,
+        flex: 1
     },
     modalContainer: {
         alignSelf: "center",
@@ -248,7 +253,15 @@ export const styles = StyleSheet.create({
     },
     linearGradient: {
         alignItems: 'center',
-        justifyContent:'center'
+        justifyContent: 'center'
     },
-    imglist: { width: '100%', height: '100%', resizeMode: 'cover', borderRadius: 10, }
+    imglist: {
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        borderRadius: 10,
+    },
+    view_list: {
+        flex: 12
+    }
 })
