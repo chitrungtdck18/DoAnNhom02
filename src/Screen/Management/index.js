@@ -18,23 +18,32 @@ import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
 import { styles } from './styles';
 import { arrayCategory } from '../../Model/Category';
 import { Colors } from '../../Utils/Color';
+import { getDatabase, ref, onValue } from "firebase/database"
 export default function App(props) {
     const [selectedItem, setSelectedItem] = useState(-2);
     const [textseach, settextseach] = useState("")
     const [data, setdata] = useState([
-        { title: '1. How to setting enviroment', price: '20$' },
-        { title: '2. How to setting enviroment', price: '10$' },
-        { title: '3. How to setting enviroment', price: '50$' },
-        { title: '4. How to setting enviroment', price: '40$' },
+
     ])
-    const [Filter, setFilter] = useState(data)
 
+    const _getData = () => {
+        const Ref = ref(getDatabase(), 'products/');
+        onValue(Ref, (snapshot) => {
+            var returnArr = [];
+            snapshot.forEach(function (childSnapshot) {
+                var key = childSnapshot.key;
+                var item = childSnapshot.val();
+                returnArr.push(item);
+            });
+            setdata(returnArr)
+        });
 
+    };
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct', { item: item })}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('UpdateProduct', { item: item })}>
                 <View style={styles.viewitem}>
-                    <Text>{item.title}</Text>
+                    <Text>{item.Name}</Text>
                     <View style={styles.viewimg}>
                         <Image source={require('../../Static/Images/logonew.png')} style={styles.imglist}>
                         </Image>
@@ -71,6 +80,9 @@ export default function App(props) {
             alert("khong co")
         }
     }
+    useEffect(() => {
+        _getData()
+    }, [])
     return (
         <SafeAreaView style={styles.safeareaview}>
             <Header name={"Management"} isAdd />
@@ -115,12 +127,12 @@ export default function App(props) {
             <View>
                 <FlatList
                     ListHeaderComponentStyle={{ elevation: 10 }}
-                    data={Filter}
+                    data={data}
                     renderItem={renderItem}
                     showsHorizontalScrollIndicator={false}
                 />
             </View>
-            
+
         </SafeAreaView>
     );
 };

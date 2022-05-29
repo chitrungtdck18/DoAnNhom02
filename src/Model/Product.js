@@ -7,7 +7,7 @@ const database = getDatabase();
 export const createProduct = (data) => {
     var db_Product = ref(database, 'products/');
     const newReference = push(db_Product);
-    db_Product = ref(database, 'products/'+newReference.key);
+    db_Product = ref(database, 'products/' + newReference.key);
     var product = {
         productID: newReference.key,
         Name: data.Name,
@@ -20,17 +20,25 @@ export const createProduct = (data) => {
     };
     set(db_Product, product)
 };
-export const updateUser = (data, phone) => {
-    const db_User = ref(database, 'products/');
-    var user = {
-        userID: data.uid,
-        userName: data.displayName,
-        email: data.email,
-        phone: phone,
-        urlAvatar: data.photoURL
+export const updateProduct = (data) => {
+    var db_Product = ref(database, 'products/');
+    db_Product = ref(database, 'products/' + data.productID);
+    var product = {
+        productID: data.productID,
+        Name: data.Name,
+        Price: data.Price,
+        Type: data.Type,
+        Desc: data.Desc,
+        PhotoUrl1: data.PhotoUrl1,
+        PhotoUrl2: data.PhotoUrl2,
+        PhotoUrl3: data.PhotoUrl3,
     };
-    set(db_User, user)
+    set(db_Product, product)
 }
+export const removeProduct = (id) => {
+    var db_Product = ref(database, 'products/' + id);
+    set(db_Product, null)
+};
 export const getUser = async (id) => {
     const db = getDatabase();
     const Ref = ref(db, 'user/' + id);

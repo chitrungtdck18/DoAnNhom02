@@ -12,6 +12,7 @@ import Cart from '../Screen/shoppingcart'
 import Profile from '../Screen/Profile'
 import Password_Reset from '../Screen/Password_Reset'
 import AddProduct from '../Screen/AddProduct'
+import UpdateProduct from '../Screen/UpdateProduct'
 
 import { LogBox } from 'react-native';
 import { AuthContext } from '../Redux/AuthContext';
@@ -69,6 +70,7 @@ export default function App() {
                         <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
                         <Stack.Screen name="Password_Reset" component={Password_Reset} options={{ headerShown: false }} />
                         <Stack.Screen name="AddProduct" component={AddProduct} options={{ headerShown: false }} />
+                        <Stack.Screen name="UpdateProduct" component={UpdateProduct} options={{ headerShown: false }} />
                     </>
                 }
             </Stack.Navigator>
