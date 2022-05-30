@@ -40,4 +40,23 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.second,
   },
+  input: {
+    fontSize: 16,
+    paddingHorizontal: 20,
+    color: Colors.primary,
+    borderColor: Colors.primary,
+    fontWeight: '500',
+    width: '88%',
+  },
+  viewSearch: {
+    alignItems: 'center',
+    borderWidth: 1,
+    flexDirection: 'row',
+
+    borderColor: Colors.primary,
+    borderRadius: 10,
+    width: '90%',
+    alignSelf: 'center',
+    margin: 10,
+  },
 })

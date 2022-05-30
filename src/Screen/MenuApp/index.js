@@ -24,7 +24,7 @@ import Modal from 'react-native-modal'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Info_product from '../../Components/Info_product'
-import LinearGradient from 'react-native-linear-gradient';
+import Items_Product from '../../Components/items_Product'
 import { signOut, getAuth } from "firebase/auth";
 import { styles } from './styles';
 import { getlistCategory, arrayCategory } from '../../Model/Category';
@@ -44,23 +44,9 @@ export default function App(props) {
     const [loading, setloading] = useState(true)
     const [item, setitem] = useState()
 
-    const renderItem = ({ item }) => {
-        return (
-            <TouchableOpacity
-                onPress={() => props.navigation.navigate('InfoProduct', { item: item })}
-                onLongPress={() => handlerLongClick(item)}>
-                <View style={styles.viewitem}>
-                    <View style={styles.viewimg}>
-                        <Image source={{ uri: item.PhotoUrl1 }} style={styles.imglist} />
-                    </View>
-                    <View style={styles.textitem}>
-                        <Text style={styles.titleitem}>{item.Name}</Text>
-                    </View>
-
-                </View>
-            </TouchableOpacity>
-        )
-    }
+    const renderItem = ({ item, }) => (
+        <Items_Product item={item} />
+    );
 
     const handleLogout = async () => {
         signOut(getAuth())
@@ -117,7 +103,6 @@ export default function App(props) {
         <>
             {loading ?
                 <View style={styles.loading}>
-
                     <ActivityIndicator size="large" />
                 </View>
                 : <ScrollView syle={styles.safeareaview}>

@@ -19,6 +19,7 @@ import { styles } from './styles';
 import { arrayCategory } from '../../Model/Category';
 import { Colors } from '../../Utils/Color';
 import { getDatabase, ref, onValue } from "firebase/database"
+import Items_Product from"../../Components/items_Product"
 import { async } from '@firebase/util';
 export default function App(props) {
     const [selectedItem, setSelectedItem] = useState(-2);
@@ -41,19 +42,9 @@ export default function App(props) {
         });
 
     };
-    const renderItem = ({ item }) => {
-        return (
-            <TouchableOpacity onPress={() => props.navigation.navigate('UpdateProduct', { item: item })}>
-                <View style={styles.viewitem}>
-                    <Text>{item.Name}</Text>
-                    <View style={styles.viewimg}>
-                        <Image source={{ uri: item.PhotoUrl1 }} style={styles.imglist}>
-                        </Image>
-                    </View>
-                </View>
-            </TouchableOpacity>
-        )
-    }
+    const renderItem = ({ item, }) => (
+        <Items_Product item={item} isupdate={true} />
+    );
     const handleSearch = (text) => {
         settextseach(text)
         if (text) {
@@ -164,6 +155,9 @@ export default function App(props) {
                     data={Filter}
                     renderItem={renderItem}
                     showsHorizontalScrollIndicator={false}
+                    keyExtractor={item => item.productID}
+                    horizontal={false}
+                    numColumns={2}
                 />
             </View>
 
