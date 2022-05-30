@@ -45,7 +45,7 @@ export default function App(props) {
     const [item, setitem] = useState()
 
     const renderItem = ({ item, }) => (
-        <Items_Product item={item} />
+        <Items_Product item={item} handlerLongClick={(e)=>handlerLongClick(e)}/>
     );
 
     const handleLogout = async () => {

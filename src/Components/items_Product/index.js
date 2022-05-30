@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
-export default function App({ item, isupdate }) {
+export default function App({ item, isupdate, handlerLongClick }) {
     const navigation = useNavigation();
     const handleNavigate = () => {
         if (isupdate == true) {
