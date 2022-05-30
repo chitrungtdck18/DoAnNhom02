@@ -8,7 +8,6 @@ import {
     Text,
     TouchableOpacity,
 
-
 } from 'react-native';
 import Username from '../../Icons/Username';
 import Phone from '../../Icons/PhoneIcon';
@@ -92,7 +91,6 @@ export default function App(props) {
         });
     }
 
-
     const takePhotoFromCamra = async () => {
         ImagePicker.openCamera({
             compressImageMaxWidth: 300,
@@ -154,7 +152,7 @@ export default function App(props) {
                                 <Text style={styles.textTouch}>Camera</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.touchModal} onPress={() => choosePhotoFromLibrary()}>
-                                <Text style={styles.textTouch}>Graly</Text>
+                                <Text style={styles.textTouch}>Gallery</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style={styles.touchModal} onPress={() => setModalVisible(false)}>
                                 <Text style={styles.textTouch}>Cancel</Text>
@@ -167,6 +165,3 @@ export default function App(props) {
         </View>
     );
 };
-
-
-

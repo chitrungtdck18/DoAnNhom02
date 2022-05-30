@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import {
-    SafeAreaView,
-    StyleSheet,
     Text,
     View,
     Image,
@@ -9,7 +7,7 @@ import {
     TouchableOpacity,
     FlatList,
     ScrollView,
-
+    ActivityIndicator
 } from 'react-native';
 
 import MenuIcon from '../../Icons/MenuIcon'
@@ -34,6 +32,7 @@ import { AuthContext } from '../../Redux/AuthContext';
 import { getDatabase, ref, onValue } from "firebase/database"
 import { Colors } from '../../Utils/Color';
 import { Adminid } from '../../Utils/firebase-Config';
+
 export default function App(props) {
     { arrayCategory }
     const { token } = useContext(AuthContext)
@@ -41,16 +40,21 @@ export default function App(props) {
     const [User, setUser] = useState([])
     const [choose, setchoose] = useState(false)
     const { setToken } = useContext(AuthContext)
+    const [data1, setdata1] = useState([])
+    const [loading, setloading] = useState(true)
+    const [item, setitem] = useState()
 
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct', { item: item })} onLongPress={handlerLongClick}>
+            <TouchableOpacity
+                onPress={() => props.navigation.navigate('InfoProduct', { item: item })}
+                onLongPress={() => handlerLongClick(item)}>
                 <View style={styles.viewitem}>
                     <View style={styles.viewimg}>
-                        <Image source={require('../../Static/Images/logo.png')} style={styles.imglist} />
+                        <Image source={{ uri: item.PhotoUrl1 }} style={styles.imglist} />
                     </View>
                     <View style={styles.textitem}>
-                        <Text style={styles.titleitem}>{item.title}</Text>
+                        <Text style={styles.titleitem}>{item.Name}</Text>
                     </View>
 
                 </View>
@@ -72,7 +76,7 @@ export default function App(props) {
             console.log(e)
         }
     }
-    const _getData = () => {
+    const _getUser = () => {
         const db = getDatabase();
         const Ref = ref(db, 'user/' + token.userid);
         onValue(Ref, (snapshot) => {
@@ -83,11 +87,26 @@ export default function App(props) {
         });
 
     };
-    const handlerLongClick = () => {
+    const _getData = () => {
+        const Ref = ref(getDatabase(), 'products/');
+        onValue(Ref, (snapshot) => {
+            var returnArr = [];
+            snapshot.forEach(function (childSnapshot) {
+                var item = childSnapshot.val();
+                returnArr.push(item);
+            });
+            setdata1(returnArr)
+            setloading(false)
+        });
+
+    };
+    const handlerLongClick = (i) => {
+        setitem(i)
         setchoose(!choose)
     }
     useEffect(() => {
         getlistCategory()
+        _getUser()
         _getData()
         const unsubscribe = props.navigation.addListener('focus', () => {
             setisModalVisible(false)
@@ -95,165 +114,152 @@ export default function App(props) {
         return unsubscribe;
     }, [])
     return (
-        <ScrollView syle={styles.safeareaview}>
-            <View style={styles.header}>
-                <View style={{ width: '18%' }}>
-                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => setisModalVisible(true)}>
-                        <MenuIcon />
-                    </TouchableOpacity>
+        <>
+            {loading ?
+                <View style={styles.loading}>
+
+                    <ActivityIndicator size="large" />
                 </View>
-
-                <View style={{ justifyContent: 'center', width: '64%' }}>
-                    <Text style={styles.nameapp}>Fashionshop</Text>
-                </View>
-                <View style={{ width: '18%' }}>
-                    <TouchableOpacity style={styles.touchIconMenu} onPress={() => props.navigation.navigate('Cart')}>
-                        <CartIcon />
-                    </TouchableOpacity>
-                </View>
-            </View>
-            <View style={styles.viewSearch}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Search..."
-                    placeholderTextColor={Colors.primary}
-                />
-                <TouchableOpacity>
-                    <SearchIcon />
-                </TouchableOpacity>
-            </View>
-
-            <View style={styles.viewType}>
-                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Balo" })}>
-                    <Image style={styles.Image} source={require('../../Static/Images/bp.png')}></Image>
-
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Cap" })}>
-                    <Image style={styles.Image} source={require('../../Static/Images/cap.png')}></Image>
-
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Jackets" })}>
-                    <Image style={styles.Image} source={require('../../Static/Images/jacket.png')}></Image>
-
-                </TouchableOpacity>
-            </View>
-            <View style={styles.viewType}>
-                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Pants" })}>
-                    <Image style={styles.Image} source={require('../../Static/Images/pant.png')}></Image>
-
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Shoe" })}>
-                    <Image style={styles.Image} source={require('../../Static/Images/shoes.png')}></Image>
-
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Tshirt" })}>
-                    <Image style={styles.Image} source={require('../../Static/Images/tshirt.png')}></Image>
-
-                </TouchableOpacity>
-            </View>
-            <View style={{ marginTop: 15, borderTopLeftRadius: 15 }}>
-                <View style={{ flexDirection: 'row' }}>
-                    <Text style={{ width: '85%', marginLeft: 20, color: '#000000', fontWeight: '500', fontSize: 16, margin: 5 }}>New Product</Text>
-                    <TouchableOpacity style={styles.touchIconShow}>
-                        <ShowIcon />
-                    </TouchableOpacity>
-                </View>
-
-                <View style={{ paddingBottom: 5 }}>
-                    <FlatList
-                        data={[
-                            { title: '1. How to setting enviroment', price: '20' },
-                            { title: '2. How to setting enviroment', price: '10' },
-                            { title: '3. How to setting enviroment', price: '50' },
-                            { title: '4. How to setting enviroment', price: '40' },
-                        ]}
-                        renderItem={renderItem}
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-                    />
-                </View>
-            </View>
-            <View style={{ marginTop: 15, borderTopLeftRadius: 15 }}>
-                <View style={{ flexDirection: 'row' }}>
-                    <Text style={{ width: '85%', marginLeft: 20, color: '#000000', fontWeight: '500', fontSize: 16, margin: 5 }}>New Product</Text>
-                    <TouchableOpacity style={styles.touchIconShow}>
-                        <ShowIcon />
-                    </TouchableOpacity>
-
-                </View>
-
-                <View style={styles.view_list}>
-                    <FlatList
-                        data={[
-                            { title: '1. How to setting enviroment', description: '- If you are new to mobile development ', price: '10$' },
-                            { title: '2. How to setting enviroment', description: '- If you are new to mobile development ', price: '25$' },
-                            { title: '3. How to setting enviroment', description: '- If you are new to mobile development ', price: '15$' },
-                            { title: '4. How to setting enviroment', description: '- If you are new to mobile development ', price: '30$' },
-                        ]}
-                        renderItem={renderItem}
-                        horizontal
-                        showsHorizontalScrollIndicator={false}
-
-                    />
-                </View>
-            </View>
-
-            <Modal isVisible={isModalVisible} animationIn={"slideInLeft"} animationOut={"slideOutLeft"} hideModalContentWhileAnimating={false}>
-                <View style={styles.modalContainer}>
-                    <View style={styles.userInfoSection}>
-                        <Image source={{ uri: User.urlAvatar }} style={styles.Image_avt} />
-                        <View style={styles.info}>
-                            <Text style={styles.userName}>{User.userName}</Text>
-                            <Text style={styles.userEmail}>{User.email}</Text>
+                : <ScrollView syle={styles.safeareaview}>
+                    <View style={styles.header}>
+                        <View style={{ width: '18%' }}>
+                            <TouchableOpacity style={styles.touchIconMenu} onPress={() => setisModalVisible(true)}>
+                                <MenuIcon />
+                            </TouchableOpacity>
                         </View>
-                        <TouchableOpacity onPress={() => setisModalVisible(false)} style={styles.Cancel}>
-                            <Cancel />
-                        </TouchableOpacity>
+
+                        <View style={{ justifyContent: 'center', width: '64%' }}>
+                            <Text style={styles.nameapp}>Fashionshop</Text>
+                        </View>
+                        <View style={{ width: '18%' }}>
+                            <TouchableOpacity style={styles.touchIconMenu} onPress={() => props.navigation.navigate('Cart')}>
+                                <CartIcon />
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.item_Drawer}>
-                        {token.userid === Adminid ? <TouchableOpacity onPress={() => props.navigation.navigate('Management') & setisModalVisible(false)} style={styles.view_item_Drawer}>
-                            <Management />
-                            <Text style={styles.text_item}>Management</Text>
-                        </TouchableOpacity>
-                            : null}
-
-                        <TouchableOpacity onPress={() => props.navigation.navigate('Profile', { user: User }) & setisModalVisible(false)} style={styles.view_item_Drawer}>
-                            <UserIcon />
-                            <Text style={styles.text_item}>Update User</Text>
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity onPress={() => props.navigation.navigate('Password_Reset') & setisModalVisible(false)} style={styles.view_item_Drawer}>
-                            <Update />
-                            <Text style={styles.text_item}>Password reset</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={() => props.navigation.navigate('Cart') & setisModalVisible(false)} style={styles.view_item_Drawer}>
-                            <CartIcon color={"#000"} />
-                            <Text style={styles.text_item}>Shoping Cart</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={() => console.log("Support") & setisModalVisible(false)} style={styles.view_item_Drawer}>
-                            <Support />
-                            <Text style={styles.text_item}>Support</Text>
-                        </TouchableOpacity>
-
-
-                        <TouchableOpacity onPress={() => handleLogout() & setisModalVisible(false)} style={styles.Exit}>
-                            <Exit />
-                            <Text style={styles.text_item}>Sign Out</Text>
+                    <View style={styles.viewSearch}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder="Search..."
+                            placeholderTextColor={Colors.primary}
+                        />
+                        <TouchableOpacity>
+                            <SearchIcon />
                         </TouchableOpacity>
                     </View>
 
+                    <View style={styles.viewType}>
+                        <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Balo" })}>
+                            <Image style={styles.Image} source={require('../../Static/Images/bp.png')}></Image>
 
-                </View>
-            </Modal>
-            <Info_product isModalVisible={choose} cancel={e => setchoose(e)} />
-        </ScrollView>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Cap" })}>
+                            <Image style={styles.Image} source={require('../../Static/Images/cap.png')}></Image>
 
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Jackets" })}>
+                            <Image style={styles.Image} source={require('../../Static/Images/jacket.png')}></Image>
+
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.viewType}>
+                        <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Pants" })}>
+                            <Image style={styles.Image} source={require('../../Static/Images/pant.png')}></Image>
+
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Shoe" })}>
+                            <Image style={styles.Image} source={require('../../Static/Images/shoes.png')}></Image>
+
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Tshirt" })}>
+                            <Image style={styles.Image} source={require('../../Static/Images/tshirt.png')}></Image>
+
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ marginTop: 15, borderTopLeftRadius: 15 }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ width: '85%', marginLeft: 20, color: '#000000', fontWeight: '500', fontSize: 16, margin: 5 }}>New Product</Text>
+                            <TouchableOpacity style={styles.touchIconShow}>
+                                <ShowIcon />
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={{ paddingBottom: 5 }}>
+                            <FlatList
+                                data={data1}
+                                renderItem={renderItem}
+                                horizontal
+                                showsHorizontalScrollIndicator={false}
+                            />
+                        </View>
+                    </View>
+                    <View style={{ marginTop: 15, borderTopLeftRadius: 15 }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={{ width: '85%', marginLeft: 20, color: '#000000', fontWeight: '500', fontSize: 16, margin: 5 }}>New Product</Text>
+                            <TouchableOpacity style={styles.touchIconShow}>
+                                <ShowIcon />
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.view_list}>
+                            <FlatList
+                                data={data1}
+                                renderItem={renderItem}
+                                horizontal
+                                showsHorizontalScrollIndicator={false}
+                            />
+                        </View>
+                    </View>
+
+                    <Modal isVisible={isModalVisible} animationIn={"slideInLeft"} animationOut={"slideOutLeft"} hideModalContentWhileAnimating={false}>
+                        <View style={styles.modalContainer}>
+                            <View style={styles.userInfoSection}>
+                                <Image source={{ uri: User.urlAvatar }} style={styles.Image_avt} />
+                                <View style={styles.info}>
+                                    <Text style={styles.userName}>{User.userName}</Text>
+                                    <Text style={styles.userEmail}>{User.email}</Text>
+                                </View>
+                                <TouchableOpacity onPress={() => setisModalVisible(false)} style={styles.Cancel}>
+                                    <Cancel />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.item_Drawer}>
+                                {token.userid === Adminid ? <TouchableOpacity onPress={() => props.navigation.navigate('Management') & setisModalVisible(false)} style={styles.view_item_Drawer}>
+                                    <Management />
+                                    <Text style={styles.text_item}>Management</Text>
+                                </TouchableOpacity>
+                                    : null}
+
+                                <TouchableOpacity onPress={() => props.navigation.navigate('Profile', { user: User }) & setisModalVisible(false)} style={styles.view_item_Drawer}>
+                                    <UserIcon />
+                                    <Text style={styles.text_item}>Update User</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity onPress={() => props.navigation.navigate('Password_Reset') & setisModalVisible(false)} style={styles.view_item_Drawer}>
+                                    <Update />
+                                    <Text style={styles.text_item}>Password reset</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity onPress={() => props.navigation.navigate('Cart') & setisModalVisible(false)} style={styles.view_item_Drawer}>
+                                    <CartIcon color={"#000"} />
+                                    <Text style={styles.text_item}>Shoping Cart</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity onPress={() => console.log("Support") & setisModalVisible(false)} style={styles.view_item_Drawer}>
+                                    <Support />
+                                    <Text style={styles.text_item}>Support</Text>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity onPress={() => handleLogout() & setisModalVisible(false)} style={styles.Exit}>
+                                    <Exit />
+                                    <Text style={styles.text_item}>Sign Out</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                        </View>
+                    </Modal>
+                    <Info_product isModalVisible={choose} cancel={e => setchoose(e)} item={item} />
+                </ScrollView>}
+
+        </>
     );
-};
-
-
-
-
+}

@@ -1,5 +1,4 @@
-
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -15,33 +14,41 @@ import Header from '../../Components/header_info';
 import Remove from '../../Icons/RemoveIcon'
 import { AuthContext } from '../../Redux/AuthContext';
 import { Colors } from '../../Utils/Color';
+import { getDatabase, ref, onValue } from "firebase/database"
+import { addQuantity, removeCart, subQuantity } from '../../Model/ShoppingCart';
 export default function App(props) {
     const { token } = useContext(AuthContext)
+    const [data, setdata] = useState()
     const renderItem = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => props.navigation.navigate('InfoProduct')}>
+            <TouchableOpacity>
                 <View style={styles.viewitem}>
                     <View style={styles.viewimg}>
-                        <Image source={require('../../Static/Images/logonew.png')} style={styles.imglist}>
+                        <Image source={{ uri: item.PhotoUrl1 }} style={styles.imglist}>
                         </Image>
                     </View>
                     <View style={styles.content_item}>
                         <View style={styles.view_name}>
-                            <Text style={styles.name}>name product</Text>
-                            <TouchableOpacity style={styles.remove_icon}>
+                            <Text style={styles.name}>{item.Name}</Text>
+                            <TouchableOpacity style={styles.remove_icon}
+                                onPress={() => removeCart(item.productID, token.userid)}>
                                 <Remove />
                             </TouchableOpacity>
 
                         </View>
 
-                        <Text>price 25$</Text>
+                        <Text>price {item.Price}$</Text>
                         <View style={styles.view_add_remove}>
                             <View style={styles.add_remove}>
-                                <Text >+</Text>
-                                <Text style={styles.item_quantity}>0</Text>
-                                <Text>-</Text>
+                                <TouchableOpacity onPress={() => addQuantity(item, token.userid)}>
+                                    <Text style={styles.plus_sub}>+</Text>
+                                </TouchableOpacity>
+                                <Text style={styles.item_quantity}>{item.Quantity}</Text>
+                                <TouchableOpacity onPress={() => subQuantity(item, token.userid)}>
+                                    <Text>-</Text>
+                                </TouchableOpacity>
                             </View>
-                            <Text>25$</Text>
+                            <Text>{item.Price}$</Text>
                         </View>
 
                     </View>
@@ -49,12 +56,28 @@ export default function App(props) {
             </TouchableOpacity>
         )
     }
+    const _getData = () => {
+        const Ref = ref(getDatabase(), 'shoppingCart/' + token.userid);
+        onValue(Ref, (snapshot) => {
+            var returnArr = [];
+            snapshot.forEach(function (childSnapshot) {
+                var key = childSnapshot.key;
+                var item = childSnapshot.val();
+                returnArr.push(item);
+            });
+            setdata(returnArr)
+        });
+
+    };
+    useEffect(() => {
+        _getData()
+    }, [])
     return (
         <SafeAreaView style={styles.safeareaview}>
             <Header name={"Shoping Cart"} />
             <View style={styles.list}>
                 <FlatList
-                    data={token.usercard}
+                    data={data}
                     renderItem={renderItem}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
@@ -76,10 +99,6 @@ export default function App(props) {
                 </TouchableOpacity>
             </View>
 
-
         </SafeAreaView>
     );
-};
-
-
-
+}

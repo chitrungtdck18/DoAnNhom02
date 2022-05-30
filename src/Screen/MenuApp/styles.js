@@ -263,5 +263,8 @@ export const styles = StyleSheet.create({
     },
     view_list: {
         flex: 12
-    }
+    },
+    loading: {
+        flex: 1, justifyContent: 'center', alignItems: 'center'
+    },
 })

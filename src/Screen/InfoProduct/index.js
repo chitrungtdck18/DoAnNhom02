@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import {
     SafeAreaView,
     Text,
@@ -7,21 +7,26 @@ import {
     FlatList,
     ImageBackground,
     StyleSheet,
-    ScrollView
+    ScrollView,
+    TouchableOpacity
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
 import { Svg, Defs, LinearGradient, Stop, Rect } from "react-native-svg";
 import Header from '../../Components/Header';
 import Dot from '../../Icons/Dot'
 import Undot from '../../Icons/Undot'
 import { styles } from './styles';
 import { Colors } from '../../Utils/Color';
+import { AuthContext } from '../../Redux/AuthContext';
+import { createCart } from '../../Model/ShoppingCart';
+
 export default function App(props) {
+    const { token } = useContext(AuthContext)
     const data = props.route.params.item;
     const DATA = [
-        data.PhotoUrl1,
-        data.PhotoUrl2,
-        data.PhotoUrl3
+        { key: 1, value: data.PhotoUrl1 },
+        { key: 2, value: data.PhotoUrl2 },
+        { key: 3, value: data.PhotoUrl3 }
     ];
     var _dot = [];
 
@@ -47,7 +52,7 @@ export default function App(props) {
         </ImageBackground>
     );
     const renderItem = ({ item }) => (
-        <Item pic={item} position={DATA.indexOf(item)} />
+        <Item pic={item.value} position={DATA.indexOf(item)} />
     );
     const GradientMask = () => (
         <View style={StyleSheet.absoluteFillObject}>
@@ -62,8 +67,11 @@ export default function App(props) {
                 <Rect x="0" y="0" width="100%" height="100%" fill="url(#grad)" />
             </Svg>
         </View>)
+    const handleraddtocart = () => {
+        createCart(data, token.userid)
+    }
     return (
-        <ScrollView style={styles.safeareaview}>
+        <SafeAreaView style={styles.safeareaview}>
             <Header name={"InfoProduct"} />
             <View style={styles.viewimg}>
                 <FlatList
@@ -83,19 +91,12 @@ export default function App(props) {
                 <Text style={styles.priceProduct}>{data.Price} $</Text>
             </View>
             <View style={styles.viewDesc}>
-                <Text style={styles.Desc}>
-                    Description
-                </Text>
-                <Text style={styles.DeContent}>
-                    {data.Desc}
-                </Text>
+                <Text style={styles.Desc}>Description</Text>
+                <Text style={styles.DeContent}>{data.Desc}</Text>
             </View>
-            <TouchableOpacity style={styles.payment}>
+            <TouchableOpacity style={styles.payment} onPress={() => handleraddtocart()}>
                 <Text style={styles.textpayment}>Add to Cart</Text>
             </TouchableOpacity>
-        </ScrollView>
+        </SafeAreaView>
     );
 };
-
-
-

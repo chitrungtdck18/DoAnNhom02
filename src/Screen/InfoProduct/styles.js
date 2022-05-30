@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     marginVertical: 3,
     fontSize: 16,
     fontWeight: '500',
+
   },
   viewText: {
     margin: 20,
@@ -82,11 +83,13 @@ export const styles = StyleSheet.create({
     marginHorizontal: 20,
     height: 40,
     width: "90%",
-    marginBottom: 10
+    marginBottom: 10,
+
   },
   textpayment: {
     color: "#fff",
     fontSize: 18,
     fontWeight: "500"
-  }
+  },
+
 })

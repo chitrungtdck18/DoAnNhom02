@@ -67,7 +67,9 @@ export const styles = StyleSheet.create({
         borderColor: '#000',
         borderWidth: 1,
         alignContent: "center",
-        marginRight: 10
+        marginRight: 10,
+        paddingHorizontal: 5,
+        borderRadius: 5
     },
     item_quantity: {
         marginHorizontal: 15
@@ -76,7 +78,6 @@ export const styles = StyleSheet.create({
 
     },
     view_name: {
-
         flexDirection: "row",
         justifyContent: "space-between"
     },
@@ -95,5 +96,9 @@ export const styles = StyleSheet.create({
         flex: 0.5,
         borderTopRightRadius: 10,
         borderTopLeftRadius: 10
+    },
+    plus_sub: {
+        fontSize: 15,
+        textAlign: "center"
     }
 })
