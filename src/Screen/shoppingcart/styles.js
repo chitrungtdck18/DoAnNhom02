@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         marginBottom: 10
     },
     textpayment: {
-        color: "#fff",
+        color: Colors.second,
         fontSize: 18,
         fontWeight: "500"
     },

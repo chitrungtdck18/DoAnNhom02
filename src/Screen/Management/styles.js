@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
     },
     safeareaview: {
         flex: 1,
-        backgroundColor:"#fff"
+        backgroundColor:Colors.second
       
     },
     containerStyle: {

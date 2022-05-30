@@ -87,7 +87,7 @@ export const styles = StyleSheet.create({
 
   },
   textpayment: {
-    color: "#fff",
+    color: Colors.second,
     fontSize: 18,
     fontWeight: "500"
   },

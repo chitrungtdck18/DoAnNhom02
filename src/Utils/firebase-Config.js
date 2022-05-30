@@ -13,7 +13,7 @@ let config = {
   appId: "1:668627707668:web:6203cd43b7c2bc65e08401",
   measurementId: "G-RBL0Y816GG"
 };
-const app = initializeApp(config);
+initializeApp(config);
 const database = getDatabase()
 const storage = getStorage();
 const auth = getAuth()

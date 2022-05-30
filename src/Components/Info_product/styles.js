@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
 
   },
   textaddtocart: {
-    color: "#fff",
+    color: Colors.second,
     fontSize: 18,
     fontWeight: "500"
   },

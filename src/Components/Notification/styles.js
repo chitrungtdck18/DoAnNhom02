@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
 
   },
   text_button: {
-    color: "#fff",
+    color: Colors.second,
     textAlign: "center",
     textTransform: "capitalize"
   }

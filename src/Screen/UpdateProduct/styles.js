@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
   },
   safeareaview: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: Colors.second
   },
   ImageBackground: {
     width: Dimensions.get('window').width,
@@ -154,7 +154,7 @@ export const styles = StyleSheet.create({
   
   },
   textsave: {
-    color: "#fff",
+    color: Colors.second,
     fontSize: 18,
     fontWeight: "500"
   },
@@ -167,7 +167,7 @@ export const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.second,
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
@@ -189,7 +189,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   textTouch: {
-    color: "#fff", fontSize: 16
+    color: Colors.second, fontSize: 16
   },
   touchModal: {
     borderRadius: 5,

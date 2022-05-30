@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
   Save_text: {
     textAlign: "center",
 
-    color: "#fff",
+    color: Colors.second,
     textTransform: "capitalize"
   },
   centeredView: {
@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.second,
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
@@ -83,7 +83,7 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   textTouch: {
-    color: "#fff", fontSize: 16
+    color: Colors.second, fontSize: 16
   },
   touchModal: {
     borderRadius: 5,
