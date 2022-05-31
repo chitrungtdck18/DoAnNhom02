@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems:"center"
+    alignItems: "center"
   },
   nameapp: {
     fontSize: 20,
@@ -64,9 +64,24 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.second,
   },
-  header:{
+  header: {
     backgroundColor: Colors.primary,
     flexDirection: 'row',
     justifyContent: 'center',
+  },
+  numberCart: {
+    right: 10,
+    position: 'absolute',
+    top: 15,
+    backgroundColor: '#e65c51',
+    borderRadius: 50,
+    height: 15,
+    width: 15,
+    alignItems: 'center'
+  },
+  textnumberCart: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: Colors.second
   }
 })

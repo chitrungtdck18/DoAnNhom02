@@ -44,6 +44,7 @@ export default function App(props) {
     const [data2, setdata2] = useState([])
     const [loading, setloading] = useState(true)
     const [item, setitem] = useState()
+    const [numbercart, setnumbercart] = useState(0)
 
     const renderItem = ({ item, }) => (
         <Items_Product item={item} handlerLongClick={(e) => handlerLongClick(e)} />
@@ -97,6 +98,18 @@ export default function App(props) {
             setloading(false)
         });
     };
+    const _getCart = () => {
+        const Ref = ref(getDatabase(), 'shoppingCart/' + token.userid);
+        onValue(Ref, (snapshot) => {
+            var returnArr = [];
+            snapshot.forEach(function (childSnapshot) {
+                var item = childSnapshot.val();
+                returnArr.push(item);
+            });
+            setnumbercart(returnArr.length)
+        });
+
+    };
     const handlerLongClick = (i) => {
         setitem(i)
         setchoose(!choose)
@@ -105,6 +118,7 @@ export default function App(props) {
         getlistCategory()
         _getUser()
         _getData()
+        _getCart()
         const unsubscribe = props.navigation.addListener('focus', () => {
             setisModalVisible(false)
         });
@@ -130,6 +144,9 @@ export default function App(props) {
                         <View style={{ width: '18%' }}>
                             <TouchableOpacity style={styles.touchIconMenu} onPress={() => props.navigation.navigate('Cart')}>
                                 <CartIcon />
+                                {numbercart > 0 ? <View style={styles.numberCart}>
+                                    <Text style={styles.textnumberCart}>{numbercart}</Text>
+                                </View> : null}
                             </TouchableOpacity>
                         </View>
                     </View>
