@@ -13,6 +13,7 @@ import Modal from 'react-native-modal'
 import { Colors } from "../../Utils/Color";
 import { AuthContext } from '../../Redux/AuthContext';
 import { createCart } from '../../Model/ShoppingCart';
+import { SliderBox } from "react-native-image-slider-box"
 export default function app(props) {
     const navigation = useNavigation();
     const item = props.item || []
@@ -24,6 +25,11 @@ export default function app(props) {
         createCart(item, token.userid)
         props.cancel(false)
     }
+    const images = [
+        item.PhotoUrl1,
+        item.PhotoUrl2,
+        item.PhotoUrl3
+    ];
     return (
 
         <Modal isVisible={props.isModalVisible} animationIn={"slideInDown"} animationOut={"slideOutUp"} hideModalContentWhileAnimating={false}>
@@ -34,7 +40,15 @@ export default function app(props) {
                         <Cancel color={"#000"} />
                     </TouchableOpacity>
                 </View>
-                <Image source={{ uri: item.PhotoUrl1 }} style={styles.Image} />
+                <SliderBox
+                    style={styles.Image}
+                    images={images}
+                    sliderBoxHeight={500}
+                    onCurrentImagePressed={index => console.log(`image ${index} pressed`)}
+                    dotColor="#2A2D3F"
+                    inactiveDotColor="#90A4AE"
+                    dotStyle={styles.dot}
+                />
                 <ScrollView>
                     <View style={styles.viewDesc}>
                         <Text style={styles.DeContent}>{item.Desc}</Text>

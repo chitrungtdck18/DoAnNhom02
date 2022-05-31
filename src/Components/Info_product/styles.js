@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
   Image: {
     marginTop: 10,
     height: 300,
-    width: "100%"
+    width: "80%"
   },
   addtocart: {
     justifyContent: "center",
@@ -53,5 +53,13 @@ export const styles = StyleSheet.create({
   },
   viewDesc: {
     paddingHorizontal: 10
+  },
+  dot:{
+    width: 7,
+    height: 7,
+    borderRadius: 15,
+    marginHorizontal: 10,
+    padding: 0,
+    margin: 0,
   }
 })
