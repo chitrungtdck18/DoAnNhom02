@@ -151,8 +151,7 @@ export const styles = StyleSheet.create({
     height: 40,
     width: "90%",
     marginBottom: 10,
-    position: "absolute",
-    bottom: 5
+   
   },
   textsave: {
     color: Colors.second,

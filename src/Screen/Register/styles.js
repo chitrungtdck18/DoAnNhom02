@@ -53,10 +53,8 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
     viewBot: {
-        marginBottom: 10,
-        justifyContent: 'flex-end',
-        flex: 1,
-        alignItems: 'center',
+        marginTop: 70,
+        alignItems: "center"
     },
     imgLogo: {
         width: 280,

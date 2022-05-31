@@ -3,7 +3,8 @@ import {
     View,
     Image,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView
 } from 'react-native';
 import Cancel from '../../Icons/Cancel'
 import { styles } from './styles';
@@ -34,14 +35,16 @@ export default function app(props) {
                     </TouchableOpacity>
                 </View>
                 <Image source={{ uri: item.PhotoUrl1 }} style={styles.Image} />
-                <View style={styles.viewDesc}>
-                    <Text style={styles.Desc}>Description</Text>
-                    <Text style={styles.DeContent}>{item.Desc}</Text>
-                </View>
-                <View style={styles.view_Price}>
-                    <Text style={styles.Price}>Price</Text>
-                    <Text>{item.Price}$</Text>
-                </View>
+                <ScrollView>
+                    <View style={styles.viewDesc}>
+                        <Text style={styles.DeContent}>{item.Desc}</Text>
+                    </View>
+                    <View style={styles.view_Price}>
+                        <Text style={styles.Price}>Price</Text>
+                        <Text>{item.Price}$</Text>
+                    </View>
+                </ScrollView>
+
                 <TouchableOpacity style={styles.addtocart} onPress={() => handle_Addtocart()}>
                     <Text style={styles.textaddtocart}>add to cart</Text>
                 </TouchableOpacity>

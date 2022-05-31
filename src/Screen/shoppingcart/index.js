@@ -24,8 +24,7 @@ export default function App(props) {
             <TouchableOpacity>
                 <View style={styles.viewitem}>
                     <View style={styles.viewimg}>
-                        <Image source={{ uri: item.PhotoUrl1 }} style={styles.imglist}>
-                        </Image>
+                        <Image source={{ uri: item.PhotoUrl1 }} style={styles.imglist}/>
                     </View>
                     <View style={styles.content_item}>
                         <View style={styles.view_name}>

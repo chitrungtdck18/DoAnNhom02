@@ -71,7 +71,7 @@ export default function App(props) {
         createCart(data, token.userid)
     }
     return (
-        <SafeAreaView style={styles.safeareaview}>
+        <ScrollView style={styles.safeareaview}>
             <Header name={"InfoProduct"} />
             <View style={styles.viewimg}>
                 <FlatList
@@ -97,6 +97,6 @@ export default function App(props) {
             <TouchableOpacity style={styles.payment} onPress={() => handleraddtocart()}>
                 <Text style={styles.textpayment}>Add to Cart</Text>
             </TouchableOpacity>
-        </SafeAreaView>
+        </ScrollView>
     );
 };

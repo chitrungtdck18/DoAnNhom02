@@ -66,11 +66,12 @@ export default function App(props) {
                     <SearchIcon />
                 </TouchableOpacity>
             </View>
-            <View style={{ flex: 1, marginVertical: 15 }}>
+            <View style={{ flex: 1 }}>
                 <FlatList
                     data={data}
                     renderItem={renderItem}
                     showsHorizontalScrollIndicator={false}
+                    numColumns={2}
                 />
             </View>
         </SafeAreaView>

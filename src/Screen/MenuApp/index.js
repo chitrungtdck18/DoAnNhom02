@@ -29,7 +29,7 @@ import { signOut, getAuth } from "firebase/auth";
 import { styles } from './styles';
 import { getlistCategory, arrayCategory } from '../../Model/Category';
 import { AuthContext } from '../../Redux/AuthContext';
-import { getDatabase, ref, onValue } from "firebase/database"
+import { getDatabase, ref, onValue, query, orderByChild, limitToFirst, limitToLast, startAt } from "firebase/database"
 import { Colors } from '../../Utils/Color';
 import { Adminid } from '../../Utils/firebase-Config';
 
@@ -41,11 +41,12 @@ export default function App(props) {
     const [choose, setchoose] = useState(false)
     const { setToken } = useContext(AuthContext)
     const [data1, setdata1] = useState([])
+    const [data2, setdata2] = useState([])
     const [loading, setloading] = useState(true)
     const [item, setitem] = useState()
 
     const renderItem = ({ item, }) => (
-        <Items_Product item={item} handlerLongClick={(e)=>handlerLongClick(e)}/>
+        <Items_Product item={item} handlerLongClick={(e) => handlerLongClick(e)} />
     );
 
     const handleLogout = async () => {
@@ -75,16 +76,26 @@ export default function App(props) {
     };
     const _getData = () => {
         const Ref = ref(getDatabase(), 'products/');
-        onValue(Ref, (snapshot) => {
+        onValue(query(Ref, orderByChild("Timestamp", "desc"), limitToLast(6)), (snapshot) => {
             var returnArr = [];
             snapshot.forEach(function (childSnapshot) {
                 var item = childSnapshot.val();
                 returnArr.push(item);
             });
-            setdata1(returnArr)
+            setdata1(returnArr.reverse())
+
             setloading(false)
         });
+        onValue(query(Ref, orderByChild("Price", "desc"), limitToLast(6)), (snapshot) => {
+            var returnArr = [];
+            snapshot.forEach(function (childSnapshot) {
+                var item = childSnapshot.val();
+                returnArr.push(item);
+            });
+            setdata2(returnArr)
 
+            setloading(false)
+        });
     };
     const handlerLongClick = (i) => {
         setitem(i)
@@ -163,7 +174,7 @@ export default function App(props) {
                     </View>
                     <View style={{ marginTop: 15, borderTopLeftRadius: 15 }}>
                         <View style={{ flexDirection: 'row' }}>
-                            <Text style={{ width: '85%', marginLeft: 20, color: '#000000', fontWeight: '500', fontSize: 16, margin: 5 }}>New Product</Text>
+                            <Text style={styles.title}>New Product</Text>
                             <TouchableOpacity style={styles.touchIconShow}>
                                 <ShowIcon />
                             </TouchableOpacity>
@@ -180,14 +191,14 @@ export default function App(props) {
                     </View>
                     <View style={{ marginTop: 15, borderTopLeftRadius: 15 }}>
                         <View style={{ flexDirection: 'row' }}>
-                            <Text style={{ width: '85%', marginLeft: 20, color: '#000000', fontWeight: '500', fontSize: 16, margin: 5 }}>New Product</Text>
+                            <Text style={styles.title}>low price</Text>
                             <TouchableOpacity style={styles.touchIconShow}>
                                 <ShowIcon />
                             </TouchableOpacity>
                         </View>
                         <View style={styles.view_list}>
                             <FlatList
-                                data={data1}
+                                data={data2}
                                 renderItem={renderItem}
                                 horizontal
                                 showsHorizontalScrollIndicator={false}

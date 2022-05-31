@@ -41,8 +41,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         margin: 5,
         height: 170,
-        borderBottomColor: "#000",
-        borderBottomWidth: 1,
+      
         backgroundColor: Colors.second,
         flexDirection: "row",
         paddingVertical: 5
@@ -75,7 +74,7 @@ export const styles = StyleSheet.create({
         marginHorizontal: 15
     },
     name: {
-
+        width:"80%"
     },
     view_name: {
         flexDirection: "row",
@@ -87,7 +86,8 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         alignSelf: "flex-end",
-        marginRight: 20
+        marginRight: 20,
+        marginBottom:10
     },
     list: {
         flex: 3

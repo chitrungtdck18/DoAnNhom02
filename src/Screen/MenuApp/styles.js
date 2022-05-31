@@ -267,4 +267,7 @@ export const styles = StyleSheet.create({
     loading: {
         flex: 1, justifyContent: 'center', alignItems: 'center'
     },
+    title:{
+        width: '85%', marginLeft: 20, color: '#000000', fontWeight: '500', fontSize: 16, margin: 5 ,textTransform:"capitalize"
+    }
 })

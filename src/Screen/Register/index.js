@@ -7,7 +7,8 @@ import {
     View,
     TextInput,
     TouchableOpacity,
-    Image
+    Image,
+    ScrollView
 } from 'react-native';
 import { auth, database } from '../../Utils/firebase-Config';
 import { styles } from './styles';
@@ -66,7 +67,7 @@ export default function App(props) {
 
     }
     return (
-        <SafeAreaView style={styles.safeareaview}>
+        <ScrollView style={styles.safeareaview}>
             <View style={styles.viewTop}>
                 <Image style={styles.imgLogo} source={require('../../Static/Images/logo-shop.png')}></Image>
                 <Text style={styles.textCreate}>Create an Account</Text>
@@ -114,7 +115,7 @@ export default function App(props) {
                 </TouchableOpacity>
 
             </View>
-        </SafeAreaView>
+        </ScrollView>
     );
 };
 

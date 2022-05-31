@@ -33,6 +33,7 @@ export const updateProduct = (data) => {
         PhotoUrl1: data.PhotoUrl1,
         PhotoUrl2: data.PhotoUrl2,
         PhotoUrl3: data.PhotoUrl3,
+        Timestamp: Date.now(),
     };
     set(db_Product, product)
 }

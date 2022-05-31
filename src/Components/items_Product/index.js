@@ -18,10 +18,19 @@ export default function App({ item, isupdate, handlerLongClick }) {
         }
 
     }
+    const handlelong = () => {
+        if (isupdate) {
+            console.log("no")
+        }
+        else {
+            handlerLongClick(item)
+        }
+
+    }
     return (
         <TouchableOpacity
             onPress={() => handleNavigate()}
-            onLongPress={() => handlerLongClick(item)}>
+            onLongPress={() => handlelong()}>
             <View style={styles.viewitem}>
                 <View style={styles.viewimg}>
                     <Image source={{ uri: item.PhotoUrl1 }} style={styles.imglist} />

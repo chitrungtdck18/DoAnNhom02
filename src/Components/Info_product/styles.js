@@ -3,8 +3,8 @@ import { Colors } from "../../Utils/Color";
 export const styles = StyleSheet.create({
   modalContainer: {
     alignSelf: "center",
-    height: 510,
-    width: "80%",
+    height: 710,
+    width: "90%",
     backgroundColor: '#F5FCFF',
     borderRadius: 15
   },
@@ -36,7 +36,8 @@ export const styles = StyleSheet.create({
     marginHorizontal: 20,
     height: 40,
     width: "90%",
-
+    position: "absolute",
+    bottom: 5
   },
   textaddtocart: {
     color: Colors.second,
@@ -45,7 +46,7 @@ export const styles = StyleSheet.create({
   },
   view_Price: {
     flexDirection: "row",
-    marginVertical: 10
+
   },
   Price: {
     paddingHorizontal: 10

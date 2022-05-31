@@ -18,8 +18,8 @@ import { AutocompleteDropdown } from 'react-native-autocomplete-dropdown'
 import { styles } from './styles';
 import { arrayCategory } from '../../Model/Category';
 import { Colors } from '../../Utils/Color';
-import { getDatabase, ref, onValue } from "firebase/database"
-import Items_Product from"../../Components/items_Product"
+import { getDatabase, ref, onValue, query, orderByChild,limitToFirst } from "firebase/database"
+import Items_Product from "../../Components/items_Product"
 import { async } from '@firebase/util';
 export default function App(props) {
     const [selectedItem, setSelectedItem] = useState(-2);
@@ -30,14 +30,15 @@ export default function App(props) {
 
     const _getData = () => {
         const Ref = ref(getDatabase(), 'products/');
-        onValue(Ref, (snapshot) => {
+        onValue(query(Ref, orderByChild("Timestamp")), (snapshot) => {
             var returnArr = [];
             snapshot.forEach(function (childSnapshot) {
                 var key = childSnapshot.key;
                 var item = childSnapshot.val();
                 returnArr.push(item);
             });
-            setdata(returnArr)
+            setdata(returnArr.reverse())
+
             setFilter(returnArr)
         });
 
@@ -158,6 +159,7 @@ export default function App(props) {
                     keyExtractor={item => item.productID}
                     horizontal={false}
                     numColumns={2}
+                    showsVerticalScrollIndicator={false}
                 />
             </View>
 
