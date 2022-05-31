@@ -133,16 +133,17 @@ export default function App(props) {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <View style={styles.viewSearch}>
+                    <TouchableOpacity style={styles.viewSearch} onPress={() => props.navigation.navigate('SearchProduct')}>
                         <TextInput
                             style={styles.input}
                             placeholder="Search..."
                             placeholderTextColor={Colors.primary}
+                            onFocus={() => props.navigation.navigate('SearchProduct')}
                         />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => props.navigation.navigate('SearchProduct')}>
                             <SearchIcon />
                         </TouchableOpacity>
-                    </View>
+                    </TouchableOpacity>
 
                     <View style={styles.viewType}>
                         <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Balo" })}>
