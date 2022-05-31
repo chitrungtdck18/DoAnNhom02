@@ -252,7 +252,7 @@ export default function App(props) {
 
                                 <TouchableOpacity onPress={() => props.navigation.navigate('Password_Reset') & setisModalVisible(false)} style={styles.view_item_Drawer}>
                                     <Update />
-                                    <Text style={styles.text_item}>Password reset</Text>
+                                    <Text style={styles.text_item}>Change Password</Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity onPress={() => props.navigation.navigate('Cart') & setisModalVisible(false)} style={styles.view_item_Drawer}>

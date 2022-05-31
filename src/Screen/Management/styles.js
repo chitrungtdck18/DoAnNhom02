@@ -68,8 +68,8 @@ export const styles = StyleSheet.create({
     },
     safeareaview: {
         flex: 1,
-        backgroundColor:Colors.second
-      
+        backgroundColor: Colors.second
+
     },
     containerStyle: {
         flexGrow: 1, flexShrink: 1
@@ -85,8 +85,13 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: "#FFFFFF"
     },
-    view_list:{
-        flex:4
+    view_list: {
+        flex: 4
+    },
+    headerseach: {
+        flexDirection: 'row',
+        justifyContent: "space-between",
+        marginHorizontal: 10
     }
-  
+
 })

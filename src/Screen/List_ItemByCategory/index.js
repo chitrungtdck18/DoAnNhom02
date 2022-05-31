@@ -75,6 +75,7 @@ export default function App(props) {
                     renderItem={renderItem}
                     showsHorizontalScrollIndicator={false}
                     numColumns={2}
+                    showsVerticalScrollIndicator={false}
                 />
             </View>
         </SafeAreaView>

@@ -111,7 +111,7 @@ export default function App(props) {
     return (
         <SafeAreaView style={styles.safeareaview}>
             <Header name={"Management"} isAdd />
-            <View style={{ flexDirection: 'row', justifyContent: "space-between", marginHorizontal: 10 }}>
+            <View style={styles.headerseach}>
                 <View style={styles.viewinputSearch}>
                     <TextInput
                         style={styles.input}

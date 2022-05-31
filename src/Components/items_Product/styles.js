@@ -52,15 +52,11 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 10,
         elevation: 15,
-
-        marginLeft: 25,
+        marginHorizontal: 20,
         borderRadius: 10,
         margin: 10,
-
         width: 150,
         height: 230,
-        marginRight: -5,
-
     },
     touchIconShow: {
         alignSelf: 'flex-end'
@@ -259,8 +255,8 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         resizeMode: 'cover',
-      borderTopLeftRadius:10,
-       borderTopRightRadius:10
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10
     },
     view_list: {
         flex: 12

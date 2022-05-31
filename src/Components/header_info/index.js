@@ -30,7 +30,7 @@ export default function App(props) {
             <View style={styles.Cancel}>
                 {props.isAdd ?
                     <TouchableOpacity onPress={() => navigation.navigate("AddProduct")}>
-                        <Add  />
+                        <Add />
                     </TouchableOpacity>
                     : null}
             </View>
