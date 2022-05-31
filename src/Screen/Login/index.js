@@ -30,7 +30,7 @@ export default function App(props) {
     }
   }
   const handleSighin = () => {
-    signInWithEmailAndPassword(getAuth(), email, Password)
+    signInWithEmailAndPassword(auth, email, Password)
       .then((user) => {
         setUserid(user.user.uid)
       })
