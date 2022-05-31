@@ -19,6 +19,7 @@ export default function App(props) {
         <Items_Product item={item} />
     );
     const [data, setdata] = useState([])
+    const [Filter, setFilter] = useState([])
     const _getData = () => {
         const Ref = ref(getDatabase(), 'products/');
         onValue(Ref, (snapshot) => {
@@ -31,6 +32,7 @@ export default function App(props) {
                 }
             });
             setdata(returnArr)
+            setFilter(returnArr)
         });
 
     };
@@ -43,9 +45,10 @@ export default function App(props) {
                 const textData = text.toUpperCase();
                 return itemData.indexOf(textData) > -1;
             });
-            setdata(newData)
+            setFilter(newData)
+
         } else {
-            _getData()
+            setFilter(data)
         }
     }
     useEffect(() => {
@@ -68,7 +71,7 @@ export default function App(props) {
             </View>
             <View style={{ flex: 1 }}>
                 <FlatList
-                    data={data}
+                    data={Filter}
                     renderItem={renderItem}
                     showsHorizontalScrollIndicator={false}
                     numColumns={2}
