@@ -19,12 +19,13 @@ import { addQuantity, removeCart, subQuantity } from '../../Model/ShoppingCart';
 export default function App(props) {
     const { token } = useContext(AuthContext)
     const [data, setdata] = useState()
+    const [totalMoney, settotalMoney] = useState(0);
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity>
                 <View style={styles.viewitem}>
                     <View style={styles.viewimg}>
-                        <Image source={{ uri: item.PhotoUrl1 }} style={styles.imglist}/>
+                        <Image source={{ uri: item.PhotoUrl1 }} style={styles.imglist} />
                     </View>
                     <View style={styles.content_item}>
                         <View style={styles.view_name}>
@@ -33,9 +34,7 @@ export default function App(props) {
                                 onPress={() => removeCart(item.productID, token.userid)}>
                                 <Remove />
                             </TouchableOpacity>
-
                         </View>
-
                         <Text>price {item.Price}$</Text>
                         <View style={styles.view_add_remove}>
                             <View style={styles.add_remove}>
@@ -47,7 +46,7 @@ export default function App(props) {
                                     <Text>-</Text>
                                 </TouchableOpacity>
                             </View>
-                            <Text>{item.Price}$</Text>
+                            <Text>{item.Price * item.Quantity} $</Text>
                         </View>
 
                     </View>
@@ -65,11 +64,22 @@ export default function App(props) {
                 returnArr.push(item);
             });
             setdata(returnArr)
+            handltotal(returnArr)
         });
 
     };
+    const handltotal = (data) => {
+        var total = 0;
+        if (data.length > 0) {
+            for (var i = 0; i < data.length; i++) {
+                total += data[i].Price * data[i].Quantity;
+            }
+            settotalMoney(total);
+        }
+    }
     useEffect(() => {
         _getData()
+      
     }, [])
     return (
         <SafeAreaView style={styles.safeareaview}>
@@ -84,13 +94,9 @@ export default function App(props) {
             </View>
 
             <View style={styles.view_money}>
-                <View style={styles.ship}>
-                    <Text>ship: </Text>
-                    <Text>10$</Text>
-                </View>
-                <View style={styles.total}>
+                <View style={styles.bottomCheckout}>
                     <Text>Total: </Text>
-                    <Text>100$</Text>
+                    <Text>{totalMoney}$</Text>
                 </View>
 
                 <TouchableOpacity style={styles.payment}>

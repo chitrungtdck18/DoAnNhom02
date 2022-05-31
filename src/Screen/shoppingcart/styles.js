@@ -11,8 +11,8 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         marginHorizontal: 20,
         height: 40,
-        width: "90%",
-        marginBottom: 10
+        width: "100%",
+        marginTop: 30
     },
     textpayment: {
         color: Colors.second,
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         margin: 5,
         height: 170,
-      
+
         backgroundColor: Colors.second,
         flexDirection: "row",
         paddingVertical: 5
@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
         marginHorizontal: 15
     },
     name: {
-        width:"80%"
+        width: "80%"
     },
     view_name: {
         flexDirection: "row",
@@ -87,18 +87,33 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
         alignSelf: "flex-end",
         marginRight: 20,
-        marginBottom:10
+        marginBottom: 10
     },
     list: {
-        flex: 3
+        flex: 2
     },
     view_money: {
         flex: 0.5,
         borderTopRightRadius: 10,
-        borderTopLeftRadius: 10
+        borderTopLeftRadius: 10,
+        backgroundColor: Colors.second,
+        alignItems: "center",
+        borderTopLeftRadius: 50,
+        borderTopRightRadius: 50,
+        height: 70,
+        paddingTop: 10,
+        paddingHorizontal: 30,
+        width: "100%"
     },
     plus_sub: {
         fontSize: 15,
         textAlign: "center"
-    }
+    },
+    bottomCheckout: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingBottom: 10,
+        paddingTop: 10,
+        width: "100%"
+    },
 })
