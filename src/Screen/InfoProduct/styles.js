@@ -91,5 +91,12 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500"
   },
-
+  dot:{
+    width: 7,
+    height: 7,
+    borderRadius: 15,
+    marginHorizontal: 10,
+    padding: 0,
+    margin: 0,
+  }
 })

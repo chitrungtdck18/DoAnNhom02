@@ -19,17 +19,16 @@ import { styles } from './styles';
 import { Colors } from '../../Utils/Color';
 import { AuthContext } from '../../Redux/AuthContext';
 import { createCart } from '../../Model/ShoppingCart';
-
+import { SliderBox } from "react-native-image-slider-box"
 export default function App(props) {
     const { token } = useContext(AuthContext)
     const data = props.route.params.item;
-    const DATA = [
-        { key: 1, value: data.PhotoUrl1 },
-        { key: 2, value: data.PhotoUrl2 },
-        { key: 3, value: data.PhotoUrl3 }
+    const images = [
+        data.PhotoUrl1,
+        data.PhotoUrl2,
+        data.PhotoUrl3
     ];
     var _dot = [];
-
     const find = (u) => {
         for (let i = 0; i < DATA.length; i++) {
             var temp = (
@@ -73,7 +72,7 @@ export default function App(props) {
     return (
         <ScrollView style={styles.safeareaview}>
             <Header name={"InfoProduct"} />
-            <View style={styles.viewimg}>
+            {/* <View style={styles.viewimg}>
                 <FlatList
                     numColumns={1}
                     data={DATA}
@@ -85,7 +84,16 @@ export default function App(props) {
                     bounces={false}
                     showsHorizontalScrollIndicator={false}
                 />
-            </View>
+            </View> */}
+             <SliderBox
+                    style={styles.ImageBackground}
+                    images={images}
+                    sliderBoxHeight={500}
+                    onCurrentImagePressed={index => console.log(`image ${index} pressed`)}
+                    dotColor="#2A2D3F"
+                    inactiveDotColor="#90A4AE"
+                    dotStyle={styles.dot}
+                />
             <View style={styles.viewText}>
                 <Text style={styles.nameProduct}>{data.Name}</Text>
                 <Text style={styles.priceProduct}>{data.Price} $</Text>

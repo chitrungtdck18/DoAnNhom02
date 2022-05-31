@@ -176,7 +176,8 @@ export default function App(props) {
                     <View style={{ marginTop: 15, borderTopLeftRadius: 15 }}>
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={styles.title}>New Product</Text>
-                            <TouchableOpacity style={styles.touchIconShow}>
+                            <TouchableOpacity style={styles.touchIconShow}
+                                onPress={() => props.navigation.navigate('List_ItemBy', { name: "New Product", method: "Timestamp" })}>
                                 <ShowIcon />
                             </TouchableOpacity>
                         </View>
@@ -193,7 +194,8 @@ export default function App(props) {
                     <View style={{ marginTop: 15, borderTopLeftRadius: 15 }}>
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={styles.title}>low price</Text>
-                            <TouchableOpacity style={styles.touchIconShow}>
+                            <TouchableOpacity style={styles.touchIconShow}
+                                onPress={() => props.navigation.navigate('List_ItemBy', { name: "low price", method: "Price" })}>
                                 <ShowIcon />
                             </TouchableOpacity>
                         </View>
