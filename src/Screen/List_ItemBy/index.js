@@ -28,7 +28,10 @@ export default function App(props) {
                 var item = childSnapshot.val();
                 returnArr.push(item);
             });
-            setdata(returnArr.reverse())
+            if (props.route.params.method == "Timestamp") {
+                returnArr = returnArr.reverse()
+            }
+            setdata(returnArr)
         });
 
     };

@@ -14,12 +14,20 @@ import Header from '../../Components/header_info';
 import Remove from '../../Icons/RemoveIcon'
 import { AuthContext } from '../../Redux/AuthContext';
 import { Colors } from '../../Utils/Color';
+import Notification from '../../Components/Notification';
+import Payment from '../../Components/Payment';
 import { getDatabase, ref, onValue } from "firebase/database"
 import { addQuantity, removeCart, subQuantity } from '../../Model/ShoppingCart';
 export default function App(props) {
     const { token } = useContext(AuthContext)
     const [data, setdata] = useState()
     const [totalMoney, settotalMoney] = useState(0);
+    const [choose, setchoose] = useState(false)
+    const [choose_Payment, setchoose_Payment] = useState(false)
+    const [id, setid] = useState('')
+    const remove = () => {
+        removeCart(id, token.userid)
+    }
     const renderItem = ({ item }) => {
         return (
             <TouchableOpacity>
@@ -31,7 +39,7 @@ export default function App(props) {
                         <View style={styles.view_name}>
                             <Text style={styles.name}>{item.Name}</Text>
                             <TouchableOpacity style={styles.remove_icon}
-                                onPress={() => removeCart(item.productID, token.userid)}>
+                                onPress={() => setchoose(true) & setid(item.productID)}>
                                 <Remove />
                             </TouchableOpacity>
                         </View>
@@ -79,7 +87,7 @@ export default function App(props) {
     }
     useEffect(() => {
         _getData()
-      
+
     }, [])
     return (
         <SafeAreaView style={styles.safeareaview}>
@@ -99,11 +107,23 @@ export default function App(props) {
                     <Text>{totalMoney}$</Text>
                 </View>
 
-                <TouchableOpacity style={styles.payment}>
+                <TouchableOpacity style={styles.payment} onPress={()=>setchoose_Payment(true)}>
                     <Text style={styles.textpayment}>Payment</Text>
                 </TouchableOpacity>
             </View>
-
+            <Notification
+                ModalVisible={choose}
+                cancel={e => setchoose(e)}
+                ok={() => remove()}
+                name={"Remove item "}
+                describe={"Are you sure to Remove the item!??"}
+            />
+            <Payment
+                ModalVisible={choose_Payment}
+                cancel={e => setchoose_Payment(e)}
+                name={"Cart"}
+                data={data}
+            />
         </SafeAreaView>
     );
 }
