@@ -13,12 +13,13 @@ import { useNavigation } from '@react-navigation/native';
 import { getDatabase, ref, onValue } from "firebase/database"
 import { Colors } from "../../Utils/Color";
 import { AuthContext } from '../../Redux/AuthContext';
+import { database } from '../../Utils/firebase-Config';
 export default function Register(props) {
     const navigation = useNavigation();
     const { token } = useContext(AuthContext)
     const [numbercart, setnumbercart] = useState(0)
     const _getData = () => {
-        const Ref = ref(getDatabase(), 'shoppingCart/' + token.userid);
+        const Ref = ref(database, 'shoppingCart/' + token.userid);
         onValue(Ref, (snapshot) => {
             var returnArr = [];
             snapshot.forEach(function (childSnapshot) {

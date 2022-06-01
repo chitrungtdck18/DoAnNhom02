@@ -13,14 +13,14 @@ import {
 import Lock from '../../Icons/LockIcon';
 import Header from '../../Components/header_info';
 import { auth } from '../../Utils/firebase-Config';
-import { getAuth, updatePassword, EmailAuthProvider, reauthenticateWithCredential } from "firebase/auth"
+import { getAuth, updatePassword, EmailAuthProvider, reauthenticateWithCredential,signOut } from "firebase/auth"
 import { AuthContext } from '../../Redux/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Notification from '../../Components/Notification';
 import { styles } from './styles';
 import { Colors } from '../../Utils/Color';
 export default function App(props) {
-    const user = getAuth().currentUser;
+    const user = auth.currentUser;
     const { setToken } = useContext(AuthContext)
     const [Current_Password, setCurrent_Password] = useState("")
     const [New_Password, setNew_Password] = useState("")
@@ -52,8 +52,8 @@ export default function App(props) {
             });
     }
     const handleLogout = async () => {
-        auth.
-            signOut()
+     
+            signOut(auth)
             .then(() => setUserid(""));
 
     }

@@ -21,6 +21,7 @@ import { Colors } from '../../Utils/Color';
 import { getDatabase, ref, onValue, query, orderByChild,limitToFirst } from "firebase/database"
 import Items_Product from "../../Components/items_Product"
 import { async } from '@firebase/util';
+import { database } from '../../Utils/firebase-Config';
 export default function App(props) {
     const [selectedItem, setSelectedItem] = useState(-2);
     const [selectedItem_name, setselectedItem_name] = useState("");
@@ -29,7 +30,7 @@ export default function App(props) {
     const [Filter, setFilter] = useState([])
 
     const _getData = () => {
-        const Ref = ref(getDatabase(), 'products/');
+        const Ref = ref(database, 'products/');
         onValue(query(Ref, orderByChild("Timestamp")), (snapshot) => {
             var returnArr = [];
             snapshot.forEach(function (childSnapshot) {

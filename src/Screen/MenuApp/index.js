@@ -31,8 +31,8 @@ import { getlistCategory, arrayCategory } from '../../Model/Category';
 import { AuthContext } from '../../Redux/AuthContext';
 import { getDatabase, ref, onValue, query, orderByChild, limitToFirst, limitToLast, startAt } from "firebase/database"
 import { Colors } from '../../Utils/Color';
-import { Adminid } from '../../Utils/firebase-Config';
-
+import { Adminid, database } from '../../Utils/firebase-Config';
+import { auth } from '../../Utils/firebase-Config';
 export default function App(props) {
     { arrayCategory }
     const { token } = useContext(AuthContext)
@@ -51,7 +51,7 @@ export default function App(props) {
     );
 
     const handleLogout = async () => {
-        signOut(getAuth())
+        signOut(auth)
             .then(() => setUserid(""));
 
     }
@@ -65,8 +65,8 @@ export default function App(props) {
         }
     }
     const _getUser = () => {
-        const db = getDatabase();
-        const Ref = ref(db, 'user/' + token.userid);
+      
+        const Ref = ref(database, 'user/' + token.userid);
         onValue(Ref, (snapshot) => {
             var item = snapshot.val();
             var returnArr = [];
@@ -76,7 +76,7 @@ export default function App(props) {
 
     };
     const _getData = () => {
-        const Ref = ref(getDatabase(), 'products/');
+        const Ref = ref(database, 'products/');
         onValue(query(Ref, orderByChild("Timestamp", "desc"), limitToLast(6)), (snapshot) => {
             var returnArr = [];
             snapshot.forEach(function (childSnapshot) {
@@ -99,7 +99,7 @@ export default function App(props) {
         });
     };
     const _getCart = () => {
-        const Ref = ref(getDatabase(), 'shoppingCart/' + token.userid);
+        const Ref = ref(database, 'shoppingCart/' + token.userid);
         onValue(Ref, (snapshot) => {
             var returnArr = [];
             snapshot.forEach(function (childSnapshot) {

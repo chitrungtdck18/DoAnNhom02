@@ -8,7 +8,7 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native';
-import { auth, login } from '../../Utils/firebase-Config';
+import { auth } from '../../Utils/firebase-Config';
 import { getAuth, signInWithEmailAndPassword ,sendPasswordResetEmail} from "firebase/auth";
 import { styles } from './styles';
 import { AuthContext } from '../../Redux/AuthContext';
@@ -48,7 +48,7 @@ export default function App(props) {
     }
   }
   const handleRestPass = (Email) => {
-   sendPasswordResetEmail(getAuth(),Email)
+   sendPasswordResetEmail(auth,Email)
       .then(function (user) {
         alert('Please check your email...')
       }).catch(function (e) {

@@ -1,9 +1,10 @@
 
 import { getDatabase, ref, set, onValue, push } from "firebase/database"
+import { database } from "../Utils/firebase-Config";
 
 export const Default_Image_Add = "https://firebasestorage.googleapis.com/v0/b/clothes-store-21b7f.appspot.com/o/Default_Image_Add%2Fimg_add.png?alt=media&token=4e1baebf-6672-4348-8ebe-79b2b50c1e67"
 
-const database = getDatabase();
+
 export const createProduct = (data) => {
     var db_Product = ref(database, 'products/');
     const newReference = push(db_Product);

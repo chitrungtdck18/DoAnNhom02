@@ -1,6 +1,7 @@
 import { getDatabase, ref, set, onValue, push } from "firebase/database"
+import { database } from "../Utils/firebase-Config";
 
-const database = getDatabase();
+
 export const createCart = (data, userid) => {
     var db_Cart = ref(database, 'shoppingCart/' + userid + "/" + data.productID);
     var Cart = {

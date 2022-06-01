@@ -52,7 +52,7 @@ export default function App(props) {
     const handleSighnUp = () => {
       createUserWithEmailAndPassword(auth,email, Password)
             .then((user) => {
-                const u = getAuth().currentUser;
+                const u = auth.currentUser;
                 updateProfile(u,{
                     displayName: name,
                     photoURL: default_avatar

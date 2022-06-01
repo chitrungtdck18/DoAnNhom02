@@ -13,7 +13,7 @@ import Username from '../../Icons/Username';
 import Phone from '../../Icons/PhoneIcon';
 import Notification from '../../Components/Notification';
 import Header from '../../Components/header_info';
-
+import { auth } from '../../Utils/firebase-Config';
 import { getAuth, updateProfile } from "firebase/auth"
 import ImagePicker from 'react-native-image-crop-picker';
 import Modal from 'react-native-modal'
@@ -23,7 +23,7 @@ import { Colors } from '../../Utils/Color';
 import storage from '@react-native-firebase/storage';
 export default function App(props) {
     const User = props.route.params.user
-    const u = getAuth().currentUser;
+    const u = auth.currentUser;
     const [name, setName] = useState(User.userName || "")
     const [phone, setphone] = useState(User.phone || "")
     const [urlAvatar, seturlAvatar] = useState(User.urlAvatar || "")

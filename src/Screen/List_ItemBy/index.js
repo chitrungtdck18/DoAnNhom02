@@ -14,6 +14,7 @@ import { styles } from './styles';
 import { Colors } from '../../Utils/Color';
 import Items_Product from '../../Components/items_Product'
 import { getDatabase, ref, onValue, query, orderByChild } from "firebase/database"
+import { database } from '../../Utils/firebase-Config';
 export default function App(props) {
     const renderItem = ({ item, }) => (
         <Items_Product item={item} />
@@ -22,7 +23,7 @@ export default function App(props) {
     const [data, setdata] = useState([])
     const [Filter, setFilter] = useState([])
     const _getData = () => {
-        const Ref = ref(getDatabase(), 'products/');
+        const Ref = ref(database, 'products/');
         onValue(query(Ref, orderByChild(props.route.params.method, "desc")), (snapshot) => {
             var returnArr = [];
             snapshot.forEach(function (childSnapshot) {

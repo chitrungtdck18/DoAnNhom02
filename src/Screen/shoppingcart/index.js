@@ -18,6 +18,7 @@ import Notification from '../../Components/Notification';
 import Payment from '../../Components/Payment';
 import { getDatabase, ref, onValue } from "firebase/database"
 import { addQuantity, removeCart, subQuantity } from '../../Model/ShoppingCart';
+import { database } from '../../Utils/firebase-Config';
 export default function App(props) {
     const { token } = useContext(AuthContext)
     const [data, setdata] = useState()
@@ -63,7 +64,7 @@ export default function App(props) {
         )
     }
     const _getData = () => {
-        const Ref = ref(getDatabase(), 'shoppingCart/' + token.userid);
+        const Ref = ref(database, 'shoppingCart/' + token.userid);
         onValue(Ref, (snapshot) => {
             var returnArr = [];
             snapshot.forEach(function (childSnapshot) {
