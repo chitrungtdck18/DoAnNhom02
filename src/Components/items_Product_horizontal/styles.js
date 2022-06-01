@@ -52,10 +52,11 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 10,
         elevation: 15,
-        marginLeft: 15,
+        marginLeft: 20,
+        marginRight: -10,
         marginVertical: 6,
         borderRadius: 10,
-        width: 175,
+        width: 150,
         height: 230,
     },
     touchIconShow: {
@@ -63,7 +64,7 @@ export const styles = StyleSheet.create({
     },
     viewimg: {
 
-        width: 175,
+        width: 150,
         height: 170,
         borderRadius: 10,
     },

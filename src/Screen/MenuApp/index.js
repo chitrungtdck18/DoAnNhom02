@@ -24,7 +24,7 @@ import Modal from 'react-native-modal'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Info_product from '../../Components/Info_product'
-import Items_Product from '../../Components/items_Product'
+import Items_Product from '../../Components/items_Product_horizontal'
 import { signOut, getAuth } from "firebase/auth";
 import { styles } from './styles';
 import { getlistCategory, arrayCategory } from '../../Model/Category';
