@@ -1,8 +1,11 @@
 
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDownloadURL, getStorage, uploadBytes } from "firebase/storage";
 import { getDatabase, ref, push } from "firebase/database"
+import { getMessaging, getToken } from "firebase/messaging";
+// import { onBackgroundMessage } from "firebase/messaging/sw";
+
 let config = {
   apiKey: "AIzaSyDqVwaBYHQQQ2uo6jQK17QOG6Zj4cmqbIM",
   authDomain: "clothes-store-21b7f.firebaseapp.com",
@@ -13,11 +16,13 @@ let config = {
   appId: "1:668627707668:web:6203cd43b7c2bc65e08401",
   measurementId: "G-RBL0Y816GG"
 };
-initializeApp(config);
+const app = initializeApp(config);
 const database = getDatabase()
 const storage = getStorage();
 const auth = getAuth()
 const Adminid = "KIX43luQnZRTd8Mc5GtvJPcBkzd2"
+// const messaging = getMessaging();
+
 export { auth, database, storage, Adminid }
 
 

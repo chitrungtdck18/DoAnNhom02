@@ -5,10 +5,14 @@ import {
     Image,
     TouchableOpacity,
 } from 'react-native';
+import AddIcon from '../../Icons/AddIcon'
 import { useNavigation } from '@react-navigation/native';
 import { styles } from './styles';
+import { AuthContext } from '../../Redux/AuthContext';
+import { createCart } from '../../Model/ShoppingCart';
 export default function App({ item, isupdate, handlerLongClick }) {
     const navigation = useNavigation();
+    const { token } = useContext(AuthContext)
     const handleNavigate = () => {
         if (isupdate == true) {
             navigation.navigate('UpdateProduct', { item: item })
@@ -27,6 +31,9 @@ export default function App({ item, isupdate, handlerLongClick }) {
         }
 
     }
+    const handle_Addtocart = () => {
+        createCart(item, token.userid)
+    }
     return (
         <TouchableOpacity
             onPress={() => handleNavigate()}
@@ -37,7 +44,12 @@ export default function App({ item, isupdate, handlerLongClick }) {
                 </View>
                 <View style={styles.textitem}>
                     <Text style={styles.titleitem}>{item.Name}</Text>
-                    <Text style={styles.titleitem}>Price: {item.Price} $</Text>
+                    <View style={styles.view_Price}>
+                        <Text style={styles.titleitem}>Price: {item.Price} $</Text>
+                        <TouchableOpacity onPress={()=>handle_Addtocart()}>
+                            <AddIcon />
+                        </TouchableOpacity>
+                    </View>
                 </View>
 
             </View>

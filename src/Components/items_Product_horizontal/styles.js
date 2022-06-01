@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
         fontSize: 13,
         color: Colors.second,
         fontWeight: '500',
+      
     },
     textitem: {
         padding: 10,
@@ -57,7 +58,7 @@ export const styles = StyleSheet.create({
         marginVertical: 6,
         borderRadius: 10,
         width: 150,
-        height: 230,
+        height: 235,
     },
     touchIconShow: {
         alignSelf: 'flex-end'
@@ -265,4 +266,9 @@ export const styles = StyleSheet.create({
     loading: {
         flex: 1, justifyContent: 'center', alignItems: 'center'
     },
+    view_Price: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        
+    }
 })
