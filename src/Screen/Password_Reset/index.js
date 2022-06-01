@@ -52,10 +52,8 @@ export default function App(props) {
             });
     }
     const handleLogout = async () => {
-     
             signOut(auth)
             .then(() => setUserid(""));
-
     }
     const setUserid = async (text) => {
         try {

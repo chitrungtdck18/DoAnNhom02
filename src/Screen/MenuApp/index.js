@@ -65,7 +65,6 @@ export default function App(props) {
         }
     }
     const _getUser = () => {
-      
         const Ref = ref(database, 'user/' + token.userid);
         onValue(Ref, (snapshot) => {
             var item = snapshot.val();
@@ -84,7 +83,6 @@ export default function App(props) {
                 returnArr.push(item);
             });
             setdata1(returnArr.reverse())
-
             setloading(false)
         });
         onValue(query(Ref, orderByChild("Price", "desc"), limitToLast(6)), (snapshot) => {
@@ -94,7 +92,6 @@ export default function App(props) {
                 returnArr.push(item);
             });
             setdata2(returnArr)
-
             setloading(false)
         });
     };

@@ -15,9 +15,8 @@ import { styles } from './styles';
 import { AuthContext } from '../../Redux/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createUser, default_avatar } from '../../Model/User';
-import { createUserWithEmailAndPassword,updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { Colors } from '../../Utils/Color';
-import { getAuth } from 'firebase/auth';
 export default function App(props) {
     const { setToken } = useContext(AuthContext)
     const [name, setName] = useState('')
@@ -35,7 +34,10 @@ export default function App(props) {
         if (Password != Confirm) {
             alert("pass khong giong nhau")
         }
-        if (email.match(pattern)) {
+        if (!email.match(pattern)) {
+            alert("email sai!!")
+        }
+        else {
             handleSighnUp()
         }
     }
@@ -50,10 +52,10 @@ export default function App(props) {
 
     }
     const handleSighnUp = () => {
-      createUserWithEmailAndPassword(auth,email, Password)
+        createUserWithEmailAndPassword(auth, email, Password)
             .then((user) => {
                 const u = auth.currentUser;
-                updateProfile(u,{
+                updateProfile(u, {
                     displayName: name,
                     photoURL: default_avatar
                 }).then(() => {

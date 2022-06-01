@@ -25,7 +25,10 @@ export default function App(props) {
     if (email === "" || Password === "") {
       alert('vui long nhap du')
     }
-    if (email.match(pattern)) {
+    if (!email.match(pattern)) {
+      alert("email sai!!")
+    }
+    else{
       handleSighin()
     }
   }
