@@ -35,14 +35,15 @@ export const styles = StyleSheet.create({
         fontSize: 13,
         color: Colors.second,
         fontWeight: '500',
-      
+
     },
     textitem: {
         padding: 10,
         backgroundColor: "#383a40",
         flex: 1,
         borderBottomLeftRadius: 5,
-        borderBottomRightRadius: 5
+        borderBottomRightRadius: 5,
+        
     },
     viewitem: {
         shadowColor: "#000",
@@ -58,7 +59,7 @@ export const styles = StyleSheet.create({
         marginVertical: 6,
         borderRadius: 10,
         width: 150,
-        height: 235,
+        height: 240,
     },
     touchIconShow: {
         alignSelf: 'flex-end'
@@ -269,6 +270,13 @@ export const styles = StyleSheet.create({
     view_Price: {
         flexDirection: "row",
         justifyContent: "space-between",
-        
+     
+    },
+    Priceitem: {
+        fontSize: 13,
+        color: Colors.second,
+        fontWeight: '500',
+        textAlign: "center",
+        marginTop:5
     }
 })

@@ -45,7 +45,7 @@ export default function App({ item, isupdate, handlerLongClick }) {
                 <View style={styles.textitem}>
                     <Text style={styles.titleitem}>{item.Name}</Text>
                     <View style={styles.view_Price}>
-                        <Text style={styles.titleitem}>Price: {item.Price} $</Text>
+                        <Text style={styles.Priceitem}>Price: {item.Price} $</Text>
                         <TouchableOpacity onPress={()=>handle_Addtocart()}>
                             <AddIcon />
                         </TouchableOpacity>

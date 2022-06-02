@@ -25,6 +25,7 @@ import Modal from 'react-native-modal'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Info_product from '../../Components/Info_product'
 import Items_Product from '../../Components/items_Product_horizontal'
+import Slider from "../../Components/Slider"
 import { signOut, getAuth } from "firebase/auth";
 import { styles } from './styles';
 import { getlistCategory, arrayCategory } from '../../Model/Category';
@@ -33,6 +34,8 @@ import { getDatabase, ref, onValue, query, orderByChild, limitToFirst, limitToLa
 import { Colors } from '../../Utils/Color';
 import { Adminid, database } from '../../Utils/firebase-Config';
 import { auth } from '../../Utils/firebase-Config';
+import Banner from '../../Components/Banners';
+import { SliderBox } from "react-native-image-slider-box"
 export default function App(props) {
     { arrayCategory }
     const { token } = useContext(AuthContext)
@@ -46,6 +49,7 @@ export default function App(props) {
     const [item, setitem] = useState()
     const [numbercart, setnumbercart] = useState(0)
 
+    const [banner, setbanner] = useState([])
     const renderItem = ({ item, }) => (
         <Items_Product item={item} handlerLongClick={(e) => handlerLongClick(e)} />
     );
@@ -85,7 +89,7 @@ export default function App(props) {
             setdata1(returnArr.reverse())
             setloading(false)
         });
-        onValue(query(Ref, orderByChild("Price", "desc"), limitToLast(6)), (snapshot) => {
+        onValue(query(Ref, orderByChild("Price", "desc"), limitToFirst(6)), (snapshot) => {
             var returnArr = [];
             snapshot.forEach(function (childSnapshot) {
                 var item = childSnapshot.val();
@@ -107,6 +111,18 @@ export default function App(props) {
         });
 
     };
+    const _getBanner = () => {
+        const Ref = ref(database, 'Banner/');
+        onValue(Ref, (snapshot) => {
+            var returnArr = [];
+            snapshot.forEach(function (childSnapshot) {
+                var item = childSnapshot.val();
+                returnArr.push(item.photo);
+            });
+            setbanner(returnArr)
+        });
+
+    };
     const handlerLongClick = (i) => {
         setitem(i)
         setchoose(!choose)
@@ -116,6 +132,7 @@ export default function App(props) {
         _getUser()
         _getData()
         _getCart()
+        _getBanner()
         const unsubscribe = props.navigation.addListener('focus', () => {
             setisModalVisible(false)
         });
@@ -158,7 +175,24 @@ export default function App(props) {
                             <SearchIcon />
                         </TouchableOpacity>
                     </TouchableOpacity>
-
+                    <View style={styles.component}>
+                        {/* <Slider
+                            isAuto={true}
+                            isBanner={true}
+                            dotColor={Colors.sixth}
+                            dotIndexColor={Colors.fourth}
+                            data={banner}
+                            item={(value) => <Banner item={value} />} /> */}
+                        <SliderBox
+                            style={styles.ImageBackground}
+                            images={banner}
+                            sliderBoxHeight={500}
+                            dotColor="#2A2D3F"
+                            inactiveDotColor="#90A4AE"
+                            dotStyle={styles.dot}
+                            autoplay={true}
+                        />
+                    </View>
                     <View style={styles.viewType}>
                         <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Balo" })}>
                             <Image style={styles.Image} source={require('../../Static/Images/bp.png')}></Image>
@@ -187,6 +221,7 @@ export default function App(props) {
 
                         </TouchableOpacity>
                     </View>
+
                     <View style={{ marginTop: 15, borderTopLeftRadius: 15 }}>
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={styles.title}>New Product</Text>

@@ -274,7 +274,7 @@ export const styles = StyleSheet.create({
         right: 10,
         position: 'absolute',
         top: 15,
-        backgroundColor: '#e65c51',
+        backgroundColor: Colors.third,
         borderRadius: 50,
         height: 15,
         width: 15,
@@ -284,5 +284,22 @@ export const styles = StyleSheet.create({
         fontSize: 10,
         fontWeight: 'bold',
         color: Colors.second
-    }
+    },
+    component: {
+        marginVertical: 24,
+        marginHorizontal: 20
+    },
+    ImageBackground: {
+        height: 150,
+        width: "90%"
+    },
+    dot: {
+        width: 10,
+        height: 10,
+        borderRadius: 15,
+        marginHorizontal: 5,
+        padding: 0,
+        margin: 0,
+    },
+   
 })

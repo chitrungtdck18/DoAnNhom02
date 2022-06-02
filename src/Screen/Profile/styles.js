@@ -40,15 +40,14 @@ export const styles = StyleSheet.create({
   },
   save: {
     height: 40,
-    width: 350,
+    width: 300,
     alignItems: "center",
-    backgroundColor: "red",
+    backgroundColor: Colors.primary,
     borderRadius: 15,
     justifyContent: "center",
   },
   Save_text: {
     textAlign: "center",
-
     color: Colors.second,
     textTransform: "capitalize"
   },

@@ -13,7 +13,7 @@ function SvgComponent(props) {
     >
       <Path
         d="M4.1 8.1a3.4 3.4 0 100-6.8 3.4 3.4 0 000 6.8zM6.6 7l1.8 1.8"
-        stroke="#BD8522"
+        stroke="#000"
         strokeMiterlimit={10}
         strokeLinecap="round"
         strokeLinejoin="round"

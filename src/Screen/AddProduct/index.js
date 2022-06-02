@@ -46,7 +46,7 @@ export default function App(props) {
                 PhotoUrl2: Photo2,
                 PhotoUrl3: Photo3
             })
-
+            handleClear()
         }
         }
         else {
@@ -105,6 +105,14 @@ export default function App(props) {
                     })
             })
 
+    }
+    const handleClear =()=>{
+        setPhoto1("")
+        setPhoto2("")
+        setPhoto3("")
+        setName("")
+        setPrice("")
+        setDesc("")
     }
     const dataitem = [...arrayCategory].filter((i) => i.id > -2);
     return (

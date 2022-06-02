@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     },
     payment: {
         justifyContent: "center",
-        backgroundColor: "#38761d",
+        backgroundColor: Colors.primary,
         borderRadius: 5,
         alignItems: "center",
         marginHorizontal: 20,

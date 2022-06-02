@@ -15,7 +15,7 @@ function SvgComponent(props) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M1.63 1.43a3.509 3.509 0 014.95.33L28.502 26.81 50.421 1.76a3.509 3.509 0 015.282 4.621L32.462 32.941a5.263 5.263 0 01-7.922 0L1.3 6.381a3.509 3.509 0 01.33-4.952z"
-        fill="#FF8600"
+        fill="#000"
       />
       <Path
         fillRule="evenodd"

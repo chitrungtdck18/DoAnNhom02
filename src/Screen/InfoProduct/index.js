@@ -89,10 +89,10 @@ export default function App(props) {
                     style={styles.ImageBackground}
                     images={images}
                     sliderBoxHeight={500}
-                    onCurrentImagePressed={index => console.log(`image ${index} pressed`)}
                     dotColor="#2A2D3F"
                     inactiveDotColor="#90A4AE"
                     dotStyle={styles.dot}
+                    autoplay={true}
                 />
             <View style={styles.viewText}>
                 <Text style={styles.nameProduct}>{data.Name}</Text>

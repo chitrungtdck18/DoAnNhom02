@@ -22,13 +22,13 @@ export const styles = StyleSheet.create({
   priceProduct: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: Colors.second,
+    color: Colors.primary,
     textAlign: 'center',
     width: '40%',
     paddingVertical: 3,
     marginVertical: 5,
     borderRadius: 15,
-    backgroundColor: Colors.primary,
+    // backgroundColor: Colors.primary,
   },
   nameProduct: {
     fontSize: 24,
@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
   },
   payment: {
     justifyContent: "center",
-    backgroundColor: "#38761d",
+    backgroundColor: Colors.primary,
     borderRadius: 5,
     alignItems: "center",
     marginHorizontal: 20,
@@ -91,7 +91,7 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "500"
   },
-  dot:{
+  dot: {
     width: 7,
     height: 7,
     borderRadius: 15,

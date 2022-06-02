@@ -138,7 +138,7 @@ export const styles = StyleSheet.create({
     height: 125,
     width: 100,
     marginHorizontal: 15,
-    borderColor: "#BD8522",
+    borderColor: Colors.primary,
     borderWidth: 2,
     borderRadius: 5
   },
