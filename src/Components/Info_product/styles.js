@@ -30,14 +30,15 @@ export const styles = StyleSheet.create({
   },
   addtocart: {
     justifyContent: "center",
-    backgroundColor: "#38761d",
+    backgroundColor: Colors.primary,
     borderRadius: 5,
     alignItems: "center",
     marginHorizontal: 20,
     height: 40,
     width: "90%",
     position: "absolute",
-    bottom: 5
+    bottom: 5,
+    borderRadius: 15
   },
   textaddtocart: {
     color: Colors.second,
@@ -54,7 +55,7 @@ export const styles = StyleSheet.create({
   viewDesc: {
     paddingHorizontal: 10
   },
-  dot:{
+  dot: {
     width: 7,
     height: 7,
     borderRadius: 15,

@@ -138,20 +138,21 @@ export const styles = StyleSheet.create({
     height: 125,
     width: 100,
     marginHorizontal: 15,
-    borderColor: "#BD8522",
+    borderColor: Colors.primary,
     borderWidth: 2,
     borderRadius: 5
   },
   view_save: {
     justifyContent: "center",
-    backgroundColor: "#38761d",
+    backgroundColor: Colors.third,
     borderRadius: 5,
     alignItems: "center",
     marginHorizontal: 20,
     height: 40,
     width: "40%",
     marginBottom: 10,
-  
+    borderRadius: 15
+
   },
   textsave: {
     color: Colors.second,
@@ -211,9 +212,25 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     height: 180
   },
-  view_bottom:{
+  view_bottom: {
     position: "absolute",
     bottom: 5,
-    flexDirection:"row"
+    flexDirection: "row"
+  },
+  textRemove:{
+    color: Colors.second,
+    fontSize: 18,
+    fontWeight: "500"
+  },
+  view_Remove:{
+    justifyContent: "center",
+    backgroundColor: Colors.nineth,
+    borderRadius: 5,
+    alignItems: "center",
+    marginHorizontal: 20,
+    height: 40,
+    width: "40%",
+    marginBottom: 10,
+    borderRadius: 15
   }
 })

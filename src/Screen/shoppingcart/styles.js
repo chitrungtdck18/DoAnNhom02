@@ -12,7 +12,8 @@ export const styles = StyleSheet.create({
         marginHorizontal: 20,
         height: 40,
         width: "100%",
-        marginTop: 30
+        marginTop: 30,
+        borderRadius: 15
     },
     textpayment: {
         color: Colors.second,

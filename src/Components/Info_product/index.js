@@ -48,6 +48,7 @@ export default function app(props) {
                     dotColor="#2A2D3F"
                     inactiveDotColor="#90A4AE"
                     dotStyle={styles.dot}
+                    autoplay={true}
                 />
                 <ScrollView>
                     <View style={styles.viewDesc}>

@@ -186,8 +186,8 @@ export default function App(props) {
 
             </View>
             <View style={styles.view_bottom}>
-                <TouchableOpacity style={styles.view_save} onPress={() => setchoose_remove(true)}>
-                    <Text style={styles.textsave}>Remove</Text>
+                <TouchableOpacity style={styles.view_Remove} onPress={() => setchoose_remove(true)}>
+                    <Text style={styles.textRemove}>Remove</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.view_save} onPress={() => setchoose_save(true)}>
                     <Text style={styles.textsave}>Save</Text>

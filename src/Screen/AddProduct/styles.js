@@ -144,18 +144,18 @@ export const styles = StyleSheet.create({
   },
   view_save: {
     justifyContent: "center",
-    backgroundColor: "#38761d",
+    backgroundColor: Colors.primary,
     borderRadius: 5,
     alignItems: "center",
     marginHorizontal: 20,
     height: 40,
     width: "90%",
     marginBottom: 10,
-   
+    borderRadius: 15
   },
   textsave: {
     color: Colors.second,
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "500"
   },
   centeredView: {

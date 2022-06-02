@@ -22,8 +22,8 @@ export const styles = StyleSheet.create({
   priceProduct: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: Colors.primary,
-    textAlign: 'center',
+    color: Colors.seventh,
+    // textAlign: 'center',
     width: '40%',
     paddingVertical: 3,
     marginVertical: 5,
@@ -59,7 +59,10 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   ImageBackground: {
-    width: Dimensions.get('window').width, height: 350, justifyContent: 'flex-end'
+    width: Dimensions.get('window').width,
+     height: 350, 
+     justifyContent: 'flex-end',
+     marginTop:5
   },
   dot: {
     paddingHorizontal: 20

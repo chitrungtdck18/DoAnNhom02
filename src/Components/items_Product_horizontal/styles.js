@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5,
-        
+
     },
     viewitem: {
         shadowColor: "#000",
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
         marginVertical: 6,
         borderRadius: 10,
         width: 150,
-        height: 240,
+        height: 245,
     },
     touchIconShow: {
         alignSelf: 'flex-end'
@@ -270,13 +270,20 @@ export const styles = StyleSheet.create({
     view_Price: {
         flexDirection: "row",
         justifyContent: "space-between",
-     
+        position: "absolute",
+        bottom: 5,
+        left: 10,
+        width:"100%",
+
     },
     Priceitem: {
         fontSize: 13,
         color: Colors.second,
         fontWeight: '500',
         textAlign: "center",
-        marginTop:5
+        marginTop: 5
+    },
+    view_add: {
+
     }
 })
