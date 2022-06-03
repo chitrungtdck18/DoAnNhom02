@@ -23,11 +23,12 @@ import Notification from '../../Components/Notification';
 export default function App(props) {
     const item = props.route.params.item
     const ID = item.productID
+
     const result = arrayCategory.filter((u) => u.title == item.Type)
     const [choose_save, setchoose_save] = useState(false)
     const [choose_remove, setchoose_remove] = useState(false)
     const [Name, setName] = useState(item.Name)
-    const [Price, setPrice] = useState(item.Price)
+    const [Price, setPrice] = useState(item.Price+"")
     const [Desc, setDesc] = useState(item.Desc)
     const [selectedItem, setSelectedItem] = useState(result[0].id);
     const [Photo1, setPhoto1] = useState(item.PhotoUrl1)

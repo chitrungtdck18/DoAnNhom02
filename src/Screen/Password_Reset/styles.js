@@ -32,12 +32,11 @@ export const styles = StyleSheet.create({
   },
   safeareaview: {
     flex: 1,
-
     alignItems: "center"
   },
   save: {
     height: 40,
-    width: 350,
+    width: 300,
     alignItems: "center",
     backgroundColor: "red",
     borderRadius: 15,
@@ -45,7 +44,6 @@ export const styles = StyleSheet.create({
   },
   Save_text: {
     textAlign: "center",
-
     color: Colors.second,
     textTransform: "capitalize"
   },

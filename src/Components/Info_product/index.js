@@ -56,7 +56,7 @@ export default function app(props) {
                     </View>
                     <View style={styles.view_Price}>
                         <Text style={styles.Price}>Price</Text>
-                        <Text>{item.Price}$</Text>
+                        <Text>{item.Price}.000₫</Text>
                     </View>
                 </ScrollView>
 

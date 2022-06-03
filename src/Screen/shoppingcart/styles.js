@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
     },
     view_add_remove: {
         flexDirection: "row",
-
+        justifyContent: "space-between"
     },
     content_item: {
         paddingVertical: 15,
@@ -64,31 +64,30 @@ export const styles = StyleSheet.create({
     },
     add_remove: {
         flexDirection: "row",
-        borderColor: '#000',
-        borderWidth: 1,
+        // borderColor: Colors.tenth,
+        // borderWidth: 1,
         alignContent: "center",
         marginRight: 10,
-        paddingHorizontal: 5,
-        borderRadius: 5
+        // paddingHorizontal: 5,
+        // borderRadius: 5,
+        // borderRadius: 20
     },
     item_quantity: {
-        marginHorizontal: 15
+        fontWeight: "bold",
+        color: Colors.primary,
+        textAlign:"center"
     },
     name: {
         width: "80%"
     },
     view_name: {
         flexDirection: "row",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
     },
     remove_icon: {
         padding: 5,
-        borderColor: '#000',
-        borderWidth: 1,
-        borderRadius: 5,
-        alignSelf: "flex-end",
-        marginRight: 20,
-        marginBottom: 10
+        position: "absolute",
+        right: 5
     },
     list: {
         flex: 2
@@ -108,7 +107,9 @@ export const styles = StyleSheet.create({
     },
     plus_sub: {
         fontSize: 15,
-        textAlign: "center"
+        textAlign: "center",
+        fontWeight: "bold",
+        color: Colors.primary
     },
     bottomCheckout: {
         flexDirection: 'row',
@@ -117,4 +118,33 @@ export const styles = StyleSheet.create({
         paddingTop: 10,
         width: "100%"
     },
+    item_text: {
+        fontWeight: "bold",
+        fontSize: 16,
+        color: Colors.primary
+    },
+    sub: {
+        fontSize: 16,
+        textAlign: "center",
+        fontWeight: "bold",
+    },
+    view_plus: {
+        borderColor: Colors.tenth,
+        borderWidth: 0.75,
+        borderTopLeftRadius:20,
+        borderBottomLeftRadius:20,
+        width:20
+    },
+    view_quanty:{
+        borderColor: Colors.tenth,
+        borderWidth: 0.75,
+        width:30
+    },
+    view_sub:{
+        borderColor: Colors.tenth,
+        borderWidth: 0.75,
+        borderBottomRightRadius:20,
+        borderTopRightRadius:20,
+        width:20
+    }    
 })

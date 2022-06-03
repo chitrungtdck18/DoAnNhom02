@@ -213,8 +213,7 @@ export const styles = StyleSheet.create({
     height: 180
   },
   view_bottom: {
-    position: "absolute",
-    bottom: 5,
+  
     flexDirection: "row"
   },
   textRemove:{

@@ -63,7 +63,7 @@ export const styles = StyleSheet.create({
 
     },
     touchIconShow: {
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
     },
     viewimg: {
 
@@ -180,7 +180,8 @@ export const styles = StyleSheet.create({
         borderRadius: 30,
         marginRight: 10,
         marginLeft: 20,
-
+        borderColor: Colors.second,
+        borderWidth: 1
     },
     userInfoSection: {
         flexDirection: "row",
@@ -188,7 +189,7 @@ export const styles = StyleSheet.create({
         height: 150,
         paddingTop: 45,
         justifyContent: "space-between",
-        backgroundColor: 'gray',
+        backgroundColor: Colors.primary,
         alignItems: 'center'
     },
     item_Drawer: {
@@ -218,12 +219,13 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         marginTop: 3,
         fontWeight: 'bold',
-        textTransform: "capitalize"
+        textTransform: "capitalize",
+        color: Colors.second,
     },
     userEmail: {
         fontSize: 14,
         lineHeight: 14,
-
+        color: Colors.second,
     },
     Exit: {
         flexDirection: "row",
@@ -301,5 +303,5 @@ export const styles = StyleSheet.create({
         padding: 0,
         margin: 0,
     },
-   
+
 })

@@ -37,25 +37,31 @@ export default function App(props) {
                         <Image source={{ uri: item.PhotoUrl1 }} style={styles.imglist} />
                     </View>
                     <View style={styles.content_item}>
+                        <TouchableOpacity style={styles.remove_icon}
+                            onPress={() => setchoose(true) & setid(item.productID)}>
+                            <Remove />
+                        </TouchableOpacity>
                         <View style={styles.view_name}>
                             <Text style={styles.name}>{item.Name}</Text>
-                            <TouchableOpacity style={styles.remove_icon}
-                                onPress={() => setchoose(true) & setid(item.productID)}>
-                                <Remove />
-                            </TouchableOpacity>
+
                         </View>
-                        <Text>price {item.Price}$</Text>
                         <View style={styles.view_add_remove}>
+                            <Text style={styles.item_text}>{item.Price * item.Quantity}.000₫</Text>
                             <View style={styles.add_remove}>
-                                <TouchableOpacity onPress={() => addQuantity(item, token.userid)}>
-                                    <Text style={styles.plus_sub}>+</Text>
+                                <TouchableOpacity onPress={() => subQuantity(item, token.userid)}
+                                    style={styles.view_plus}>
+                                    <Text style={styles.plus_sub}>-</Text>
                                 </TouchableOpacity>
-                                <Text style={styles.item_quantity}>{item.Quantity}</Text>
-                                <TouchableOpacity onPress={() => subQuantity(item, token.userid)}>
-                                    <Text>-</Text>
+                                <View style={styles.view_quanty}>
+                                    <Text style={styles.item_quantity}>{item.Quantity}</Text>
+                                </View>
+                                <TouchableOpacity onPress={() => addQuantity(item, token.userid)}
+                                    style={styles.view_sub}>
+                                    <Text style={styles.plus_sub}>+</Text>
+
                                 </TouchableOpacity>
                             </View>
-                            <Text>{item.Price * item.Quantity} $</Text>
+
                         </View>
 
                     </View>
@@ -105,10 +111,10 @@ export default function App(props) {
             <View style={styles.view_money}>
                 <View style={styles.bottomCheckout}>
                     <Text>Total: </Text>
-                    <Text>{totalMoney}$</Text>
+                    <Text>{totalMoney}.000₫ </Text>
                 </View>
 
-                <TouchableOpacity style={styles.payment} onPress={()=>setchoose_Payment(true)}>
+                <TouchableOpacity style={styles.payment} onPress={() => setchoose_Payment(true)}>
                     <Text style={styles.textpayment}>Payment</Text>
                 </TouchableOpacity>
             </View>

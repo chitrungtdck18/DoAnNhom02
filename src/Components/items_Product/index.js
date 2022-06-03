@@ -37,7 +37,7 @@ export default function App({ item, isupdate, handlerLongClick }) {
                 </View>
                 <View style={styles.textitem}>
                     <Text style={styles.titleitem}>{item.Name}</Text>
-                    <Text style={styles.titleitem}>Price: {item.Price} $</Text>
+                    <Text style={styles.titleitem}>Price: {item.Price}.000₫</Text>
                 </View>
 
             </View>

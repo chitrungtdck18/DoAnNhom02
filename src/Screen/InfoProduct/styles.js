@@ -4,25 +4,24 @@ import { Colors } from "../../Utils/Color";
 export const styles = StyleSheet.create({
   viewDesc: {
     padding: 20,
-    borderTopWidth: 2,
   },
   Desc: {
     fontSize: 24,
-    fontWeight: "500",
   },
   DeContent: {
     marginVertical: 3,
     fontSize: 16,
-    fontWeight: '500',
-
   },
   viewText: {
-    margin: 20,
+    padding: 20,
+    backgroundColor: Colors.second,
+    borderBottomRightRadius: 25,
+    borderBottomLeftRadius: 25
   },
   priceProduct: {
-    fontSize: 26,
-    fontWeight: 'bold',
+    fontSize: 18,
     color: Colors.seventh,
+    fontWeight: "bold",
     // textAlign: 'center',
     width: '40%',
     paddingVertical: 3,
@@ -31,8 +30,7 @@ export const styles = StyleSheet.create({
     // backgroundColor: Colors.primary,
   },
   nameProduct: {
-    fontSize: 24,
-    fontWeight: "500",
+    fontSize: 16,
   },
   imgproduct: {
     width: '100%',
@@ -50,22 +48,20 @@ export const styles = StyleSheet.create({
   },
   nameapp: {
     fontSize: 20,
-    fontWeight: 'bold',
     color: Colors.second,
     textAlign: 'center',
     padding: 20,
   },
   safeareaview: {
     flex: 1,
+
   },
   ImageBackground: {
     width: Dimensions.get('window').width,
-     height: 350, 
-     justifyContent: 'flex-end',
-     marginTop:5
-  },
-  dot: {
-    paddingHorizontal: 20
+    height: 350,
+    justifyContent: 'flex-end',
+    backgroundColor: Colors.second
+
   },
   view_dot:
   {
@@ -92,7 +88,7 @@ export const styles = StyleSheet.create({
   textpayment: {
     color: Colors.second,
     fontSize: 18,
-    fontWeight: "500"
+
   },
   dot: {
     width: 7,
@@ -101,5 +97,34 @@ export const styles = StyleSheet.create({
     marginHorizontal: 10,
     padding: 0,
     margin: 0,
+    backgroundColor: Colors.second
+  },
+  view_bottom: {
+    backgroundColor: Colors.second,
+    marginTop: 10,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+  },
+  travel: {
+    color: Colors.primary,
+    fontSize: 16,
+    fontWeight: "500",
+    marginVertical: 15
+  },
+  view_travel: {
+    marginHorizontal: 15,
+  },
+  view_item_travel: {
+    flexDirection: "row",
+    marginVertical:10
+  },
+  ShowIcon: {
+    alignSelf: "center",
+    position:"absolute",
+    right:5
+  },
+  text_deliver:{
+    marginHorizontal:5,
+    fontSize:14
   }
 })
