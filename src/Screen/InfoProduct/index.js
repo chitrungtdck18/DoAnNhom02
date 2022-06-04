@@ -94,7 +94,7 @@ export default function App(props) {
             <SliderBox
                 style={styles.ImageBackground}
                 images={images}
-                sliderBoxHeight={450}
+                sliderBoxHeight={400}
                 dotColor="#2A2D3F"
                 inactiveDotColor="#90A4AE"
                 dotStyle={styles.dot}

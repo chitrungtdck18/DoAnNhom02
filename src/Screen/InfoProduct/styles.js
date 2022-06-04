@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
   },
   ImageBackground: {
     width: Dimensions.get('window').width,
-    height: 350,
+    height: 320,
     justifyContent: 'flex-end',
     backgroundColor: Colors.second
 

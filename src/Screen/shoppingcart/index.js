@@ -85,12 +85,10 @@ export default function App(props) {
     };
     const handltotal = (data) => {
         var total = 0;
-        if (data.length > 0) {
-            for (var i = 0; i < data.length; i++) {
-                total += data[i].Price * data[i].Quantity;
-            }
-            settotalMoney(total);
+        for (var i = 0; i < data.length; i++) {
+            total += data[i].Price * data[i].Quantity;
         }
+        settotalMoney(total);
     }
     useEffect(() => {
         _getData()
