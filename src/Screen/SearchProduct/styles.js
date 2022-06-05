@@ -86,7 +86,8 @@ export const styles = StyleSheet.create({
         backgroundColor: "#FFFFFF"
     },
     view_list:{
-        flex:4
+        flex:4,
+        marginHorizontal:15
     }
   
 })
