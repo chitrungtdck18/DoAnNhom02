@@ -108,8 +108,8 @@ export default function App(props) {
 
             <View style={styles.view_money}>
                 <View style={styles.bottomCheckout}>
-                    <Text>Total: </Text>
-                    <Text>{totalMoney}.000₫ </Text>
+                    <Text style={styles.money}>Total: </Text>
+                    <Text style={styles.money}>{totalMoney}.000₫ </Text>
                 </View>
 
                 <TouchableOpacity style={styles.payment} onPress={() => setchoose_Payment(true)}>

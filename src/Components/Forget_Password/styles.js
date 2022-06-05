@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     textTransform: "capitalize",
+    color:Colors.eleventh
   },
   Cancel: {
     position: "absolute",

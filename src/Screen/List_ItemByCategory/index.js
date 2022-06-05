@@ -70,7 +70,7 @@ export default function App(props) {
                     <SearchIcon />
                 </TouchableOpacity>
             </View>
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1 ,marginHorizontal:15}}>
                 <FlatList
                     data={Filter}
                     renderItem={renderItem}

@@ -52,11 +52,12 @@ export default function app(props) {
                 />
                 <ScrollView>
                     <View style={styles.viewDesc}>
-                        <Text style={styles.DeContent}>{item.Desc}</Text>
+                        
+                        <Text style={styles.Desc}>{item.Desc}</Text>
                     </View>
                     <View style={styles.view_Price}>
                         <Text style={styles.Price}>Price</Text>
-                        <Text>{item.Price}.000₫</Text>
+                        <Text style={styles.Price}>{item.Price}.000₫</Text>
                     </View>
                 </ScrollView>
 

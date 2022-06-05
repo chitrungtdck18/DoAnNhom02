@@ -214,6 +214,7 @@ export const styles = StyleSheet.create({
         marginLeft: 25,
         textTransform: "capitalize",
         fontSize: 16,
+        color:Colors.eleventh
     },
     userName: {
         fontSize: 16,

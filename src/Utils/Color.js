@@ -8,5 +8,6 @@ export const Colors = {
     sixth: "#E5E5E5",
     seventh: "#ff4654",
     nineth: "#c4c4c4",
-    tenth: "#cccccc"
+    tenth: "#cccccc",
+    eleventh: "#8b8b8b"
 }

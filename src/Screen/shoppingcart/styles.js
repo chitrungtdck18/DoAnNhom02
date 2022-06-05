@@ -75,10 +75,11 @@ export const styles = StyleSheet.create({
     item_quantity: {
         fontWeight: "bold",
         color: Colors.primary,
-        textAlign:"center"
+        textAlign: "center"
     },
     name: {
-        width: "80%"
+        width: "80%",
+        color: Colors.eleventh
     },
     view_name: {
         flexDirection: "row",
@@ -131,20 +132,23 @@ export const styles = StyleSheet.create({
     view_plus: {
         borderColor: Colors.tenth,
         borderWidth: 0.75,
-        borderTopLeftRadius:20,
-        borderBottomLeftRadius:20,
-        width:20
+        borderTopLeftRadius: 20,
+        borderBottomLeftRadius: 20,
+        width: 20
     },
-    view_quanty:{
+    view_quanty: {
         borderColor: Colors.tenth,
         borderWidth: 0.75,
-        width:30
+        width: 30
     },
-    view_sub:{
+    view_sub: {
         borderColor: Colors.tenth,
         borderWidth: 0.75,
-        borderBottomRightRadius:20,
-        borderTopRightRadius:20,
-        width:20
-    }    
+        borderBottomRightRadius: 20,
+        borderTopRightRadius: 20,
+        width: 20
+    },
+    money: {
+        color: Colors.eleventh
+    }
 })

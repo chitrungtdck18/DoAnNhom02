@@ -7,10 +7,12 @@ export const styles = StyleSheet.create({
   },
   Desc: {
     fontSize: 24,
+    color:Colors.eleventh
   },
   DeContent: {
     marginVertical: 3,
     fontSize: 16,
+    color:Colors.eleventh
   },
   viewText: {
     padding: 20,
@@ -28,9 +30,11 @@ export const styles = StyleSheet.create({
     marginVertical: 5,
     borderRadius: 15,
     // backgroundColor: Colors.primary,
+
   },
   nameProduct: {
     fontSize: 16,
+    color:Colors.eleventh
   },
   imgproduct: {
     width: '100%',
@@ -125,6 +129,7 @@ export const styles = StyleSheet.create({
   },
   text_deliver:{
     marginHorizontal:5,
-    fontSize:14
+    fontSize:14,
+    color:Colors.eleventh
   }
 })

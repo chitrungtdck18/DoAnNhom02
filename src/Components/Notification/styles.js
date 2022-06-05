@@ -3,7 +3,7 @@ import { Colors } from "../../Utils/Color";
 export const styles = StyleSheet.create({
   modalContainer: {
     alignSelf: "center",
-    height: 200,
+    height: 180,
     width: "85%",
     backgroundColor: '#F5FCFF',
     borderRadius: 15
@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     textTransform: "capitalize",
+    color:Colors.eleventh
   },
   Cancel: {
     position: "absolute",
@@ -37,6 +38,7 @@ export const styles = StyleSheet.create({
     color: "#000000",
     fontWeight: "600",
     fontSize: 20,
+    color:Colors.eleventh
 
   },
   button: {

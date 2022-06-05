@@ -52,18 +52,17 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 10,
         elevation: 15,
-        marginLeft: 15,
+        marginHorizontal: 6,
         marginVertical: 6,
         borderRadius: 10,
-        width: 175,
+        width: 165,
         height: 230,
     },
     touchIconShow: {
         alignSelf: 'flex-end'
     },
     viewimg: {
-
-        width: 175,
+        width: 165,
         height: 170,
         borderRadius: 10,
     },

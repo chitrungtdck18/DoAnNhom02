@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
   },
   title: {
     textTransform: "capitalize",
+    color:Colors.eleventh
   },
   Cancel: {
     position: "absolute",
@@ -50,7 +51,8 @@ export const styles = StyleSheet.create({
 
   },
   Price: {
-    paddingHorizontal: 10
+    paddingHorizontal: 5,
+    color:Colors.eleventh
   },
   viewDesc: {
     paddingHorizontal: 10
@@ -62,5 +64,8 @@ export const styles = StyleSheet.create({
     marginHorizontal: 10,
     padding: 0,
     margin: 0,
+  },
+  Desc:{
+    color:Colors.eleventh
   }
 })
