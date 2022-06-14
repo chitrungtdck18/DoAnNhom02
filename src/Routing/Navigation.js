@@ -64,7 +64,8 @@ export default function App() {
                     </>
                     :
                     <>
-                        <Stack.Screen name="MenuApp" component={MenuApp} options={{ headerShown: false }}  />
+                       
+                        <Stack.Screen name="MenuApp" component={MenuApp} options={{ headerShown: false }} />
                         <Stack.Screen name="InfoProduct" component={InfoProduct} options={{ headerShown: false }} />
                         <Stack.Screen name="List_ItemByCategory" component={List_ItemByCategory} options={{ headerShown: false }} />
                         <Stack.Screen name="Management" component={Management} options={{ headerShown: false }} />

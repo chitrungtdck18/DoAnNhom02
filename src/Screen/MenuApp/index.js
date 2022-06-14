@@ -25,7 +25,8 @@ import Modal from 'react-native-modal'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Info_product from '../../Components/Info_product'
 import Items_Product from '../../Components/items_Product_horizontal'
-import Slider from "../../Components/Slider"
+import Items_Category from '../../Components/items_Category'
+
 import { signOut, getAuth } from "firebase/auth";
 import { styles } from './styles';
 import { getlistCategory, arrayCategory } from '../../Model/Category';
@@ -34,8 +35,9 @@ import { getDatabase, ref, onValue, query, orderByChild, limitToFirst, limitToLa
 import { Colors } from '../../Utils/Color';
 import { Adminid, database } from '../../Utils/firebase-Config';
 import { auth } from '../../Utils/firebase-Config';
-import Banner from '../../Components/Banners';
+import Ad_banner from '../../Components/Ad_banner';
 import { SliderBox } from "react-native-image-slider-box"
+
 export default function App(props) {
     { arrayCategory }
     const { token } = useContext(AuthContext)
@@ -48,12 +50,14 @@ export default function App(props) {
     const [loading, setloading] = useState(true)
     const [item, setitem] = useState()
     const [numbercart, setnumbercart] = useState(0)
-
+    const dataitem = [...arrayCategory].filter((i) => i.id > -2);
     const [banner, setbanner] = useState([])
     const renderItem = ({ item, }) => (
         <Items_Product item={item} handlerLongClick={(e) => handlerLongClick(e)} />
     );
-
+    const renderItem_Category = ({ item }) => (
+        <Items_Category item={item} />
+    );
     const handleLogout = async () => {
         signOut(auth)
             .then(() => setUserid(""));
@@ -133,6 +137,7 @@ export default function App(props) {
         _getData()
         _getCart()
         _getBanner()
+        console.log(dataitem)
         const unsubscribe = props.navigation.addListener('focus', () => {
             setisModalVisible(false)
         });
@@ -145,6 +150,7 @@ export default function App(props) {
                     <ActivityIndicator size="large" />
                 </View>
                 : <ScrollView syle={styles.safeareaview}>
+
                     <View style={styles.header}>
                         <View style={{ width: '18%' }}>
                             <TouchableOpacity style={styles.touchIconMenu} onPress={() => setisModalVisible(true)}>
@@ -176,13 +182,6 @@ export default function App(props) {
                         </TouchableOpacity>
                     </TouchableOpacity>
                     <View style={styles.component}>
-                        {/* <Slider
-                            isAuto={true}
-                            isBanner={true}
-                            dotColor={Colors.sixth}
-                            dotIndexColor={Colors.fourth}
-                            data={banner}
-                            item={(value) => <Banner item={value} />} /> */}
                         <SliderBox
                             style={styles.ImageBackground}
                             images={banner}
@@ -193,7 +192,7 @@ export default function App(props) {
                             autoplay={true}
                         />
                     </View>
-                    <View style={styles.viewType}>
+                    {/* <View style={styles.viewType}>
                         <TouchableOpacity style={styles.touchImage} onPress={() => props.navigation.navigate('List_ItemByCategory', { name: "Balo" })}>
                             <Image style={styles.Image} source={require('../../Static/Images/bp.png')}></Image>
 
@@ -220,8 +219,15 @@ export default function App(props) {
                             <Image style={styles.Image} source={require('../../Static/Images/tshirt.png')}></Image>
 
                         </TouchableOpacity>
+                    </View> */}
+                    <View style={{ paddingBottom: 5 }}>
+                        <FlatList
+                            data={dataitem}
+                            renderItem={renderItem_Category}
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                        />
                     </View>
-
                     <View style={{ marginTop: 15, borderTopLeftRadius: 15 }}>
                         <View style={{ flexDirection: 'row' }}>
                             <Text style={styles.title}>New Product</Text>
@@ -306,6 +312,7 @@ export default function App(props) {
                         </View>
                     </Modal>
                     <Info_product isModalVisible={choose} cancel={e => setchoose(e)} item={item} />
+                    <Ad_banner />
                 </ScrollView>}
 
         </>
