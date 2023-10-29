@@ -20,6 +20,8 @@ import { LogBox } from 'react-native';
 import { AuthContext } from '../Redux/AuthContext';
 import { styles } from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 export default function App() {
 
     const Stack = createNativeStackNavigator();
@@ -56,6 +58,7 @@ export default function App() {
         <NavigationContainer>
 
             {LogBox.ignoreAllLogs()}
+            
             <Stack.Navigator>
                 {token.userid === '' ?
                     <>
