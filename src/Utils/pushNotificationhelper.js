@@ -17,9 +17,10 @@ export async function getfmcToken() {
     console.log(fcmtoken, "old token")
     if (!fcmtoken) {
         try {
+            messaging().setBackgroundMessageHandler(() => Promise.resolve());
             await messaging().registerDeviceForRemoteMessages();
             const token = await messaging().getToken();
-           
+
             await AsyncStorage.setItem("fmctoken", token);
         } catch (e) {
             console.log(e)
@@ -34,23 +35,23 @@ export const NotificationLister = () => {
             'Notification caused app to open from background state:',
             remoteMessage.notification,
         );
+    });
+    // navigation.navigate(remoteMessage.data.type);
+    // Check whether an initial notification is available
+    messaging()
+        .getInitialNotification()
+        .then(remoteMessage => {
+            if (remoteMessage) {
+                console.log(
+                    'Notification caused app to open from quit state:',
+                    remoteMessage.notification,
+                );
+                // setInitialRoute(remoteMessage.data.type); // e.g. "Settings"
+            }
         });
-        // navigation.navigate(remoteMessage.data.type);
-        // Check whether an initial notification is available
-        messaging()
-            .getInitialNotification()
-            .then(remoteMessage => {
-                if (remoteMessage) {
-                    console.log(
-                        'Notification caused app to open from quit state:',
-                        remoteMessage.notification,
-                    );
-                    // setInitialRoute(remoteMessage.data.type); // e.g. "Settings"
-                }
-            });
-        messaging().onMessage(async remoteMessage => {
-            console.log("...", remoteMessage);
-        })
-    
-    
+    messaging().onMessage(async remoteMessage => {
+        console.log("...", remoteMessage);
+    })
+
+
 }
